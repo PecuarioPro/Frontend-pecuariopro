@@ -1,0 +1,165 @@
+{
+  "vaccines": [
+    {
+      "id": "1",
+      "name": "Bovine Brucellosis Vaccine",
+      "reason": "Prevention of bovine brucellosis",
+      "date": "2021-05-01",
+      "code": "VAC-001"
+    },
+    {
+      "id": "2",
+      "name": "Bovine Tuberculosis Vaccine",
+      "reason": "Prevention of bovine tuberculosis",
+      "date": "2021-05-02",
+      "code": "VAC-002"
+    },
+    {
+      "id": "3",
+      "name": "Bovine Leptospirosis Vaccine",
+      "reason": "Prevention of bovine leptospirosis",
+      "date": "2021-05-03",
+      "code": "VAC-003"
+    },
+    {
+      "id": "4",
+      "name": "Bovine Paratuberculosis Vaccine",
+      "reason": "Prevention of bovine paratuberculosis",
+      "date": "2021-05-04",
+      "code": "VAC-004"
+    },
+    {
+      "id": "6",
+      "name": "Bovine Babesiosis Vaccine",
+      "reason": "Prevention of bovine babesiosis",
+      "date": "2021-05-06",
+      "code": "VAC-006"
+    },
+    {
+      "id": "7",
+      "name": "Bovine Actinobacillosis Vaccine",
+      "reason": "Prevention of bovine actinobacillosis",
+      "date": "2021-05-07",
+      "code": "VAC-007"
+    },
+    {
+      "id": "8",
+      "name": "Bovine Clostridiosis Vaccine",
+      "reason": "Prevention of bovine clostridiosis",
+      "date": "2021-05-08",
+      "code": "VAC-008"
+    },
+    {
+      "id": "9",
+      "name": "Bovine Histophilosis Vaccine",
+      "reason": "Prevention of bovine histophilosis",
+      "date": "2021-05-09",
+      "code": "VAC-009"
+    },
+    {
+      "id": "10",
+      "name": "Bovine Mycoplasmosis Vaccine",
+      "reason": "Prevention of bovine mycoplasmosis",
+      "date": "2021-05-10",
+      "code": "VAC-010"
+    },
+    {
+      "id": "11",
+      "name": "Bovine Salmonellosis Vaccine",
+      "reason": "Prevention of bovine salmonellosis",
+      "date": "2021-05-11",
+      "code": "VAC-011"
+    },
+    {
+      "id": "12",
+      "name": "Bovine Erysipelas Vaccine",
+      "reason": "Prevention of bovine erysipelas",
+      "date": "2021-05-12",
+      "code": "VAC-012"
+    },
+    {
+      "id": "13",
+      "name": "Bovine Chlamydiosis Vaccine",
+      "reason": "Prevention of bovine chlamydiosis",
+      "date": "2021-05-13",
+      "code": "VAC-013"
+    },
+    {
+      "id": "14",
+      "name": "Bovine Bluetongue Vaccine",
+      "reason": "Prevention of bovine bluetongue",
+      "date": "2021-05-14",
+      "code": "VAC-014"
+    },
+    {
+      "id": "15",
+      "name": "Bovine Foot-and-Mouth Disease Vaccine",
+      "reason": "Prevention of bovine foot-and-mouth disease",
+      "date": "2021-05-15",
+      "code": "VAC-015"
+    },
+    {
+      "id": "16",
+      "name": "Bovine Infectious Bovine Rhinotracheitis Vaccine",
+      "reason": "Prevention of bovine infectious bovine rhinotracheitis",
+      "date": "2021-05-16",
+      "code": "VAC-016"
+    },
+    {
+      "id": "17",
+      "name": "Bovine Borna Disease Vaccine",
+      "reason": "Prevention of bovine borna disease",
+      "date": "2021-05-17",
+      "code": "VAC-017"
+    },
+    {
+      "id": "18",
+      "name": "Bovine Peste des Petits Ruminants Vaccine",
+      "reason": "Prevention of bovine peste des petits ruminants",
+      "date": "2021-05-18",
+      "code": "VAC-018"
+    },
+    {
+      "id": "19",
+      "name": "Bovine African Swine Fever Vaccine",
+      "reason": "Prevention of bovine african swine fever",
+      "date": "2021-05-19",
+      "code": "VAC-019"
+    },
+    {
+      "id": "20",
+      "name": "Bovine Classical Swine Fever Vaccine",
+      "reason": "Prevention of bovine classical swine fever",
+      "date": "2021-05-20",
+      "code": "VAC-020"
+    }
+  ],
+  "bovines": [
+    {
+      "id": 2,
+      "name": "Luna",
+      "raza": "Holstein",
+      "weight": 400.5,
+      "date": "03/29/2024",
+      "origin": {
+        "department": "Arequipa",
+        "city": "Arequipa",
+        "district": "Arequipa"
+      },
+      "observations": "High milk production"
+    },
+    {
+      "id": 3,
+      "name": "Rex",
+      "raza": "Hereford",
+      "weight": 380.25,
+      "date": "04/02/2024",
+      "origin": {
+        "department": "Junín",
+        "city": "Huancayo",
+        "district": "Huancayo"
+      },
+      "observations": "Strong and healthy"
+    }
+  ]
+}
