@@ -1,11 +1,14 @@
+import {Origin} from "./origin.entity.js";
+
 export class Bovine {
-    constructor(id, name, raza, peso, date, origin, observations) {
+    constructor(id, name, raza, weight, date,origin, observations) {
         this.id = id;
         this.name = name;
         this.raza = raza;
-        this.peso = peso;
+        this.weight = weight;
         this.date = date;
         this.origin = origin;
+        //this.origin = new Origin;
         this.observations = observations;
 
     }

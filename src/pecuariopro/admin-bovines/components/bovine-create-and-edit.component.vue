@@ -5,11 +5,7 @@ export default {
   components: { createAndEdit },
   props: {
     item: null,
-    formData: {
-      department: null,
-      city: null,
-      district: null
-    },
+    item2:null,
     visible: Boolean,
     statuses: Array
   },
@@ -25,17 +21,18 @@ export default {
     savedEventHandler() {
       console.log(this.item);
       this.submitted = true;
-      this.updateItem(this.formData);
+     this.updateItem();
       // Verificar si los campos requeridos están llenos
       if (this.item.name && this.item.weight && this.item.raza) {
         this.$emit('saved', this.item);
       }
     },
-    updateItem(formData) {
+    updateItem() {
       if (!this.item.origin) {
         this.item.origin = {};
       }
-      this.item.origin = this.formData;
+      this.item.origin = this.item2;
+      console.log(this.item);
     }
 
   }
@@ -81,25 +78,25 @@ export default {
         <div class="p-field mt-5">
           <pv-float-label>
             <label for="department">Department</label>
-            <input id="department" v-model="this.item.department" class="p-inputtext p-component" />
+            <input id="department" v-model="this.item2.department" class="p-inputtext p-component" />
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
             <label for="city">City</label>
-            <input id="city" v-model="this.item.city" class="p-inputtext p-component" />
+            <input id="city" v-model="this.item2.city" class="p-inputtext p-component" />
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
             <label for="district">District</label>
-            <input id="district" v-model="this.item.district" class="p-inputtext p-component" />
+            <input id="district" v-model="this.item2.district" class="p-inputtext p-component" />
           </pv-float-label>
         </div>
 
         <div class="p-field mt-5">
           <pv-float-label>
-            <label for="district">Additional Information</label>
+            <label for="observations">Additional Information</label>
             <pv-textarea v-model="this.item.observations" autoResize rows="10" cols="30" />
           </pv-float-label>
         </div>
