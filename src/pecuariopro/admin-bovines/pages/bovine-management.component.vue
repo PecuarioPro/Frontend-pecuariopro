@@ -76,13 +76,14 @@ export default {
     },
     onSavedEventHandler(item) {
       this.submitted = true;
-      if (this.bovine.name.trim()) {
+      if (this.bovine.name) {
         if (this.isEdit) {
           console.log("soy el update");
           this.updateBovine();
         } else {
           console.log("soy el crear");
           this.createBovine();
+          console.log("Sigo del create");
         }
       }
       this.isVisibleCard = false;
@@ -93,6 +94,7 @@ export default {
     createBovine(){
     // this.bovine.origin=this.origin;
      console.log(this.bovine);
+     console.log("Voy a crear");
       this.bovine = Bovine.fromDisplayableBovine(this.bovine);
       this.bovineService.create(this.bovine)
           .then((response) => {

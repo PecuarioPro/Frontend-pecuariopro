@@ -139,6 +139,13 @@
       "reason": "Feber",
       "date": "2024-04-28",
       "code": "VAC-021"
+    },
+    {
+      "id": "22",
+      "name": "example",
+      "reason": "Feber",
+      "date": "2024-05-07",
+      "code": "VAC-022"
     }
   ],
   "bovines": [
@@ -175,19 +182,6 @@
       "weight": 234,
       "date": "2024-05-05",
       "origin": {},
-      "observations": {
-        "department": "Lambayeque",
-        "city": "Chiclayo",
-        "district": "Chiclayo"
-      }
-    },
-    {
-      "id": "4",
-      "name": "Empyron",
-      "raza": "Angus",
-      "weight": 234,
-      "date": "2024-05-05",
-      "origin": {},
       "observations": {}
     },
     {
@@ -204,43 +198,56 @@
       "observations": "Golpe brazo derecho"
     },
     {
-      "id": "6",
-      "name": "Kyro",
+      "id": "7",
+      "name": "Thor",
+      "raza": "Angus",
+      "weight": 213,
+      "date": "2024-05-12",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Ninguna"
+    },
+    {
+      "id": "8",
+      "name": "Fizon",
+      "raza": "Angus",
+      "weight": 345,
+      "date": "2024-05-06",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Mancha negra en espalda"
+    },
+    {
+      "id": "9",
+      "name": "Pai",
       "raza": "Charolais",
-      "weight": 212,
-      "date": "2024-04-28",
+      "weight": 344,
+      "date": "2024-05-21",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Golpe brazo derecho"
+      "observations": "Marca en la pezuña"
     },
     {
-      "id": "7",
-      "name": "Thor",
-      "raza": "Angus",
-      "weight": 213,
-      "date": "2024-05-12",
+      "id": "10",
+      "name": "Faru",
+      "raza": "Sebu",
+      "weight": 123,
+      "date": "2024-05-08",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Ninguna"
-    },
-    {
-      "id": "7",
-      "name": "Thor",
-      "raza": "Angus",
-      "weight": 213,
-      "date": "2024-05-12",
-      "origin": {
-        "department": "Lambayeque",
-        "city": "Chiclayo",
-        "district": "Chiclayo"
-      },
-      "observations": "Ninguna"
+      "observations": "Oreja golpeada"
     }
   ]
 }
