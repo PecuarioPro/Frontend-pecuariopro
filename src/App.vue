@@ -7,7 +7,8 @@ export default {
       drawer: false,
       items: [
         {label: 'Animal', to: '/animal'},
-        {label: 'Vaccine', to: '/vaccine'}
+        {label: 'Vaccine', to: '/vaccine'},
+        {label: 'Campaign', to: '/campaign'}
       ]
     }
   },

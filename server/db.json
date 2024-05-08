@@ -249,5 +249,37 @@
       },
       "observations": "Oreja golpeada"
     }
+  ],
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Campaña de Engorde de Bovinos",
+      "dateStart": "2024-05-01",
+      "dateEnd": "2024-06-30",
+      "objective": "Engordar 100 toros",
+      "batches": [],
+      "workers": [],
+      "duration": 60
+    },
+    {
+      "id": 2,
+      "name": "Campaña de Vacunación",
+      "dateStart": "2024-07-01",
+      "dateEnd": "2024-07-15",
+      "objective": "Vacunar todas las cabezas de ganado",
+      "batches": [],
+      "workers": [],
+      "duration": 14
+    },
+    {
+      "id": 3,
+      "name": "Campaña de Cosecha de Forraje",
+      "dateStart": "2024-08-01",
+      "dateEnd": "2024-09-30",
+      "objective": "Cosechar 100 toneladas de forraje",
+      "batches": [],
+      "workers": [],
+      "duration": 61
+    }
   ]
 }
