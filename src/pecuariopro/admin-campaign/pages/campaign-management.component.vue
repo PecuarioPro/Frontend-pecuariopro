@@ -1,5 +1,5 @@
 <script>
-import CampaignView from "../../admin-bovines/components/campaign-view.vue";
+import CampaignView from "../components/campaign-view.vue";
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
 
@@ -40,6 +40,11 @@ export default {
 
   },
   methods:{
+    handleViewMore(campaign) {
+      this.$router.push({ name: 'campaignDetails'});
+      //, params: { id: campaign.id }
+    },
+
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
       this.campaignService.create(this.campaign).then((response) => {
@@ -54,8 +59,12 @@ export default {
 
 <template>
 <div v-for="campaign in campaigns" :key="campaign.id">
-  <campaign-view :campaign="campaign" />
+  <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
 </div>
+  <li>
+    <router-link :to="{name: 'campaignDetails'}"> SOY UN ROUTER LINK</router-link>
+  </li>
+  <router-view/>
 </template>
 
 <style scoped>

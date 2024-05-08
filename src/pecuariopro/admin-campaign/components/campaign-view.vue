@@ -1,5 +1,5 @@
 <script>
-import {Campaign} from "../../admin-campaign/model/campaign.entity.js";
+import {Campaign} from "../model/campaign.entity.js";
 
 export default {
   name: "campaign-view",
@@ -8,7 +8,7 @@ export default {
   },
   methods:{
     viewMore(){
-      this.$emit('viewMore');
+      this.$emit('viewMore', this.campaign);
     }
   }
 }
@@ -35,7 +35,7 @@ export default {
     </template>
     <template #footer>
       <div class="flex gap-3 mt-1">
-        <pv-button label="View More" class="w-full" @click="viewMore"/>
+        <pv-button label="View More" class="w-full" @click="viewMore" />
       </div>
     </template>
   </pv-card>
