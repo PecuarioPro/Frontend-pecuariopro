@@ -1,9 +1,11 @@
 <script>
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
+import BatchManagement from "../../admin-batches/pages/batch-management.component.vue";
 
 export default {
   name: "campaign-details",
+  components: {BatchManagement},
   data(){
     return {
       campaign: null,
@@ -42,7 +44,6 @@ export default {
     }
   },
   methods:{
-
     findCampaign() {
       // Aquí puedes usar el ID de la campaña pasado como prop
       this.campaignService.getById(this.$route.params.campaignId).then(response => {
@@ -59,6 +60,8 @@ export default {
             campaignData.batches,
             campaignData.workers
         );
+        console.log("soy la campaign escogida ", this.campaign);
+
       }).catch(error => {
         console.error("Error al buscar la campaña:", error);
       });
@@ -82,6 +85,12 @@ export default {
     <p>Soy un detalle</p>
     <p>{{ $route.params.campaignId }}</p>
   </div>
+
+<batch-management />
+
+  <router-link to="/campaign">
+    <button>BACK</button>
+  </router-link>
 </template>
 
 <style scoped>

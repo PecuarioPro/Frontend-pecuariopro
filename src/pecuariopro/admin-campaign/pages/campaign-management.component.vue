@@ -62,7 +62,7 @@ export default {
   <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
 </div>
 
-  <router-view />
+
 </template>
 
 <style scoped>

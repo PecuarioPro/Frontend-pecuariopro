@@ -56,4 +56,8 @@ export class Campaign {
         this.workers = workers;
     }
 
+    getBatchById(batchId){
+        return this.batches.find(batch => batch.id == batchId);
+    }
+
 }

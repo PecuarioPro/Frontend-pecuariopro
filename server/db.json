@@ -280,6 +280,102 @@
       "batches": [],
       "workers": [],
       "duration": 61
+    },
+    {
+      "id": 4,
+      "name": "Campaña de Engorde de Ovejas",
+      "dateStart": "2024-06-01",
+      "dateEnd": "2024-07-31",
+      "objective": "Engordar 200 ovejas",
+      "batches": [
+        {
+          "id": 1,
+          "name": "Lote A",
+          "area": "Pastizal",
+          "status": "En proceso",
+          "bovines": []
+        },
+        {
+          "id": 2,
+          "name": "Lote B",
+          "area": "Pastizal",
+          "status": "En espera",
+          "bovines": []
+        },
+        {
+          "id": 3,
+          "name": "Lote C",
+          "area": "Pastizal",
+          "status": "Completado",
+          "bovines": []
+        }
+      ],
+      "workers": [],
+      "duration": 60
+    },
+    {
+      "id": 5,
+      "name": "Campaña de Cría de Vacas",
+      "dateStart": "2024-08-01",
+      "dateEnd": "2024-09-30",
+      "objective": "Cubrir 50 vacas",
+      "batches": [
+        {
+          "id": 4,
+          "name": "Lote D",
+          "area": "Pastizal",
+          "status": "En proceso",
+          "bovines": []
+        },
+        {
+          "id": 5,
+          "name": "Lote E",
+          "area": "Pastizal",
+          "status": "En espera",
+          "bovines": []
+        },
+        {
+          "id": 6,
+          "name": "Lote F",
+          "area": "Pastizal",
+          "status": "Completado",
+          "bovines": []
+        }
+      ],
+      "workers": [],
+      "duration": 60
+    },
+    {
+      "id": 6,
+      "name": "Campaña de Engorde de Pollos",
+      "dateStart": "2024-10-01",
+      "dateEnd": "2024-12-31",
+      "objective": "Engordar 500 pollos",
+      "batches": [
+        {
+          "id": 7,
+          "name": "Lote G",
+          "area": "Gallinero",
+          "status": "En proceso",
+          "bovines": []
+        },
+        {
+          "id": 8,
+          "name": "Lote H",
+          "area": "Gallinero",
+          "status": "En espera",
+          "bovines": []
+        },
+        {
+          "id": 9,
+          "name": "Lote I",
+          "area": "Gallinero",
+          "status": "Completado",
+          "bovines": []
+        }
+      ],
+      "workers": [],
+      "duration": 91
     }
   ]
 }
