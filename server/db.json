@@ -1,0 +1,285 @@
+{
+  "vaccines": [
+    {
+      "id": "1",
+      "name": "Bovine Brucellosis Vaccine",
+      "reason": "Prevention of bovine brucellosis",
+      "date": "2021-05-01",
+      "code": "VAC-001"
+    },
+    {
+      "id": "2",
+      "name": "Bovine Tuberculosis Vaccine",
+      "reason": "Prevention of bovine tuberculosis",
+      "date": "2021-05-02",
+      "code": "VAC-002"
+    },
+    {
+      "id": "3",
+      "name": "Bovine Leptospirosis Vaccine",
+      "reason": "Prevention of bovine leptospirosis",
+      "date": "2021-05-03",
+      "code": "VAC-003"
+    },
+    {
+      "id": "4",
+      "name": "Bovine Paratuberculosis Vaccine",
+      "reason": "Prevention of bovine paratuberculosis",
+      "date": "2021-05-04",
+      "code": "VAC-004"
+    },
+    {
+      "id": "6",
+      "name": "Bovine Babesiosis Vaccine",
+      "reason": "Prevention of bovine babesiosis",
+      "date": "2021-05-06",
+      "code": "VAC-006"
+    },
+    {
+      "id": "7",
+      "name": "Bovine Actinobacillosis Vaccine",
+      "reason": "Prevention of bovine actinobacillosis",
+      "date": "2021-05-07",
+      "code": "VAC-007"
+    },
+    {
+      "id": "8",
+      "name": "Bovine Clostridiosis Vaccine",
+      "reason": "Prevention of bovine clostridiosis",
+      "date": "2021-05-08",
+      "code": "VAC-008"
+    },
+    {
+      "id": "9",
+      "name": "Bovine Histophilosis Vaccine",
+      "reason": "Prevention of bovine histophilosis",
+      "date": "2021-05-09",
+      "code": "VAC-009"
+    },
+    {
+      "id": "10",
+      "name": "Bovine Mycoplasmosis Vaccine",
+      "reason": "Prevention of bovine mycoplasmosis",
+      "date": "2021-05-10",
+      "code": "VAC-010"
+    },
+    {
+      "id": "11",
+      "name": "Bovine Salmonellosis Vaccine",
+      "reason": "Prevention of bovine salmonellosis",
+      "date": "2021-05-11",
+      "code": "VAC-011"
+    },
+    {
+      "id": "12",
+      "name": "Bovine Erysipelas Vaccine",
+      "reason": "Prevention of bovine erysipelas",
+      "date": "2021-05-12",
+      "code": "VAC-012"
+    },
+    {
+      "id": "13",
+      "name": "Bovine Chlamydiosis Vaccine",
+      "reason": "Prevention of bovine chlamydiosis",
+      "date": "2021-05-13",
+      "code": "VAC-013"
+    },
+    {
+      "id": "14",
+      "name": "Bovine Bluetongue Vaccine",
+      "reason": "Prevention of bovine bluetongue",
+      "date": "2021-05-14",
+      "code": "VAC-014"
+    },
+    {
+      "id": "15",
+      "name": "Bovine Foot-and-Mouth Disease Vaccine",
+      "reason": "Prevention of bovine foot-and-mouth disease",
+      "date": "2021-05-15",
+      "code": "VAC-015"
+    },
+    {
+      "id": "16",
+      "name": "Bovine Infectious Bovine Rhinotracheitis Vaccine",
+      "reason": "Prevention of bovine infectious bovine rhinotracheitis",
+      "date": "2021-05-16",
+      "code": "VAC-016"
+    },
+    {
+      "id": "17",
+      "name": "Bovine Borna Disease Vaccine",
+      "reason": "Prevention of bovine borna disease",
+      "date": "2021-05-17",
+      "code": "VAC-017"
+    },
+    {
+      "id": "18",
+      "name": "Bovine Peste des Petits Ruminants Vaccine",
+      "reason": "Prevention of bovine peste des petits ruminants",
+      "date": "2021-05-18",
+      "code": "VAC-018"
+    },
+    {
+      "id": "19",
+      "name": "Bovine African Swine Fever Vaccine",
+      "reason": "Prevention of bovine african swine fever",
+      "date": "2021-05-19",
+      "code": "VAC-019"
+    },
+    {
+      "id": "20",
+      "name": "Bovine Classical Swine Fever Vaccine",
+      "reason": "Prevention of bovine classical swine fever",
+      "date": "2021-05-20",
+      "code": "VAC-020"
+    },
+    {
+      "id": "21",
+      "name": "Oximax",
+      "reason": "Feber",
+      "date": "2024-04-28",
+      "code": "VAC-021"
+    },
+    {
+      "id": "22",
+      "name": "example",
+      "reason": "Feber",
+      "date": "2024-05-07",
+      "code": "VAC-022"
+    }
+  ],
+  "bovines": [
+    {
+      "id": "2",
+      "name": "Luna",
+      "raza": "Holstein",
+      "weight": 400.5,
+      "date": "03/29/2024",
+      "origin": {
+        "department": "Arequipa",
+        "city": "Arequipa",
+        "district": "Arequipa"
+      },
+      "observations": "High milk production"
+    },
+    {
+      "id": "3",
+      "name": "Rex",
+      "raza": "Hereford",
+      "weight": 380.25,
+      "date": "04/02/2024",
+      "origin": {
+        "department": "Junín",
+        "city": "Huancayo",
+        "district": "Huancayo"
+      },
+      "observations": "Strong and healthy"
+    },
+    {
+      "id": "4",
+      "name": "Empyron",
+      "raza": "Angus",
+      "weight": 234,
+      "date": "2024-05-05",
+      "origin": {},
+      "observations": {}
+    },
+    {
+      "id": "6",
+      "name": "Kyro",
+      "raza": "Charolais",
+      "weight": 212,
+      "date": "2024-04-28",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Golpe brazo derecho"
+    },
+    {
+      "id": "7",
+      "name": "Thor",
+      "raza": "Angus",
+      "weight": 213,
+      "date": "2024-05-12",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Ninguna"
+    },
+    {
+      "id": "8",
+      "name": "Fizon",
+      "raza": "Angus",
+      "weight": 345,
+      "date": "2024-05-06",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Mancha negra en espalda"
+    },
+    {
+      "id": "9",
+      "name": "Pai",
+      "raza": "Charolais",
+      "weight": 344,
+      "date": "2024-05-21",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Marca en la pezuña"
+    },
+    {
+      "id": "10",
+      "name": "Faru",
+      "raza": "Sebu",
+      "weight": 123,
+      "date": "2024-05-08",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Oreja golpeada"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Campaña de Engorde de Bovinos",
+      "dateStart": "2024-05-01",
+      "dateEnd": "2024-06-30",
+      "objective": "Engordar 100 toros",
+      "batches": [],
+      "workers": [],
+      "duration": 60
+    },
+    {
+      "id": 2,
+      "name": "Campaña de Vacunación",
+      "dateStart": "2024-07-01",
+      "dateEnd": "2024-07-15",
+      "objective": "Vacunar todas las cabezas de ganado",
+      "batches": [],
+      "workers": [],
+      "duration": 14
+    },
+    {
+      "id": 3,
+      "name": "Campaña de Cosecha de Forraje",
+      "dateStart": "2024-08-01",
+      "dateEnd": "2024-09-30",
+      "objective": "Cosechar 100 toneladas de forraje",
+      "batches": [],
+      "workers": [],
+      "duration": 61
+    }
+  ]
+}
