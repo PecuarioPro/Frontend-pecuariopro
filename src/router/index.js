@@ -1,11 +1,13 @@
 
 import {createRouter, createWebHistory} from "vue-router";
-import animalComponent from "../public/page/animal.component.vue";
+import animalComponent from "../public/pages/animal.component.vue";
 import vaccineManagementComponent from "../pecuariopro/vaccines/pages/vaccine-management.component.vue";
 import bovineManagementComponent from "../pecuariopro/admin-bovines/pages/bovine-management.component.vue";
 import campaignManagementComponent from "../pecuariopro/admin-campaign/pages/campaign-management.component.vue";
 import campaignDetailsComponent from "../pecuariopro/admin-campaign/components/campaign-details.component.vue";
 import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch-details.component.vue";
+import notFoundComponent from "../public/pages/not-found.component.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -28,7 +30,10 @@ const router = createRouter({
             name: "batchDetails",
             props: true,
             meta: { title: "Batch Details" }
-        }
+        },
+
+        // Route to handle unmatched URLs, using notFoundComponent
+        { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } }
     ]
 });
 
