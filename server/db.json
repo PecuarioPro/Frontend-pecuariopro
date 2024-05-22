@@ -377,5 +377,74 @@
       "workers": [],
       "duration": 91
     }
+  ],
+
+  "staff": [
+    {
+      "id": 1,
+      "campaigns_id": 1,
+      "name": "Jhon",
+      "last_name": "Miller",
+      "email": "jhonworker@pecuario.pro",
+      "on_job_status": "On",
+      "job_description": "Graze group 2 cows",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 2,
+      "campaigns_id": 2,
+      "name": "Francisco",
+      "last_name": "Garces",
+      "email": "franciscoworker@pecuario.pro",
+      "on_job_status": "On",
+      "job_description": "Feed and vaccinate cows of group 3",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 3,
+      "campaigns_id": 3,
+      "name": "Eloy",
+      "last_name": "Robles",
+      "email": "eloyworker@pecuario.pro",
+      "on_job_status": "On",
+      "job_description": "Feed and vaccinate cows of group 5",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 4,
+      "campaigns_id": 4,
+      "name": "Alfred",
+      "last_name": "Santos",
+      "email": "alfredworker@pecuario.pro",
+      "on_job_status": "Off",
+      "job_description": "Check health status of livestock 1 and 4",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 5,
+      "campaigns_id": 5,
+      "name": "Francisco",
+      "last_name": "Vargas",
+      "email": "vargasworker@pecuario.pro",
+      "on_job_status": "On",
+      "job_description": "Check health status of livestock 1 and 4",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 6,
+      "campaigns_id": 6,
+      "name": "Damian",
+      "last_name": "Zabala",
+      "email": "damianworker@pecuario.pro",
+      "on_job_status": "On",
+      "job_description": "Graze group 1 cows",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    }
   ]
 }
