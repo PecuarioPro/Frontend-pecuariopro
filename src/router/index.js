@@ -8,6 +8,8 @@ import campaignDetailsComponent from "../pecuariopro/admin-campaign/components/c
 import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch-details.component.vue";
 import notFoundComponent from "../public/pages/not-found.component.vue";
 
+import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -32,8 +34,14 @@ const router = createRouter({
             meta: { title: "Batch Details" }
         },
 
-        // Route to handle unmatched URLs, using notFoundComponent
-        { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } }
+        // Path to staff
+        { path: "/staff", component: staffManagementComponent, meta: { title: "Staff" } },
+
+        // Path to handle unmatched URLs, using notFoundComponent
+        { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
+
+        // Root path
+        { path: "/", redirect: "/animal" }
     ]
 });
 

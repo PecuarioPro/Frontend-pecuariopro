@@ -8,7 +8,8 @@ export default {
       items: [
         {label: 'Animal', to: '/animal'},
         {label: 'Vaccine', to: '/vaccine'},
-        {label: 'Campaign', to: '/campaign'}
+        {label: 'Campaign', to: '/campaign'},
+        {label: 'Staff', to: '/staff'}
       ]
     }
   },

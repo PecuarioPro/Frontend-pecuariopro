@@ -64,11 +64,11 @@ export default {
   <pv-confirm-dialog/>
   <h3>Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
-  <pv-toolbar class="mb-4">
-    <template #start>
-      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
-    </template>
-  </pv-toolbar>
+    <pv-toolbar class="mb-4">
+      <template #start>
+        <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+      </template>
+    </pv-toolbar>
 
 
   <!-- Data Table Section -->
