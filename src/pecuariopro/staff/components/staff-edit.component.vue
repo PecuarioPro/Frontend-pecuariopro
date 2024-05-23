@@ -1,22 +1,27 @@
 <script>
-//import createAndEdit from "../../../shared/components/create-and-edit.component.vue"
 import {FilterMatchMode} from "primevue/api";
 import Toolbar from 'primevue/toolbar';
+import CreateAndEdit from "../../../shared/components/create-and-edit.component.vue";
 
 export default {
   name: "staff-edit",
+  components: {CreateAndEdit},
   inheritAttrs: false,
   props: {
     items: {type: Array, required: true},
     title:  {type: { singular: '', plural: ''}, required: true},
     dynamic: {type: Boolean, default: false},
     columns: {type: Array, default: () => []},
+    item: null,
+    visible:Boolean,
+    statuses: Array
   },
   data() {
     return {
       selectedItems: [],
       // search bar
-      filters: { global: { value: null, matchMode: FilterMatchMode.CONTAINS } }
+      filters: { global: { value: null, matchMode: FilterMatchMode.CONTAINS } },
+      submitted: false
     }
   },
   created() {
@@ -24,6 +29,27 @@ export default {
   },
 
   methods: {
+    getSeverity(status) {
+      switch (status) {
+        case 'Applied':
+          return 'success';
+        case 'Not applied':
+          return 'info';
+        default:
+          return null;
+      }
+    },
+    canceledEventHandler() {
+      this.$emit('canceled');
+    },
+    savedEventHandler() {
+      console.log(this.item);
+      this.submitted = true;
+      // Verificar si los campos requeridos están llenos
+      if (this.item.name && this.item.code && this.item.status) {
+        this.$emit('saved', this.item);
+      }
+    },
     initFilters() {
       this.filters = {global: {value: null, matchMode: FilterMatchMode.CONTAINS}};
     },
@@ -65,7 +91,6 @@ export default {
 </script>
 
 <template>
-
   <pv-toast/>
   <pv-confirm-dialog/>
   <h3>Manage {{ title.singular }}</h3>

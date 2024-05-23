@@ -71,7 +71,7 @@ export default {
             this.vaccine = Vaccine.toDisplayableVaccine(response.data);
             this.vaccines.push(this.vaccine);
             this.notifySuccessfulAction("Vaccine Created");
-            this.createAndEditDialogIsVisible = false;
+            createAndEditDialogIsVisible
           })
           .catch((error) => {
             console.error('Error creating vaccine:', error);
@@ -110,7 +110,7 @@ export default {
     hideWelcomeMessage() {
       setTimeout(() => {
         this.showWelcomeMessage = false;
-      }, 5000);
+      }, 500);
     }
   },
   created() {
