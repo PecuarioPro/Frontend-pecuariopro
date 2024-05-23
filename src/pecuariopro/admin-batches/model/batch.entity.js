@@ -1,12 +1,10 @@
-import {Bovine} from "../../admin-bovines/model/bovine.js";
-
 export class Batch {
-    constructor(id, name, area, status, bovines = []) {
+    constructor(id, name, area, status, campaignId) {
         this.id = id;
         this.name = name;
         this.area = area;
         this.status = status;
-        this.bovines = bovines;
+        this.campaignId = campaignId;
     }
 
     static fromDisplayableBatch(displayableBatch) {
@@ -15,7 +13,7 @@ export class Batch {
             displayableBatch.name,
             displayableBatch.area,
             displayableBatch.status,
-            displayableBatch.bovines.map(bovine => Bovine.fromDisplayableBovine(bovine))
+            displayableBatch.campaignId
         );
     }
 
@@ -25,7 +23,7 @@ export class Batch {
             name: batch.name,
             area: batch.area,
             status: batch.status,
-            bovines: batch.bovines.map(bovine => Bovine.toDisplayableBovine(bovine))
+            campaignId: batch.campaignId
         };
     }
 }

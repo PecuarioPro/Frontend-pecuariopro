@@ -1,12 +1,10 @@
 export class Campaign {
-    constructor(id,name,dateStart,dateEnd,objective,batches = [],workers = []) {
+    constructor(id,name,dateStart,dateEnd,objective) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.objective = objective;
-        this.batches = batches;
-        this.workers = workers;
         this.duration = this.calculateDuration();
     }
 
@@ -17,8 +15,7 @@ export class Campaign {
             displayableCampaign.dateStart,
             displayableCampaign.dateEnd,
             displayableCampaign.objective,
-            displayableCampaign.batches,
-            displayableCampaign.workers,
+
 
         );
     }
@@ -30,8 +27,6 @@ export class Campaign {
             dateStart: campaign.dateStart,
             dateEnd: campaign.dateEnd,
             objective: campaign.objective,
-            batches: campaign.batches,
-            workers: campaign.workers,
 
         };
     }
@@ -41,23 +36,23 @@ export class Campaign {
          return diffTime / (1000 * 60 * 60 * 24);
     }
 
-    aggregateBatch(batch){
-        this.batches.push(batch);
-    }
-    aggregateBatches(batches){
-        this.batches = batches;
-    }
-
-    aggregateWorker(worker){
-        this.workers.push(worker);
-    }
-
-    aggregateWorkers(workers) {
-        this.workers = workers;
-    }
-
-    getBatchById(batchId){
-        return this.batches.find(batch => batch.id == batchId);
-    }
+    // aggregateBatch(batch){
+    //     this.batches.push(batch);
+    // }
+    // aggregateBatches(batches){
+    //     this.batches = batches;
+    // }
+    //
+    // aggregateWorker(worker){
+    //     this.workers.push(worker);
+    // }
+    //
+    // aggregateWorkers(workers) {
+    //     this.workers = workers;
+    // }
+    //
+    // getBatchById(batchId){
+    //     return this.batches.find(batch => batch.id == batchId);
+    // }
 
 }

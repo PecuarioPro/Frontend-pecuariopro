@@ -15,10 +15,7 @@ const router = createRouter({
     routes: [
         { path: "/animal",    component: bovineManagementComponent, meta: { title: "Animal"}},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
-        { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" },
-        children: [
-        ]
-        },
+        { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,

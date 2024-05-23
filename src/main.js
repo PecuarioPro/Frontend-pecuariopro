@@ -36,7 +36,10 @@ import InputNumber from "primevue/inputnumber";
 import FloatLabel from "primevue/floatlabel";
 import Checkbox from "primevue/checkbox";
 import Rating from "primevue/rating";
+import StyleClass from "primevue/styleclass";
 import router from "./router/index.js";
+import Ripple from "primevue/ripple";
+import Avatar from "primevue/avatar";
 
 
 createApp(App)
@@ -67,4 +70,8 @@ createApp(App)
     .component('pv-float-label', FloatLabel)
     .component('pv-checkbox', Checkbox)
     .component('pv-rating', Rating)
+    .component('pv-avatar',Avatar)
+    .directive('styleclass', StyleClass)
+    .directive('ripple', Ripple)          // Registra la directiva Ripple
     .mount('#app')
+

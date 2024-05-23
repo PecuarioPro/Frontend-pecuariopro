@@ -1,7 +1,7 @@
 import {Origin} from "./origin.entity.js";
 
 export class Bovine {
-    constructor(id, name, raza, weight, date,origin, observations) {
+    constructor(id, name, raza, weight, date,origin, observations,batchId) {
         this.id = id;
         this.name = name;
         this.raza = raza;
@@ -10,6 +10,7 @@ export class Bovine {
         this.origin = origin;
         //this.origin = new Origin;
         this.observations = observations;
+        this.batchId = batchId;
 
     }
 
@@ -22,6 +23,7 @@ export class Bovine {
             displayableBovine.date,
             displayableBovine.origin,
             displayableBovine.observations,
+            displayableBovine.batchId
 
         );
     }
@@ -35,6 +37,7 @@ export class Bovine {
             date: bovine.date,
             origin: bovine.origin,
             observations: bovine.observations,
+            batchId: bovine.batchId
 
         };
     }
