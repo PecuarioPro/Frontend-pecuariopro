@@ -2,11 +2,10 @@
 import { StaffApiService } from "../services/staff-api.service.js";
 import { Staff } from "../model/staff.entity.js"
 import StaffEdit from "../components/staff-edit.component.vue"
-import DataManager from "../../../shared/components/data-manager.component.vue";
 import StaffCreateAndEdit from "../components/staff-create-and-edit.component.vue";
 export default {
   name: "staff-management",
-  components: {StaffCreateAndEdit, DataManager, StaffEdit },
+  components: {StaffCreateAndEdit, StaffEdit },
   data(){
     return {
       title:{ singular: 'Staff', plural: 'Staffs' },
@@ -131,7 +130,7 @@ export default {
 <template>
   <div class="staff-full">
     <!-- Staff Data Manager -->
-    <data-manager
+    <staff-edit
         class="custom-table"
         :title=title
         v-bind:items="staffs"
@@ -156,7 +155,8 @@ export default {
         <!-- Date End Column -->
         <!--<pv-column :sortable="false" field="date_end" header="Date End" style="min-width: 6rem"/>-->
       </template>
-    </data-manager>
+    </staff-edit>
+
     <staff-create-and-edit
         :item="staff"
         :edit="isEdit"
