@@ -32,6 +32,7 @@ export default {
         this.item.origin = {};
       }
       this.item.origin = this.item2;
+      this.item.batchId = this.$route.params.batchId;
       console.log(this.item);
     }
 
@@ -43,12 +44,12 @@ export default {
   <create-and-edit :entity="this.item" :visible="visible" entityName="Bovine" @canceled="canceledEventHandler" @saved="savedEventHandler">
     <template #content>
       <div class="p-fluid">
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="ID">ID</label>
-            <pv-input-text id="ID" v-model="this.item.id"/>
-          </pv-float-label>
-        </div>
+<!--        <div class="p-field mt-5">-->
+<!--          <pv-float-label>-->
+<!--            <label for="ID">ID</label>-->
+<!--            <pv-input-text id="ID" v-model="this."/>-->
+<!--          </pv-float-label>-->
+<!--        </div>-->
         <div class="field mt-5">
           <pv-float-label>
             <label for="name">Name</label>

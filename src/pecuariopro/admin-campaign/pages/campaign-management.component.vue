@@ -58,13 +58,33 @@ export default {
 </script>
 
 <template>
-<div v-for="campaign in campaigns" :key="campaign.id">
-  <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
-</div>
+  <div class="container-cards">
+    <div v-for="campaign in campaigns" :key="campaign.id" class="card">
+      <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
+    </div>
+  </div>
+
 
 
 </template>
 
 <style scoped>
+.container-cards{
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  height: 100vh;
+  gap:20px;
+  width: 100%;
+}
+
+
+@media (min-width: 750px) {
+}
+
+@media (min-width: 1400px) {
+
+}
 
 </style>

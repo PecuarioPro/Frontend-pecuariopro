@@ -75,11 +75,30 @@ export default {
 </script>
 
 <template>
-  <div v-for="batch in batches" :key="batch.id">
-    <batch-view :batch="batch" @viewBovines="handleViewBovines"/>
+  <div class="container-cards">
+    <div v-for="batch in batches" :key="batch.id">
+      <batch-view :batch="batch" @viewBovines="handleViewBovines"/>
+    </div>
   </div>
+
 </template>
 
 <style scoped>
+.container-cards{
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  height: 100vh;
+  gap:20px;
+  width: 100%;
+}
 
+
+@media (min-width: 750px) {
+}
+
+@media (min-width: 1400px) {
+
+}
 </style>

@@ -283,6 +283,34 @@
       },
       "observations": "Fast growth",
       "batchId": 5
+    },
+    {
+      "id": "11",
+      "name": "Zafiro",
+      "raza": "Angus",
+      "weight": 234,
+      "date": "2024-05-17",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "example bovine",
+      "batchId": "1"
+    },
+    {
+      "id": "12",
+      "name": "Esmeralda",
+      "raza": "Charolais",
+      "weight": 334,
+      "date": "2024-05-22",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Lambayeque",
+        "district": "Lambayeque"
+      },
+      "observations": "nothing",
+      "batchId": "1"
     }
   ],
   "campaigns": [
@@ -509,7 +537,6 @@
       "campaignId": 7
     }
   ],
-
   "staff": [
     {
       "id": 1,

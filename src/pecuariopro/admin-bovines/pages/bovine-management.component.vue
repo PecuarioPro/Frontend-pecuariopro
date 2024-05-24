@@ -10,6 +10,9 @@ import {Origin} from "../model/origin.entity.js";
 export default {
   name: "bovine-management",
   components: { BovineCreateAndEdit,DataManager},
+  props:{
+    batchId:null
+  },
   data(){
     return{
       title:{ singular: 'Bovine', plural: 'Bovines' },
@@ -28,9 +31,10 @@ export default {
     this.bovineService = new BovinesApiService();
     this.bovineService.getAll().then((response) => {
       console.log(response.data);
+      console.log("soy el tipo batch",typeof batchId);
       let bovines = response.data;
       console.log(bovines);
-      this.bovines = bovines.map((bovine)=> Bovine.toDisplayableBovine(bovine));
+      this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId).map((bovine)=> Bovine.toDisplayableBovine(bovine));
     });
     console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
 
@@ -93,6 +97,7 @@ export default {
 
     createBovine(){
     // this.bovine.origin=this.origin;
+      this.bovine.id=0;
      console.log(this.bovine);
      console.log("Voy a crear");
       this.bovine = Bovine.fromDisplayableBovine(this.bovine);

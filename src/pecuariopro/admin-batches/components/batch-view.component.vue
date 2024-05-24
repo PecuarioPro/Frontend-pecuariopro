@@ -16,15 +16,17 @@ export default {
 </script>
 
 <template>
-  <pv-card style="width: 25rem; overflow: hidden">
+  <pv-card style="overflow: hidden" class="custom-card">
     <template #title>{{batch.name}}</template>
     <template #subtitle>
-      <p>Area: </p>
-      <p>{{batch.area}}</p>
+      <div class="container-subtitle"> <p style="font-weight:bold">Area: </p>
+        <p>{{batch.area}}</p>
+      </div>
+
     </template>
     <template #content>
       <div>
-        <p>Status</p>
+        <p style="font-weight:bold">Status</p>
         <p>{{batch.status}}</p>
       </div>
 
@@ -38,5 +40,17 @@ export default {
 </template>
 
 <style scoped>
-
+.custom-card {
+  width: 20rem;
+  height: 20rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding:0.5rem;
+}
+.container-subtitle{
+  display:flex;
+  gap:5px;
+}
 </style>

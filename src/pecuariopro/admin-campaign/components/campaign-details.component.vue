@@ -2,10 +2,11 @@
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
 import BatchManagement from "../../admin-batches/pages/batch-management.component.vue";
+import PvButton from "../../../main.js";
 
 export default {
   name: "campaign-details",
-  components: {BatchManagement},
+  components: {PvButton, BatchManagement},
   data(){
     return {
       campaign: null,
@@ -79,20 +80,31 @@ export default {
 </script>
 
 <template>
-
-  <div v-if="campaign">
-    <h2>{{ campaign.name }}</h2>
-    <p>Soy un detalle</p>
-    <p>{{ $route.params.campaignId }}</p>
+<div class="batch-section">
+  <div  class="container-title">
+    <h2 v-if="campaign" class="title">{{ campaign.name }}</h2>
+    <pv-button class="title-button">Add</pv-button>
   </div>
 
-<batch-management />
+  <batch-management />
 
   <router-link to="/campaign">
-    <button>BACK</button>
+
   </router-link>
+
+</div>
+
+
 </template>
 
 <style scoped>
+.batch-section{
+  padding:20px;
+}
+.container-title{
+  display:flex;
+  justify-content: space-between;
+  background-color: #E1D29A;
+}
 
 </style>

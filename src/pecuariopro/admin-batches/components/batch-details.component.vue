@@ -22,9 +22,11 @@ export default {
   },
   methods: {
     findBatch(){
+      console.log("soy el id del gtByiD",this.$route.params.batchId,typeof this.$route.params.batchId)
       this.batchesService.getById(this.$route.params.batchId).then((response) => {
         console.log(response.data);
-        this.batch = response.data;
+        let _batch = response.data;
+        this.batch = Batch.toDisplayableBatch(_batch);
       });
     }
 
@@ -35,12 +37,12 @@ export default {
 
 <template>
   <div>
-    <h2>{{ batch.name }}</h2>
+    <h2>{{ this.batch.name }}</h2>
     <p>Soy un detalle batch</p>
     <p>{{ $route.params.batchId }}</p>
     <p>Soy un detalle campaign</p>
   </div>
-  <bovine-management/>
+  <bovine-management :batch-id="this.batch.id"/>
 </template>
 
 <style scoped>
