@@ -12,7 +12,44 @@ export default {
     return{
       campaign: {},
       campaigns: [],
-      campaignService:null
+      campaignService:null,
+      items: [
+        {
+          label: 'Add',
+          icon: 'pi pi-pencil',
+          command: () => {
+            this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+          }
+        },
+        {
+          label: 'Update',
+          icon: 'pi pi-refresh',
+          command: () => {
+            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+          }
+        },
+        {
+          label: 'Delete',
+          icon: 'pi pi-trash',
+          command: () => {
+            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          }
+        },
+        {
+          label: 'Upload',
+          icon: 'pi pi-upload',
+          command: () => {
+            this.$router.push('/fileupload');
+          }
+        },
+        {
+          label: 'Vue Website',
+          icon: 'pi pi-external-link',
+          command: () => {
+            window.location.href = 'https://vuejs.org/';
+          }
+        }
+      ]
     }
 
   },
@@ -58,17 +95,33 @@ export default {
 </script>
 
 <template>
-  <div class="container-cards">
-    <div v-for="campaign in campaigns" :key="campaign.id" class="card">
-      <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
+  <section class="campaign-section">
+    <div  class="container-title">
+      <h2 class="title"> Panel</h2>
+      <div>
+        <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" ></pv-button>
+        <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
+      </div>
     </div>
-  </div>
+
+
+    <div class="container-cards" :style="{ position: 'relative'} ">
+      <div v-for="campaign in campaigns" :key="campaign.id" class="card">
+        <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
+      </div>
+
+    </div>
+  </section>
+
 
 
 
 </template>
 
 <style scoped>
+.campaign-section{
+  padding:20px;
+}
 .container-cards{
   display:flex;
   justify-content:center;
@@ -78,7 +131,19 @@ export default {
   gap:20px;
   width: 100%;
 }
+.container-title{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
 
+}
+.title-button{
+  height:50px;
+  color:white;
+  font-size:15px;
+  font-weight:500;
+  text-align: center;
+}
 
 @media (min-width: 750px) {
 }

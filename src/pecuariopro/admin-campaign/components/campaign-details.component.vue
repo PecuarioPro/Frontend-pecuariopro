@@ -109,7 +109,7 @@ export default {
   display:flex;
   justify-content: space-between;
   align-items:center;
-  //background-color: #E1D29A;
+
 }
 .title-button{
   height:50px;

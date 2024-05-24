@@ -6,6 +6,37 @@ export default {
   props: {
     campaign: Campaign
   },
+  data(){
+
+    return {
+      items: [
+
+        {
+          label: 'Update',
+          icon: 'pi pi-pencil',
+          command: () => {
+            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+          }
+        },
+        {
+          label: 'Delete',
+          icon: 'pi pi-trash',
+          command: () => {
+            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          }
+        },
+        {
+          label: 'Upload',
+          icon: 'pi pi-upload',
+          command: () => {
+            this.$router.push('/fileupload');
+          }
+        }
+      ]
+    }
+
+
+  },
   methods:{
     viewMore(){
       this.$emit('viewMore', this.campaign);
@@ -22,33 +53,37 @@ export default {
 </script>
 
 <template>
+  <div :style="{ position: 'relative'} ">
+    <pv-speed-dial :model="items" direction="down" mask :style="{ right: '-10px', top: '-15px' }" />
 
-  <pv-card class="custom-card">
+    <pv-card class="custom-card">
 
 
-    <template #title >
-      <p class="card-title"> {{ campaign.name }}</p>
-     </template>
+      <template #title >
+        <p class="card-title"> {{ campaign.name }}</p>
+      </template>
 
-    <template #content>
-      <div class="card-content">
-        <div>
-          <p>Start</p>
-          <p>{{ formatDate(campaign.dateStart) }}</p>
+      <template #content>
+        <div class="card-content">
+          <div>
+            <p>Start</p>
+            <p>{{ formatDate(campaign.dateStart) }}</p>
+          </div>
+
+          <div>
+            <p>End</p>
+            <p>{{ formatDate(campaign.dateEnd) }}</p>
+          </div>
         </div>
-
-        <div>
-          <p>End</p>
-          <p>{{ formatDate(campaign.dateEnd) }}</p>
+      </template>
+      <template #footer>
+        <div class="card-footer">
+          <pv-button label="View More" class="w-full" @click="viewMore" />
         </div>
-      </div>
-    </template>
-    <template #footer>
-      <div class="card-footer">
-        <pv-button label="View More" class="w-full" @click="viewMore" />
-      </div>
-    </template>
-  </pv-card>
+      </template>
+    </pv-card>
+  </div>
+
 </template>
 
 <style scoped>
