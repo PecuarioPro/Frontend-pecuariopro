@@ -40,7 +40,7 @@ import StyleClass from "primevue/styleclass";
 import router from "./router/index.js";
 import Ripple from "primevue/ripple";
 import Avatar from "primevue/avatar";
-
+import SpeedDial from "primevue/speeddial";
 
 createApp(App)
     .use(router)
@@ -71,6 +71,7 @@ createApp(App)
     .component('pv-checkbox', Checkbox)
     .component('pv-rating', Rating)
     .component('pv-avatar',Avatar)
+    .component('pv-speed-dial',SpeedDial)
     .directive('styleclass', StyleClass)
     .directive('ripple', Ripple)          // Registra la directiva Ripple
     .mount('#app')

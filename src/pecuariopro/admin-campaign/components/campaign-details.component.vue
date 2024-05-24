@@ -2,11 +2,10 @@
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
 import BatchManagement from "../../admin-batches/pages/batch-management.component.vue";
-import PvButton from "../../../main.js";
 
 export default {
   name: "campaign-details",
-  components: {PvButton, BatchManagement},
+  components: { BatchManagement},
   data(){
     return {
       campaign: null,
@@ -83,7 +82,12 @@ export default {
 <div class="batch-section">
   <div  class="container-title">
     <h2 v-if="campaign" class="title">{{ campaign.name }}</h2>
-    <pv-button class="title-button">Add</pv-button>
+    <div>
+      <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" ></pv-button>
+      <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
+    </div>
+
+
   </div>
 
   <batch-management />
@@ -104,7 +108,15 @@ export default {
 .container-title{
   display:flex;
   justify-content: space-between;
-  background-color: #E1D29A;
+  align-items:center;
+  //background-color: #E1D29A;
+}
+.title-button{
+  height:50px;
+  color:white;
+  font-size:15px;
+  font-weight:500;
+  text-align: center;
 }
 
 </style>

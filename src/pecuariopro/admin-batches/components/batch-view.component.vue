@@ -4,9 +4,42 @@ import {Batch} from "../model/batch.entity.js";
 
 export default {
   name: "batch-view",
+  components: {},
   props:{
     batch: Batch
   },
+  data(){
+
+    return {
+      items: [
+
+        {
+          label: 'Update',
+          icon: 'pi pi-pencil',
+          command: () => {
+            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+          }
+        },
+        {
+          label: 'Delete',
+          icon: 'pi pi-trash',
+          command: () => {
+            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          }
+        },
+        {
+          label: 'Upload',
+          icon: 'pi pi-upload',
+          command: () => {
+            this.$router.push('/fileupload');
+          }
+        }
+      ]
+    }
+
+
+  },
+
   methods:{
     viewBovines(){
       this.$emit('viewBovines',this.batch);
@@ -16,27 +49,37 @@ export default {
 </script>
 
 <template>
-  <pv-card style="overflow: hidden" class="custom-card">
-    <template #title>{{batch.name}}</template>
-    <template #subtitle>
-      <div class="container-subtitle"> <p style="font-weight:bold">Area: </p>
-        <p>{{batch.area}}</p>
-      </div>
+  <div :style="{ position: 'relative'} ">
 
-    </template>
-    <template #content>
-      <div>
-        <p style="font-weight:bold">Status</p>
-        <p>{{batch.status}}</p>
-      </div>
+      <pv-speed-dial :model="items" direction="down" mask :style="{ right: '-10px', top: '-15px' }" />
 
-    </template>
-    <template #footer>
-      <div class="flex gap-3 mt-1">
-        <pv-button label="View Bovines" class="w-full" @click="viewBovines" />
-      </div>
-    </template>
-  </pv-card>
+    <pv-card  class="custom-card">
+
+
+      <template #title>{{batch.name}}
+        </template>
+      <template #subtitle>
+        <div class="container-subtitle"> <p style="font-weight:bold">Area: </p>
+          <p>{{batch.area}}</p>
+        </div>
+
+      </template>
+      <template #content>
+        <div>
+          <p style="font-weight:bold">Status</p>
+          <p>{{batch.status}}</p>
+        </div>
+
+      </template>
+      <template #footer>
+        <div class="flex gap-3 mt-1">
+          <pv-button label="View Bovines" class="w-full" @click="viewBovines" />
+        </div>
+      </template>
+    </pv-card>
+
+  </div>
+
 </template>
 
 <style scoped>
