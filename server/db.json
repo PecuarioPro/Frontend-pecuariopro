@@ -123,7 +123,7 @@
       "id": "19",
       "name": "Bovine African Swine Fever Vaccine",
       "reason": "Prevention of bovine african swine fever",
-      "date": "2021-05-19",
+      "date": "2023-05-19",
       "code": "VAC-019"
     },
     {
@@ -146,6 +146,13 @@
       "reason": "Feber",
       "date": "2024-05-07",
       "code": "VAC-022"
+    },
+    {
+      "id": "87",
+      "name": "Bovine Rabick",
+      "reason": "Prevention of Rabick",
+      "date": "2024-05-13",
+      "code": "0803"
     }
   ],
   "bovines": [
