@@ -320,6 +320,7 @@
       "dateStart": "2024-05-01",
       "dateEnd": "2024-06-30",
       "objective": "Engordar 100 toros",
+      "condition": "Active",
       "duration": 60
     },
     {
@@ -328,6 +329,7 @@
       "dateStart": "2024-07-01",
       "dateEnd": "2024-07-15",
       "objective": "Vacunar todas las vacas del ganado",
+      "condition": "Active",
       "duration": 14
     },
     {
@@ -336,6 +338,7 @@
       "dateStart": "2024-08-01",
       "dateEnd": "2024-09-30",
       "objective": "Engordar 200 vacas",
+      "condition": "Finished",
       "duration": 61
     },
     {
@@ -344,6 +347,7 @@
       "dateStart": "2024-06-01",
       "dateEnd": "2024-07-31",
       "objective": "Realizar inseminación artificial en 50 vacas",
+      "condition": "Active",
       "duration": 60
     },
     {
@@ -352,6 +356,7 @@
       "dateStart": "2024-08-01",
       "dateEnd": "2024-09-30",
       "objective": "Realizar pruebas y tratamientos preventivos en 50 toros",
+      "condition": "Finished",
       "duration": 61
     },
     {
@@ -360,6 +365,7 @@
       "dateStart": "2024-10-01",
       "dateEnd": "2024-12-31",
       "objective": "Implementar programas de mejora genética en 100 vacas",
+      "condition": "Active",
       "duration": 91
     },
     {
@@ -368,6 +374,7 @@
       "dateStart": "2025-01-01",
       "dateEnd": "2025-02-28",
       "objective": "Realizar pesaje y control de peso en 300 vacas",
+      "condition": "Finished",
       "duration": 59
     },
     {
@@ -376,6 +383,7 @@
       "dateStart": "2025-03-01",
       "dateEnd": "2025-04-30",
       "objective": "Garantizar la reproducción exitosa de 30 toros",
+      "condition": "Active",
       "duration": 61
     },
     {
@@ -384,6 +392,7 @@
       "dateStart": "2025-05-01",
       "dateEnd": "2025-06-30",
       "objective": "Desparasitar 500 vacas",
+      "condition": "Active",
       "duration": 61
     },
     {
@@ -392,6 +401,7 @@
       "dateStart": "2025-07-01",
       "dateEnd": "2025-08-31",
       "objective": "Realizar pruebas de fertilidad en 200 vacas",
+      "condition": "Finished",
       "duration": 61
     }
   ],

@@ -1,10 +1,11 @@
 export class Campaign {
-    constructor(id,name,dateStart,dateEnd,objective) {
+    constructor(id,name,dateStart,dateEnd,objective,condition) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.objective = objective;
+        this.condition = condition;
         this.duration = this.calculateDuration();
     }
 
@@ -15,6 +16,7 @@ export class Campaign {
             displayableCampaign.dateStart,
             displayableCampaign.dateEnd,
             displayableCampaign.objective,
+            displayableCampaign.condition
 
 
         );
@@ -27,6 +29,7 @@ export class Campaign {
             dateStart: campaign.dateStart,
             dateEnd: campaign.dateEnd,
             objective: campaign.objective,
+            condition: campaign.condition
 
         };
     }

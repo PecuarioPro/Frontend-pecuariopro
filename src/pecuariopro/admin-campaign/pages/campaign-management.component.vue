@@ -2,54 +2,22 @@
 import CampaignView from "../components/campaign-view.vue";
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
+import CampaignCreateAndEdit from "../components/campaign-create-and-edit.component.vue";
 
 export default {
   name: "campaign-management",
-  components: {CampaignView},
+  components: {CampaignCreateAndEdit, CampaignView},
   props: {
   },
   data(){
     return{
+      title:{ singular: 'Bovine', plural: 'Bovines' },
       campaign: {},
       campaigns: [],
       campaignService:null,
-      items: [
-        {
-          label: 'Add',
-          icon: 'pi pi-pencil',
-          command: () => {
-            this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
-          }
-        },
-        {
-          label: 'Update',
-          icon: 'pi pi-refresh',
-          command: () => {
-            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
-          }
-        },
-        {
-          label: 'Delete',
-          icon: 'pi pi-trash',
-          command: () => {
-            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
-          }
-        },
-        {
-          label: 'Upload',
-          icon: 'pi pi-upload',
-          command: () => {
-            this.$router.push('/fileupload');
-          }
-        },
-        {
-          label: 'Vue Website',
-          icon: 'pi pi-external-link',
-          command: () => {
-            window.location.href = 'https://vuejs.org/';
-          }
-        }
-      ]
+      isVisibleCard: false,
+      isEdit: false,
+      submitted: false
     }
 
   },
@@ -82,6 +50,36 @@ export default {
       //, params: { id: campaign.id }
     },
 
+  onNewItemEventHandler() {
+    this.campaign = {};
+    this.submitted = false;
+    this.isEdit = false;
+    this.isVisibleCard = true;
+    console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
+  },
+  onCanceledEventHandler() {
+    this.submitted = false;
+    this.isEdit = false;
+    this.isVisibleCard=false;
+    console.log(`soy el flag y estoy apagandome1 ${this.isVisibleCard}`)
+  },
+  onSavedEventHandler(item) {
+    this.submitted = true;
+    if (this.campaign.name) {
+      if (item.id) {
+        console.log("soy el update");
+        this.updateCampaign();
+      } else {
+        console.log("soy el crear");
+        this.createCampaign();
+        console.log("Sigo del create");
+      }
+    }
+    this.isVisibleCard = false;
+    console.log(`soy el card y estoy apagandome2 ${this.isVisibleCard}`)
+    this.isEdit = false;
+  },
+
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
       this.campaignService.create(this.campaign).then((response) => {
@@ -89,6 +87,15 @@ export default {
         this.campaigns.push(this.campaign);
 
       })
+    },
+    updateCampaign(){
+      this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
+      this.campaignService.update(this.campaign.id, this.campaign)
+          .then((response)=>{
+            this.campaign[this.findIndexById(response.data.id)] =
+                Campaign.toDisplayableCampaign(response.data);
+            this.notifySuccessfulAction("Campaign Updated");
+          });
     }
   }
 }
@@ -99,7 +106,7 @@ export default {
     <div  class="container-title">
       <h2 class="title"> Panel</h2>
       <div>
-        <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" ></pv-button>
+        <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
         <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
       </div>
     </div>
@@ -111,6 +118,12 @@ export default {
       </div>
 
     </div>
+    <campaign-create-and-edit
+        :item="campaign"
+        :visible="isVisibleCard"
+        :edit="isEdit"
+        v-on:canceled="onCanceledEventHandler"
+        v-on:saved="onSavedEventHandler($event)"/>
   </section>
 
 

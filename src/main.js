@@ -41,6 +41,7 @@ import router from "./router/index.js";
 import Ripple from "primevue/ripple";
 import Avatar from "primevue/avatar";
 import SpeedDial from "primevue/speeddial";
+import Calendar from "primevue/calendar";
 
 createApp(App)
     .use(router)
@@ -72,6 +73,7 @@ createApp(App)
     .component('pv-rating', Rating)
     .component('pv-avatar',Avatar)
     .component('pv-speed-dial',SpeedDial)
+    .component('pv-calendar',Calendar)
     .directive('styleclass', StyleClass)
     .directive('ripple', Ripple)          // Registra la directiva Ripple
     .mount('#app')
