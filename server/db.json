@@ -410,6 +410,24 @@
       "objective": "Realizar pruebas de fertilidad en 200 vacas",
       "condition": "Finished",
       "duration": 61
+    },
+    {
+      "name": "Example Campaign",
+      "dateStart": "2024-05-25T05:00:00.000Z",
+      "dateEnd": "2024-05-31T05:00:00.000Z",
+      "objective": "Engordar toros",
+      "condition": "Active",
+      "duration": 6,
+      "id": 11
+    },
+    {
+      "name": "Example 2",
+      "dateStart": "2024-05-25T05:00:00.000Z",
+      "dateEnd": "2024-05-30T05:00:00.000Z",
+      "objective": "asdada",
+      "condition": "Active",
+      "duration": 5,
+      "id": 12
     }
   ],
   "batches": [

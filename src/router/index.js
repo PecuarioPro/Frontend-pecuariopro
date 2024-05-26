@@ -9,7 +9,10 @@ import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch
 import notFoundComponent from "../public/pages/not-found.component.vue";
 
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
+<<<<<<< HEAD
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
+=======
+>>>>>>> 0ae49cae0faa1f4aa4acbd5c487999148f5d6c4d
 
 const router = createRouter({
     history: createWebHistory(),
