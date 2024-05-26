@@ -2,10 +2,12 @@
 import BatchView from "../components/batch-view.component.vue";
 import {BatchApiService} from "../services/batch-api.service.js";
 import {Batch} from "../model/batch.entity.js";
+import BatchCreateAndEdit from "../components/batch-create-and-edit.component.vue";
+import CampaignCreateAndEdit from "../../admin-campaign/components/campaign-create-and-edit.component.vue";
 
 export default {
   name: "batch-management",
-  components: {BatchView},
+  components: {CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
   data() {
     return {
       batch: {},
@@ -13,6 +15,7 @@ export default {
       batches: [],
       selectedBatches:[],
       isVisibleCard: false,
+      isEdit: false,
       submitted: false,
       deleteFlag:false
     };
@@ -89,6 +92,8 @@ export default {
     createBatch(){
       this.batch = Batch.fromDisplayableBatch(this.batch);
       //aggregate default values if is necessary
+      this.batch.status= 'Empty';
+      this.batch.campaignId= this.$route.params.campaignId;
       this.batchesService.create(this.batch).then((response) => {
         this.batch = Batch.toDisplayableBatch(response.data);
         this.batches.push(this.batch);
@@ -138,8 +143,12 @@ export default {
       </div>
     </div>
   </section>
-
-
+<batch-create-and-edit
+    :item="batch"
+    :visible="isVisibleCard"
+    :edit="isEdit"
+    @canceled="onCanceledEventHandler"
+    @saved2="onSavedEventHandler($event)"/>
 </template>
 
 <style scoped>

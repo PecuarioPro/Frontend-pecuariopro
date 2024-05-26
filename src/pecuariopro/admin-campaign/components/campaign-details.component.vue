@@ -57,8 +57,7 @@ export default {
             startDate,
             endDate,
             campaignData.objective,
-            campaignData.batches,
-            campaignData.workers
+            campaignData.condition
         );
         console.log("soy la campaign escogida ", this.campaign);
 

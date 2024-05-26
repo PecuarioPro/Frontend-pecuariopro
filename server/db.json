@@ -552,6 +552,13 @@
       "area": 230,
       "status": "En espera",
       "campaignId": 7
+    },
+    {
+      "name": "Example",
+      "area": 60,
+      "status": "Empty",
+      "campaignId": "1",
+      "id": 21
     }
   ],
   "staff": [
