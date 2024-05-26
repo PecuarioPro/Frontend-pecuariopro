@@ -9,7 +9,6 @@ import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch
 import notFoundComponent from "../public/pages/not-found.component.vue";
 
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
-import vaccineStatisticsComponent from "../pecuariopro/vaccines/pages/VaccineStatistics.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,7 +16,6 @@ const router = createRouter({
         { path: "/animal",    component: bovineManagementComponent, meta: { title: "Animal"}},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
-        { path: "/stadistics", component: vaccineStatisticsComponent, meta: { title: "Stadistics" }},
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,

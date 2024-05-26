@@ -6,7 +6,7 @@ import CampaignCreateAndEdit from "../components/campaign-create-and-edit.compon
 
 export default {
   name: "campaign-management",
-  components: {CampaignCreateAndEdit, CampaignView},
+  components: { CampaignCreateAndEdit, CampaignView},
   props: {
   },
   data(){
@@ -15,6 +15,7 @@ export default {
       campaign: {},
       campaigns: [],
       campaignService:null,
+      selectedCampaigns:[],
       isVisibleCard: false,
       isEdit: false,
       submitted: false
@@ -35,8 +36,7 @@ export default {
           dateStart: startDate,
           dateEnd: endDate,
           objective: campaign.objective,
-          batches: campaign.batches,
-          workers: campaign.workers
+          condition: campaign.condition
         });
       });
       console.log("este es el array",this.campaigns);
@@ -65,7 +65,7 @@ export default {
   },
   onSavedEventHandler(item) {
     this.submitted = true;
-    if (this.campaign.name) {
+    if (this.campaign.name.trim()) {
       if (item.id) {
         console.log("soy el update");
         this.updateCampaign();
@@ -79,14 +79,26 @@ export default {
     console.log(`soy el card y estoy apagandome2 ${this.isVisibleCard}`)
     this.isEdit = false;
   },
+    toggleSelection(campaign) {
+      const index = this.selectedCampaigns.findIndex(c => c.id === campaign.id);
+      if (index > -1) {
+        this.selectedCampaigns.splice(index, 1);
+      } else {
+        this.selectedCampaigns.push(campaign);
+      }
+      console.log('Selected campaigns:', this.selectedCampaigns);
+    },
 
+    //CRUD METHODS
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
+      this.campaign.condition='Active';
       this.campaignService.create(this.campaign).then((response) => {
         this.campaign = Campaign.toDisplayableCampaign(response.data);
         this.campaigns.push(this.campaign);
 
       })
+      console.log('Estas son las campaigns',this.campaigns);
     },
     updateCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
@@ -104,7 +116,7 @@ export default {
 <template>
   <section class="campaign-section">
     <div  class="container-title">
-      <h2 class="title"> Panel</h2>
+      <h2 class="title"> Your Campaigns</h2>
       <div>
         <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
         <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
@@ -114,6 +126,10 @@ export default {
 
     <div class="container-cards" :style="{ position: 'relative'} ">
       <div v-for="campaign in campaigns" :key="campaign.id" class="card">
+        <div class="flex align-items-center">
+          <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.name"></pv-checkbox>
+<!--          <pv-checkbox :checked="selectedCampaigns.includes(campaign)" @change="toggleSelection(campaign)" />-->
+        </div>
         <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
       </div>
 
@@ -122,8 +138,8 @@ export default {
         :item="campaign"
         :visible="isVisibleCard"
         :edit="isEdit"
-        v-on:canceled="onCanceledEventHandler"
-        v-on:saved="onSavedEventHandler($event)"/>
+        @canceled="onCanceledEventHandler"
+        @saved2="onSavedEventHandler($event)"/>
   </section>
 
 
