@@ -154,7 +154,6 @@ export default {
       <div v-for="campaign in campaigns" :key="campaign.id" class="card">
         <div class="flex align-items-center" v-if="deleteFlag">
           <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.id" ></pv-checkbox>
-<!--          <pv-checkbox :checked="selectedCampaigns.includes(campaign)" @change="toggleSelection(campaign)" />-->
         </div>
         <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
       </div>
