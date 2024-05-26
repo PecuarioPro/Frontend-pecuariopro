@@ -6,7 +6,6 @@ import campaignManagementComponent from "../pecuariopro/admin-campaign/pages/cam
 import campaignDetailsComponent from "../pecuariopro/admin-campaign/components/campaign-details.component.vue";
 import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch-details.component.vue";
 import notFoundComponent from "../public/pages/not-found.component.vue";
-
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
 

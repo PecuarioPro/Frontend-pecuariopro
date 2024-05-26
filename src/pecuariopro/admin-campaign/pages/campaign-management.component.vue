@@ -18,7 +18,8 @@ export default {
       selectedCampaigns:[],
       isVisibleCard: false,
       isEdit: false,
-      submitted: false
+      submitted: false,
+      deleteFlag:false
     }
 
   },
@@ -89,6 +90,22 @@ export default {
       console.log('Selected campaigns:', this.selectedCampaigns);
     },
 
+    deleteAction(){
+      this.deleteFlag=!this.deleteFlag;
+
+    },
+    deleteSelection() {
+      if (this.selectedCampaigns) {
+        this.selectedCampaigns.forEach((campaign) => {
+          console.log(this.selectedCampaigns);
+          this.campaignService.delete(campaign).then(() => {
+            this.campaigns = this.campaigns.filter((c) => c.id !== campaign);
+          });
+        });
+      }
+      this.deleteFlag = !this.deleteFlag;
+    },
+
     //CRUD METHODS
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
@@ -114,20 +131,29 @@ export default {
 </script>
 
 <template>
-  <section class="campaign-section">
+  <section class="campaign-section" :style="{ position: 'relative'} ">
     <div  class="container-title">
       <h2 class="title"> Your Campaigns</h2>
       <div>
-        <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
-        <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
+        <div v-if="!deleteFlag">
+          <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
+          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="secondary" v-if="!deleteFlag" @click="deleteAction"></pv-button>
+        </div>
+
+        <div v-if="deleteFlag">
+          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="success" label="Delete" @click="deleteSelection"></pv-button>
+          <pv-button class="mr-2 title-button"  severity="secondary" v-if="deleteFlag" label="Cancel" @click="deleteAction"></pv-button>
+        </div>
+
       </div>
     </div>
 
 
     <div class="container-cards" :style="{ position: 'relative'} ">
       <div v-for="campaign in campaigns" :key="campaign.id" class="card">
-        <div class="flex align-items-center">
-          <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.name"></pv-checkbox>
+        <div class="flex align-items-center" v-if="deleteFlag">
+          <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.id" ></pv-checkbox>
 <!--          <pv-checkbox :checked="selectedCampaigns.includes(campaign)" @change="toggleSelection(campaign)" />-->
         </div>
         <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
