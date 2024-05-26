@@ -1,6 +1,11 @@
 <template>
   <div class="vaccine-count">
-    <p>Total Vaccines: {{ totalVaccines }}</p>
+    <div class="icon">
+      <i class="pi pi-syringe"></i>
+    </div>
+    <div class="count">
+      {{ totalVaccines }}
+    </div>
   </div>
 </template>
 
@@ -9,7 +14,7 @@ import { defineComponent, ref, onMounted } from 'vue';
 import { VaccinesApiService } from '../services/vaccine-api.service';
 
 export default defineComponent({
-  name: 'VaccineCount',
+  name: 'VaccineCountComponent',
   setup() {
     const totalVaccines = ref<number>(0);
     const vaccinesApiService = new VaccinesApiService();
@@ -33,9 +38,23 @@ export default defineComponent({
 
 <style scoped>
 .vaccine-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #32C793;
+  color: white;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vaccine-count .icon {
+  font-size: 36px;
+  margin-right: 10px;
+}
+
+.vaccine-count .count {
+  font-size: 36px;
+  font-weight: bold;
 }
 </style>

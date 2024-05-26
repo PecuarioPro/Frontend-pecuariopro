@@ -64,9 +64,13 @@ export class VaccinesApiService {
             }));
         });
     }
-    getTotalVaccines() {
-        return this.getAll().then(response => {
+    async getTotalVaccines() {
+        try {
+            const response = await this.getAll();
             return response.data.length;
-        });
+        } catch (error) {
+            console.error('Error fetching total vaccines:', error);
+            throw error;
+        }
     }
 }

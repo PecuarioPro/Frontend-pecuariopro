@@ -1,6 +1,5 @@
 
 import {createRouter, createWebHistory} from "vue-router";
-import animalComponent from "../public/pages/animal.component.vue";
 import vaccineManagementComponent from "../pecuariopro/vaccines/pages/vaccine-management.component.vue";
 import bovineManagementComponent from "../pecuariopro/admin-bovines/pages/bovine-management.component.vue";
 import campaignManagementComponent from "../pecuariopro/admin-campaign/pages/campaign-management.component.vue";
@@ -9,10 +8,7 @@ import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch
 import notFoundComponent from "../public/pages/not-found.component.vue";
 
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
-<<<<<<< HEAD
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
-=======
->>>>>>> 0ae49cae0faa1f4aa4acbd5c487999148f5d6c4d
 
 const router = createRouter({
     history: createWebHistory(),
