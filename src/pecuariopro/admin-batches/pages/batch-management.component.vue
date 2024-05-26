@@ -4,10 +4,11 @@ import {BatchApiService} from "../services/batch-api.service.js";
 import {Batch} from "../model/batch.entity.js";
 import BatchCreateAndEdit from "../components/batch-create-and-edit.component.vue";
 import CampaignCreateAndEdit from "../../admin-campaign/components/campaign-create-and-edit.component.vue";
+import CampaignView from "../../admin-campaign/components/campaign-view.vue";
 
 export default {
   name: "batch-management",
-  components: {CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
+  components: {CampaignView, CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
   data() {
     return {
       batch: {},
@@ -25,7 +26,12 @@ export default {
     this.getBatches();
   },
   methods: {
-
+    notifySuccessfulAction(message) {
+      this.$toast.add({severity: "contrast", summary: "Success", detail: message, life: 3000});
+    },
+    findIndexById(id) {
+      return this.batches.findIndex((batch) => batch.id === id);
+    },
     handleViewBovines(batch) {
       this.$router.push({
         name: "batchDetails",
@@ -48,6 +54,14 @@ export default {
       this.isEdit = false;
       this.isVisibleCard = true;
       console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
+    },
+    onEditItemEventHandler(item) {
+      this.batch = item;
+      this.submitted = false;
+      this.isEdit = true;
+      this.isVisibleCard = true;
+      console.log(`soy el flag de editar de batch y estoy prendiendo ${this.isVisibleCard}`)
+      // this.createAndEditDialogIsVisible = true aqui ira la card para editar;
     },
     onCanceledEventHandler() {
       this.submitted = false;
@@ -86,7 +100,10 @@ export default {
       }
       this.deleteFlag = !this.deleteFlag;
     },
-
+    onDeleteItemEventHandler(item) {
+      this.batch = item;
+      this.deleteBatch();
+    },
 
     //CRUD METHODS
     createBatch(){
@@ -97,6 +114,7 @@ export default {
       this.batchesService.create(this.batch).then((response) => {
         this.batch = Batch.toDisplayableBatch(response.data);
         this.batches.push(this.batch);
+        this.notifySuccessfulAction("Batch Created");
 
       })
       console.log('Estas son las campaigns',this.batches);
@@ -105,9 +123,19 @@ export default {
       this.batch = Batch.fromDisplayableBatch(this.batch);
       this.batchesService.update(this.batch.id, this.batch)
           .then((response)=>{
-            this.batch[this.findIndexById(response.data.id)] =
+            this.batches[this.findIndexById(response.data.id)] =
                 Batch.toDisplayableBatch(response.data);
+            this.notifySuccessfulAction("Batch Updated");
+
           });
+    },
+    deleteBatch(){
+      this.batchesService.delete(this.batch.id)
+          .then(()=>{
+            this.batches=this.batches.filter((t)=>t.id !==this.batch.id);
+            this.batch = {};
+            this.notifySuccessfulAction("Batch Deleted");
+          })
     }
 
   }
@@ -117,6 +145,7 @@ export default {
 
 <template>
   <section>
+    <pv-toast />
     <div  class="container-title">
       <h2 class="title"> My Batches</h2>
       <div>
@@ -139,7 +168,7 @@ export default {
         <div class="flex align-items-center" v-if="deleteFlag">
           <pv-checkbox v-model="selectedBatches" :inputId="batch.id" name="batch" :value="batch.id" ></pv-checkbox>
         </div>
-        <batch-view :batch="batch" @viewBovines="handleViewBovines"/>
+        <batch-view :batch="batch" @viewBovines="handleViewBovines" @Edit="onEditItemEventHandler" @Delete="onDeleteItemEventHandler"/>
       </div>
     </div>
   </section>

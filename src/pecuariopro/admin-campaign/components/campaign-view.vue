@@ -3,6 +3,7 @@ import {Campaign} from "../model/campaign.entity.js";
 
 export default {
   name: "campaign-view",
+  components: {},
   props: {
     campaign: Campaign
   },
@@ -15,22 +16,23 @@ export default {
           label: 'Update',
           icon: 'pi pi-pencil',
           command: () => {
-            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+            this.$emit('Edit',this.campaign);
           }
         },
         {
           label: 'Delete',
           icon: 'pi pi-trash',
           command: () => {
-            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+            this.$emit('Delete',this.campaign);
           }
         },
         {
           label: 'Upload',
-          icon: 'pi pi-upload',
-          command: () => {
-            this.$router.push('/fileupload');
-          }
+          icon: 'pi pi-upload'
+          // ,
+          // command: () => {
+          //   this.$router.push('/fileupload');
+          // }
         }
       ]
     }
@@ -54,6 +56,7 @@ export default {
 
 <template>
   <div :style="{ position: 'relative'} ">
+    <pv-toast />
     <pv-speed-dial :model="items" direction="down" mask :style="{ right: '-10px', top: '-15px' }" />
 
     <pv-card class="custom-card">

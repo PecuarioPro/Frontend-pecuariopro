@@ -3,7 +3,7 @@ import createAndEdit from "../../../shared/components/create-and-edit.component.
 
 export default {
   name: "batch-create-and-edit",
-  components: { createAndEdit},
+  components: {createAndEdit},
   props:{
     item:null,
     visible: Boolean,
@@ -12,7 +12,12 @@ export default {
   data() {
     return {
       submitted: false,
-      dateError: ''
+      dateError: '',
+      statusOptions:[
+        { name: 'Empty'},
+        { name: 'Busy' },
+        { name: 'Full' }
+      ]
     }
   },
   methods:{
@@ -34,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <create-and-edit :entity="item" :visible="visible" entityName="Batch" @canceled="canceledEventHandler" @saved="savedEventHandler">
+  <create-and-edit :entity="item" :edit="edit" :visible="visible" entityName="Batch" @canceled="canceledEventHandler" @saved="savedEventHandler">
     <template #content>
 
       <div class="p-fluid">
@@ -51,12 +56,17 @@ export default {
           <label for="area" class="label-input">Area</label>
           <pv-float-label >
             <pv-input-number  v-model="item.area" inputId="area" mode="decimal" showButtons :step="10" :min="0"/>
-
             <small v-if="!submitted" class="down-input-label">Area is in meters.</small>
             <small v-if="submitted && !item.area" class="p-invalid">Area is required.</small>
           </pv-float-label>
         </div>
-
+        <div class="field mt-5" v-if="edit">
+          <label for="name" class="label-input">Status</label>
+          <pv-float-label>
+            <pv-dropdown v-model="item.status"  :options="statusOptions" optionLabel="name"  optionValue="name" placeholder="Select a Status" class="w-full " />
+            <small v-if="submitted && !item.status" class="p-invalid">Status is required.</small>
+          </pv-float-label>
+        </div>
       </div>
 
     </template>

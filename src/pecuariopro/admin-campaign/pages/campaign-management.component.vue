@@ -46,18 +46,32 @@ export default {
 
   },
   methods:{
+    notifySuccessfulAction(message) {
+      this.$toast.add({severity: "contrast", summary: "Success", detail: message, life: 3000});
+    },
     handleViewMore(campaign) {
       this.$router.push({ name: 'campaignDetails', params: { campaignId: campaign.id }});
       //, params: { id: campaign.id }
     },
-
-  onNewItemEventHandler() {
+    findIndexById(id) {
+      return this.campaigns.findIndex((campaign) => campaign.id === id);
+    },
+    onNewItemEventHandler() {
     this.campaign = {};
     this.submitted = false;
     this.isEdit = false;
     this.isVisibleCard = true;
     console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
   },
+    onEditItemEventHandler(item) {
+      this.campaign = item;
+      this.submitted = false;
+      this.isEdit = true;
+      this.isVisibleCard = true;
+      console.log(`soy el flag de editar de campaign y estoy prendiendo ${this.isVisibleCard}`)
+      // this.createAndEditDialogIsVisible = true aqui ira la card para editar;
+    },
+
   onCanceledEventHandler() {
     this.submitted = false;
     this.isEdit = false;
@@ -105,7 +119,10 @@ export default {
       }
       this.deleteFlag = !this.deleteFlag;
     },
-
+  onDeleteItemEventHandler(item) {
+    this.campaign = item;
+    this.deleteCampaign();
+  },
     //CRUD METHODS
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
@@ -113,7 +130,7 @@ export default {
       this.campaignService.create(this.campaign).then((response) => {
         this.campaign = Campaign.toDisplayableCampaign(response.data);
         this.campaigns.push(this.campaign);
-
+        this.notifySuccessfulAction("Campaign Created");
       })
       console.log('Estas son las campaigns',this.campaigns);
     },
@@ -121,10 +138,18 @@ export default {
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
       this.campaignService.update(this.campaign.id, this.campaign)
           .then((response)=>{
-            this.campaign[this.findIndexById(response.data.id)] =
+            this.campaigns[this.findIndexById(response.data.id)] =
                 Campaign.toDisplayableCampaign(response.data);
             this.notifySuccessfulAction("Campaign Updated");
           });
+    },
+    deleteCampaign(){
+      this.campaignService.delete(this.campaign.id)
+          .then(()=>{
+            this.campaigns=this.campaigns.filter((t)=>t.id !==this.campaign.id);
+            this.campaign = {};
+            this.notifySuccessfulAction("Campaign Deleted");
+          })
     }
   }
 }
@@ -132,6 +157,7 @@ export default {
 
 <template>
   <section class="campaign-section" :style="{ position: 'relative'} ">
+    <pv-toast />
     <div  class="container-title">
       <h2 class="title"> Your Campaigns</h2>
       <div>
@@ -155,7 +181,7 @@ export default {
         <div class="flex align-items-center" v-if="deleteFlag">
           <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.id" ></pv-checkbox>
         </div>
-        <campaign-view :campaign="campaign" @viewMore="handleViewMore"/>
+        <campaign-view :campaign="campaign" @viewMore="handleViewMore" @Edit="onEditItemEventHandler" @Delete="onDeleteItemEventHandler"/>
       </div>
 
     </div>

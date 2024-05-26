@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <create-and-edit :entity="item" :visible="visible" entityName="Campaign" @canceled="canceledEventHandler" @saved="savedEventHandler">
+  <create-and-edit :entity="item" :edit="edit" :visible="visible" entityName="Campaign" @canceled="canceledEventHandler" @saved="savedEventHandler">
     <template #content>
 
       <div class="p-fluid">
@@ -76,9 +76,7 @@ export default {
             <small v-if="submitted && dateError" class="p-invalid">{{ dateError }}</small>
           </pv-float-label>
         </div>
-        <div v-if="edit">
 
-        </div>
       </div>
 
     </template>
