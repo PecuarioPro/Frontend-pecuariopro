@@ -42,6 +42,7 @@ import Ripple from "primevue/ripple";
 import Avatar from "primevue/avatar";
 import SpeedDial from "primevue/speeddial";
 import Calendar from "primevue/calendar";
+import Chart from 'primevue/chart';
 
 createApp(App)
     .use(router)
@@ -49,6 +50,7 @@ createApp(App)
     .use(ToastService)
     .use(DialogService)
     .use(ConfirmationService)
+    .component('Chart', Chart)
     .component('pv-button', Button)
     .component('pv-data-table', DataTable)
     .component('pv-column', Column)

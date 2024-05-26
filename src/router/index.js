@@ -9,11 +9,16 @@ import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch
 import notFoundComponent from "../public/pages/not-found.component.vue";
 
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
+<<<<<<< HEAD
+import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
+=======
+>>>>>>> 0ae49cae0faa1f4aa4acbd5c487999148f5d6c4d
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/animal",    component: bovineManagementComponent, meta: { title: "Animal"}},
+        { path: "/statistics",  component: statisticsVaccineComponent, meta: { title: "Statistics" }},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
         {
