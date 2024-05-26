@@ -17,6 +17,15 @@
         <monthly-stats/>
       </div>
     </div>
+
+    <div class="card-vaccine-total">
+      <div class="card-header-vaccine-total">
+        <div class="chart-title-vaccine-total">Total Vaccines</div>
+      </div>
+      <div class="card-body-vaccine-total">
+        <vaccine-count-component/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,12 +33,13 @@
 import Chart from 'primevue/chart';
 import { VaccinesApiService } from "../services/vaccine-api.service.js";
 import MonthlyStats from "../components/MonthlyStats.component.vue";
-
+import vaccineCountComponent from "../components/vaccine-count.component.vue";
 export default {
   name: 'StatisticsVaccine',
   components: {
     Chart,
-    MonthlyStats
+    MonthlyStats,
+    vaccineCountComponent
   },
   data() {
     return {
@@ -143,6 +153,50 @@ export default {
   }
 }
 
+.card-vaccine-total {
+  background-color: white;
+  color: #495057;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-vaccine-total {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-title-vaccine-total {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-body-vaccine-total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vaccine-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #32C793;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vaccine-count .icon {
+  font-size: 36px;
+  margin-right: 10px;
+}
+
+.vaccine-count .count {
+  font-size: 36px;
+  font-weight: bold;
+}
 @media (max-width: 480px) {
   .card {
     padding: 5px;
@@ -156,4 +210,6 @@ export default {
     height: 200px;
   }
 }
+
+
 </style>
