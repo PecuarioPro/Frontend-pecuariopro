@@ -6,6 +6,18 @@ export default {
   props: {
     visible: Boolean
   },
+  data(){
+    return{
+      conditions:[
+        {name: "Active", key: "A"},
+        {name: "Finished", key: "F"}
+      ],
+      selectedConditions:[],
+      minValue:null,
+      maxValue:null,
+    }
+
+  },
   methods: {
     close() {
       this.$emit('closeFilter');
@@ -15,61 +27,104 @@ export default {
 </script>
 
 <template>
-  <pv-sidebar :visible="visible" header="Filter Campaigns" position="right" style="width: 20rem;" :class="{ 'sidebar-transition': visible }" @hide="close">
-    <template #container="{ closeCallback }">
-      <div class="filter-container">
-        <pv-button type="button" @click="close" icon="pi pi-times" class="button-close"></pv-button>
-        <div class="card">
-          <pv-stepper orientation="vertical">
-            <pv-stepper-panel header="Name">
-              <template #content="{ nextCallback }">
-                <div class="flex flex-column h-12rem">
-                  <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content I</div>
+    <div class="filter-container">
+      <div class="card">
+        <pv-stepper orientation="vertical">
+          <pv-stepper-panel header="Name" class="panel-with-large-header">
+            <template #content="{ nextCallback }">
+              <div class="flex flex-column h-12rem">
+                <div class=" border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium " id="container-name">
+                  <pv-icon-field iconPosition="left">
+                    <pv-input-icon class="pi pi-search"> </pv-input-icon>
+                    <pv-input-text placeholder="Search" />
+                  </pv-icon-field>
+                  <p class="custom-paragraph">Search for the name of your campaign </p>
                 </div>
-                <div class="flex py-4 container-buttons-actions" >
-                  <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
-                  <pv-button label="Cancel"  severity="secondary" @click="close" />
+              </div>
+              <div class="flex py-4 container-buttons-actions" >
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Cancel"  severity="secondary" @click="close" />
+              </div>
+            </template>
+          </pv-stepper-panel>
+          <pv-stepper-panel header="Condition">
+            <template #content="{ prevCallback, nextCallback }">
+              <div class="flex flex-column h-10rem">
+                <div class=" border-round surface-ground flex-auto flex align-items-center font-medium " id="container-condition">
+                  <div class="flex flex-column gap-2 container-radio-buttons flex ">
+                    <p>Select the condition</p>
+                    <div v-for="condition of conditions" :key="condition.key" class="flex align-items-center gap-2 " :style="{ margin: '5px 0' }">
+                      <pv-radio-button v-model="selectedConditions" :inputId="condition.key" name="condition" :value="condition.name" />
+                      <label :for="condition.key">{{ condition.name }}</label>
+                    </div>
+                  </div>
+
                 </div>
-              </template>
-            </pv-stepper-panel>
-            <pv-stepper-panel header="Condition">
-              <template #content="{ prevCallback, nextCallback }">
-                <div class="flex flex-column h-12rem">
-                  <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content II</div>
+              </div>
+              <div class="flex py-4 container-buttons-actions"  >
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Cancel"  severity="secondary" @click="close" />
+              </div>
+            </template>
+          </pv-stepper-panel>
+          <pv-stepper-panel header="Duration">
+            <template #content="{ prevCallback }">
+              <div class="flex flex-column h-12.5rem">
+                <div class="surface-border border-round surface-ground flex-auto flex flex-column justify-content-center align-items-center font-medium">
+
+
+                  <div class="flex-auto flex justify-content-center align-items-center font-medium">
+                    <div class="input-number-duration ">
+                      <p>MIN</p>
+                      <pv-input-number v-model="minValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99" >
+                        <template #incrementbuttonicon>
+                          <span class="pi pi-plus" />
+                        </template>
+                        <template #decrementbuttonicon>
+                          <span class="pi pi-minus" />
+                        </template>
+                      </pv-input-number>
+                    </div>
+
+                    <div :class="['input-number-duration', { 'hidden': minValue === null }]">
+                      <p>MAX</p>
+                      <pv-input-number v-model="maxValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="this.minValue" :max="99" >
+                        <template #incrementbuttonicon>
+                          <span class="pi pi-plus" />
+                        </template>
+                        <template #decrementbuttonicon>
+                          <span class="pi pi-minus" />
+                        </template>
+                      </pv-input-number>
+                    </div>
+                  </div>
+
+                  <p>The duration is in days</p>
+
                 </div>
-                <div class="flex py-4 gap-2">
-                  <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
-                  <pv-button label="Cancel"  severity="secondary" @click="close" />
-                </div>
-              </template>
-            </pv-stepper-panel>
-            <pv-stepper-panel header="Duration">
-              <template #content="{ prevCallback }">
-                <div class="flex flex-column h-12rem">
-                  <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
-                </div>
-                <div class="flex py-4">
-                  <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
-                  <pv-button label="Cancel"  severity="secondary" @click="close" />
-                </div>
-              </template>
-            </pv-stepper-panel>
-            <pv-stepper-panel header="Date">
-              <template #content="{ prevCallback }">
-                <div class="flex flex-column h-12rem">
-                  <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content VI</div>
-                </div>
-                <div class="flex py-4">
-                  <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
-                  <pv-button label="Cancel"  severity="secondary" @click="close" />
-                </div>
-              </template>
-            </pv-stepper-panel>
-          </pv-stepper>
-        </div>
+              </div>
+              <div class="flex py-4 container-buttons-actions" >
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Cancel"  severity="secondary" @click="close" />
+              </div>
+            </template>
+          </pv-stepper-panel>
+
+          <pv-stepper-panel header="Date">
+            <template #content="{ prevCallback }">
+              <div class="flex flex-column h-12rem">
+                <div class="surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content VI</div>
+              </div>
+              <div class="flex py-4 container-buttons-actions" >
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Cancel"  severity="secondary" @click="close" />
+              </div>
+            </template>
+          </pv-stepper-panel>
+        </pv-stepper>
       </div>
-    </template>
-  </pv-sidebar>
+    </div>
+
 </template>
 
 <style scoped>
@@ -104,7 +159,31 @@ export default {
   border: 1px solid #34d399;
   color: #27272a;
 }
-.sidebar-transition {
-  transition: width 2s ease;
+
+#container-name{
+  flex-direction:column;
+  overflow: hidden;
+}
+.custom-paragraph {
+  width: 80%;
+  height: auto;
+  text-align: center;
+  line-height: normal;
+  opacity: 80%;
+}
+.container-radio-buttons{
+  padding:15px;
+}
+.container-radio-buttons p{
+  opacity: 80%;
+}
+.input-number-duration{
+  overflow: hidden;
+  text-align: center;
+  margin:0 15px;
+}
+
+.hidden {
+  display: none;
 }
 </style>

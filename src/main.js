@@ -45,6 +45,7 @@ import Calendar from "primevue/calendar";
 import Chart from 'primevue/chart';
 import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
+import RadioButton from 'primevue/radiobutton';
 
 createApp(App)
     .use(router)
@@ -54,6 +55,7 @@ createApp(App)
     .use(ConfirmationService)
     .component('Chart', Chart)
     .component('pv-button', Button)
+    .component('pv-radio-button',RadioButton)
     .component('pv-data-table', DataTable)
     .component('pv-column', Column)
     .component('pv-confirm-dialog', ConfirmDialog)

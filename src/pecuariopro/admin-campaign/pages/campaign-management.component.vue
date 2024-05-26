@@ -5,9 +5,10 @@ import {Campaign} from "../model/campaign.entity.js";
 import CampaignCreateAndEdit from "../components/campaign-create-and-edit.component.vue";
 import FilterPage from "./filter-page.component.vue";
 
+
 export default {
   name: "campaign-management",
-  components: {FilterPage, CampaignCreateAndEdit, CampaignView},
+  components: { FilterPage, CampaignCreateAndEdit, CampaignView},
   props: {
   },
   data(){
@@ -200,7 +201,17 @@ export default {
         @canceled="onCanceledEventHandler"
         @saved2="onSavedEventHandler($event)"/>
 
-    <filter-page v-if="visibleFilter" :visible="visibleFilter" @closeFilter="onFilterSelected" />
+    <div class="app-content">
+
+      <template>
+        <div class="card flex justify-content-center">
+          <pv-sidebar v-model:visible="visibleFilter"  position="right" style="width: 25rem;">
+              <filter-page @closeFilter="onFilterSelected" />
+          </pv-sidebar>
+        </div>
+      </template>
+    </div>
+
   </section>
 
 
