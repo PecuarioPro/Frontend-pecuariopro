@@ -38,7 +38,7 @@ const router = createRouter({
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
 
         // Root path
-        { path: "/", redirect: "/animal" }
+        { path: "/", redirect: "/campaign" }
     ]
 });
 
