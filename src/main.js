@@ -43,6 +43,8 @@ import Avatar from "primevue/avatar";
 import SpeedDial from "primevue/speeddial";
 import Calendar from "primevue/calendar";
 import Chart from 'primevue/chart';
+import Stepper from 'primevue/stepper';
+import StepperPanel from 'primevue/stepperpanel';
 
 createApp(App)
     .use(router)
@@ -56,6 +58,8 @@ createApp(App)
     .component('pv-column', Column)
     .component('pv-confirm-dialog', ConfirmDialog)
     .component('pv-row', Row)
+    .component('pv-stepper', Stepper)
+    .component('pv-stepper-panel',StepperPanel)
     .component('pv-toolbar', Toolbar)
     .component('pv-input-text', InputText)
     .component('pv-textarea', Textarea)

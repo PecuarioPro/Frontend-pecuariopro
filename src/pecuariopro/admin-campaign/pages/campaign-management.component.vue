@@ -3,10 +3,11 @@ import CampaignView from "../components/campaign-view.vue";
 import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
 import CampaignCreateAndEdit from "../components/campaign-create-and-edit.component.vue";
+import FilterPage from "./filter-page.component.vue";
 
 export default {
   name: "campaign-management",
-  components: { CampaignCreateAndEdit, CampaignView},
+  components: {FilterPage, CampaignCreateAndEdit, CampaignView},
   props: {
   },
   data(){
@@ -19,7 +20,8 @@ export default {
       isVisibleCard: false,
       isEdit: false,
       submitted: false,
-      deleteFlag:false
+      deleteFlag:false,
+      visibleFilter:false
     }
 
   },
@@ -56,6 +58,12 @@ export default {
     findIndexById(id) {
       return this.campaigns.findIndex((campaign) => campaign.id === id);
     },
+
+    onFilterSelected(){
+      this.visibleFilter=!this.visibleFilter;
+    },
+
+
     onNewItemEventHandler() {
     this.campaign = {};
     this.submitted = false;
@@ -163,7 +171,7 @@ export default {
       <div>
         <div v-if="!deleteFlag">
           <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
+          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" @click="onFilterSelected" ></pv-button>
           <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="secondary" v-if="!deleteFlag" @click="deleteAction"></pv-button>
         </div>
 
@@ -191,6 +199,8 @@ export default {
         :edit="isEdit"
         @canceled="onCanceledEventHandler"
         @saved2="onSavedEventHandler($event)"/>
+
+    <filter-page v-if="visibleFilter" :visible="visibleFilter" @closeFilter="onFilterSelected" />
   </section>
 
 
