@@ -11,16 +11,21 @@ export class Staff {
         this.date_start = date_start;
         this.date_end = date_end;
     }
+
     static fromDisplayableStaff(displayableStaff) {
         return new Staff(
             displayableStaff.id,
             displayableStaff.campaigns_id,
             displayableStaff.name,
+            displayableStaff.last_name,
             displayableStaff.email,
             displayableStaff.on_job_status,
             displayableStaff.job_description,
+            displayableStaff.date_start,
+            displayableStaff.date_end,
         );
     }
+
     static toDisplayableStaff(staff){
         return{
             id: staff.id,
