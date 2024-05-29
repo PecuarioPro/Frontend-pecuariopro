@@ -8,7 +8,7 @@ import FilterPage from "./filter-page.component.vue";
 
 export default {
   name: "campaign-management",
-  components: { FilterPage, CampaignCreateAndEdit, CampaignView},
+  components: {FilterPage, CampaignCreateAndEdit, CampaignView},
   props: {
   },
   data(){
@@ -16,6 +16,7 @@ export default {
       title:{ singular: 'Bovine', plural: 'Bovines' },
       campaign: {},
       campaigns: [],
+      allCampaigns:[],
       campaignService:null,
       selectedCampaigns:[],
       isVisibleCard: false,
@@ -44,6 +45,7 @@ export default {
         });
       });
       console.log("este es el array",this.campaigns);
+      this.allCampaigns = [...this.campaigns];
     });
 
 
@@ -127,6 +129,7 @@ export default {
         });
       }
       this.deleteFlag = !this.deleteFlag;
+      this.allCampaigns = [...this.campaigns];
     },
   onDeleteItemEventHandler(item) {
     this.campaign = item;
@@ -142,6 +145,8 @@ export default {
         this.notifySuccessfulAction("Campaign Created");
       })
       console.log('Estas son las campaigns',this.campaigns);
+      this.allCampaigns = [...this.campaigns];
+
     },
     updateCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
@@ -151,6 +156,8 @@ export default {
                 Campaign.toDisplayableCampaign(response.data);
             this.notifySuccessfulAction("Campaign Updated");
           });
+      this.allCampaigns = [...this.campaigns];
+
     },
     deleteCampaign(){
       this.campaignService.delete(this.campaign.id)
@@ -159,7 +166,29 @@ export default {
             this.campaign = {};
             this.notifySuccessfulAction("Campaign Deleted");
           })
+      this.allCampaigns = [...this.campaigns];
+    },
+
+    onFilter(value) {
+      if (typeof value !== 'string') {
+        return;
+      }
+
+      const searchValue = value.toLowerCase();
+
+      this.campaigns = this.allCampaigns.filter(campaign => {
+        return campaign.name && campaign.name.toLowerCase().includes(searchValue);
+      });
+    },
+
+    onFilterForCondition(value){
+      const conditionValue = value.toLowerCase();
+
+      this.campaigns = this.allCampaigns.filter(campaign => {
+        return campaign.condition.toLowerCase() === conditionValue;
+      })
     }
+    
   }
 }
 </script>
@@ -184,6 +213,15 @@ export default {
       </div>
     </div>
 
+    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if="campaigns !== allCampaigns" >
+      <div class="filter-total-results flex gap-3">
+        <p> Total Results:</p>
+        <p>{{campaigns.length.toString()}}</p>
+      </div>
+
+      <pv-button class="mr-2 title-button " icon="pi pi-times" text rounded severity="secondary"  @click="campaigns=allCampaigns"></pv-button>
+    </div>
+
 
     <div class="container-cards" >
       <div v-for="campaign in campaigns" :key="campaign.id" class="card">
@@ -206,7 +244,12 @@ export default {
       <template>
         <div class="card flex justify-content-center">
           <pv-sidebar v-model:visible="visibleFilter"  position="right" style="width: 25rem;">
-              <filter-page @closeFilter="onFilterSelected" />
+              <filter-page @closeFilter="onFilterSelected"
+                           @filter1="onFilter($event)"
+                           @filter-condition="onFilterForCondition($event)"
+
+
+              />
           </pv-sidebar>
         </div>
       </template>
@@ -222,6 +265,11 @@ export default {
 <style scoped>
 .campaign-section{
   padding:20px;
+}
+.on-filter{
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: #32C793 1px solid ;
 }
 .container-cards{
   display:flex;
@@ -245,7 +293,9 @@ export default {
   font-weight:500;
   text-align: center;
 }
-
+.filter-total-results p{
+  font-weight:500;
+}
 @media (min-width: 750px) {
 }
 

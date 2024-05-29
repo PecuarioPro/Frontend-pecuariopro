@@ -152,7 +152,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full principal-container">
     <!-- Bovine Data Manager -->
     <data-manager
         :title=title
@@ -163,11 +163,11 @@ export default {
         v-on:delete-selected-items="onDeleteSelectedItemsEventHandler($event)">
       <template #custom-columns>
         <!-- Columna ID -->
-        <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem"/>
+        <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem" />
         <!-- Columna Nombre -->
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem"/>
         <!-- Columna Raza -->
-        <pv-column :sortable="true" field="raza" header="Raza" style="min-width: 8rem"/>
+        <pv-column :sortable="true" field="raza" header="Raza" style="min-width: 8rem" class="race-column"/>
         <!-- Columna Ver Más -->
       </template>
     </data-manager>
@@ -190,11 +190,23 @@ export default {
   justify-content: space-between;
 }
 
+.principal-container{
+  padding:20px;
+}
+
+.race-column{
+display:none;
+}
+
 @media screen and (max-width: 960px) {
   :deep(.p-toolbar) {
     flex-wrap: wrap;
 
   }
+  .race-column{
+    display:table-cell;
+  }
+
 }
 
 @media (min-width: 1024px) {

@@ -36,15 +36,14 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="principal-container">
     <h2>{{ this.batch.name }}</h2>
-    <p>Soy un detalle batch</p>
-    <p>{{ $route.params.batchId }}</p>
-    <p>Soy un detalle campaign</p>
   </div>
   <bovine-management :batch-id="this.batch.id"/>
 </template>
 
 <style scoped>
-
+.principal-container{
+  padding:20px;
+}
 </style>

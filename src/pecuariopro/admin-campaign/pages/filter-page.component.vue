@@ -12,15 +12,24 @@ export default {
         {name: "Active", key: "A"},
         {name: "Finished", key: "F"}
       ],
-      selectedConditions:[],
+      selectedConditions:null,
       minValue:null,
       maxValue:null,
+      filterNameValue:null
     }
 
   },
   methods: {
     close() {
       this.$emit('closeFilter');
+    },
+    filterForName(){
+      this.$emit('filter1',this.filterNameValue);
+    },
+    filterForCondition(){
+      if(this.selectedConditions){
+        this.$emit('filter-condition',this.selectedConditions)
+      }
     }
   }
 }
@@ -35,14 +44,14 @@ export default {
               <div class="flex flex-column h-12rem">
                 <div class=" border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium " id="container-name">
                   <pv-icon-field iconPosition="left">
-                    <pv-input-icon class="pi pi-search"> </pv-input-icon>
-                    <pv-input-text placeholder="Search" />
+                    <pv-input-icon class="pi pi-search" > </pv-input-icon>
+                    <pv-input-text placeholder="Search" v-model="filterNameValue" @change="filterForName"/>
                   </pv-icon-field>
                   <p class="custom-paragraph">Search for the name of your campaign </p>
                 </div>
               </div>
               <div class="flex py-4 container-buttons-actions" >
-                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="filterForName" />
                 <pv-button label="Cancel"  severity="secondary" @click="close" />
               </div>
             </template>
@@ -62,7 +71,7 @@ export default {
                 </div>
               </div>
               <div class="flex py-4 container-buttons-actions"  >
-                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="filterForCondition" />
                 <pv-button label="Cancel"  severity="secondary" @click="close" />
               </div>
             </template>
