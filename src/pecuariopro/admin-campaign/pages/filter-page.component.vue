@@ -1,5 +1,6 @@
 <script>
 
+
 export default {
   name: "filter-page",
   components: {},
@@ -16,7 +17,10 @@ export default {
       minmaxValues:{},
       minValue:null,
       maxValue:null,
-      filterNameValue:null
+      filterNameValue:null,
+      initialDateValue:null,
+      finalDateValue:null,
+      datesValue:{}
     }
 
   },
@@ -37,6 +41,13 @@ export default {
       this.minmaxValues.minValue = this.minValue;
      this. minmaxValues.maxValue = this.maxValue;
       this.$emit('filter-duration', this.minmaxValues);
+    },
+    filterForDate(){
+
+      console.log(typeof this.initialDateValue);
+      this.datesValue.initial=this.initialDateValue;
+      this.datesValue.final=this.finalDateValue;
+      this.$emit('filter-date', this.datesValue);
     }
 
   }
@@ -130,10 +141,21 @@ export default {
           <pv-stepper-panel header="Date">
             <template #content="{ prevCallback }">
               <div class="flex flex-column h-12rem">
-                <div class="surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content VI</div>
+                <div class="surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium container-dates">
+                  <pv-float-label>
+                    <pv-calendar class="calendar-dates" v-model="initialDateValue" showIcon iconDisplay="input" touchUI inputId="toDate"/>
+                    <label for="toDate">Initial Date</label>
+                  </pv-float-label>
+
+                  <pv-float-label>
+                    <pv-calendar class="calendar-dates" v-model="finalDateValue" showIcon iconDisplay="input" touchUI inputId="toDate"/>
+                    <label for="toDate">Final Date</label>
+                  </pv-float-label>
+
+                </div>
               </div>
               <div class="flex py-4 container-buttons-actions" >
-                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="filterForDate" />
                 <pv-button label="Cancel"  severity="secondary" @click="close" />
               </div>
             </template>
@@ -199,7 +221,14 @@ export default {
   text-align: center;
   margin:0 15px;
 }
-
+.container-dates{
+  flex-direction:column;
+  gap:30px;
+  align-items: center;
+}
+.calendar-dates:hover{
+  cursor:pointer;
+}
 .hidden {
   display: none;
 }

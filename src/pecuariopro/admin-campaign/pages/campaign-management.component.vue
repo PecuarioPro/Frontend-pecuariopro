@@ -194,6 +194,12 @@ export default {
         console.log('Soy campaign', this,campaign.id,this.campaign.duration,object);
         return campaign.duration > object.minValue && campaign.duration < object.maxValue;
       })
+    },
+
+    onFilterDate(object){
+      this.campaigns = this.allCampaigns.filter(campaign =>{
+        return campaign.dateStart >= object.initial && campaign.dateEnd <= object.final;
+      })
     }
 
   }
@@ -255,6 +261,7 @@ export default {
                            @filter1="onFilter($event)"
                            @filter-condition="onFilterForCondition($event)"
                            @filter-duration="onFilterForDuration($event)"
+                           @filter-date="onFilterDate($event)"
 
 
               />
