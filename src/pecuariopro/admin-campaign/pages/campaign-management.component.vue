@@ -187,8 +187,15 @@ export default {
       this.campaigns = this.allCampaigns.filter(campaign => {
         return campaign.condition.toLowerCase() === conditionValue;
       })
+    },
+
+    onFilterForDuration(object){
+      this.campaigns = this.allCampaigns.filter( campaign =>{
+        console.log('Soy campaign', this,campaign.id,this.campaign.duration,object);
+        return campaign.duration > object.minValue && campaign.duration < object.maxValue;
+      })
     }
-    
+
   }
 }
 </script>
@@ -213,7 +220,7 @@ export default {
       </div>
     </div>
 
-    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if="campaigns !== allCampaigns" >
+    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if="campaigns.length !== allCampaigns.length" >
       <div class="filter-total-results flex gap-3">
         <p> Total Results:</p>
         <p>{{campaigns.length.toString()}}</p>
@@ -247,6 +254,7 @@ export default {
               <filter-page @closeFilter="onFilterSelected"
                            @filter1="onFilter($event)"
                            @filter-condition="onFilterForCondition($event)"
+                           @filter-duration="onFilterForDuration($event)"
 
 
               />

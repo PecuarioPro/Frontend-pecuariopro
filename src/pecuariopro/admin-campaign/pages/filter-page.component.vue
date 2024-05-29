@@ -13,6 +13,7 @@ export default {
         {name: "Finished", key: "F"}
       ],
       selectedConditions:null,
+      minmaxValues:{},
       minValue:null,
       maxValue:null,
       filterNameValue:null
@@ -28,9 +29,16 @@ export default {
     },
     filterForCondition(){
       if(this.selectedConditions){
-        this.$emit('filter-condition',this.selectedConditions)
+        this.$emit('filter-condition',this.selectedConditions);
       }
+    },
+    filterForDuration(){
+      console.log(this.minValue,this.maxValue);
+      this.minmaxValues.minValue = this.minValue;
+     this. minmaxValues.maxValue = this.maxValue;
+      this.$emit('filter-duration', this.minmaxValues);
     }
+
   }
 }
 </script>
@@ -113,7 +121,7 @@ export default {
                 </div>
               </div>
               <div class="flex py-4 container-buttons-actions" >
-                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="nextCallback" />
+                <pv-button label="Filter" severity="Primary" class="container-buttons-actions__filter" @click="filterForDuration" />
                 <pv-button label="Cancel"  severity="secondary" @click="close" />
               </div>
             </template>
