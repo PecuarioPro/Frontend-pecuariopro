@@ -75,7 +75,7 @@ export default {
 
                   <div class="flex-auto flex justify-content-center align-items-center font-medium">
                     <div class="input-number-duration ">
-                      <p>MIN</p>
+                      <p class="custom-paragraph">MIN</p>
                       <pv-input-number v-model="minValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99" >
                         <template #incrementbuttonicon>
                           <span class="pi pi-plus" />
@@ -87,7 +87,7 @@ export default {
                     </div>
 
                     <div :class="['input-number-duration', { 'hidden': minValue === null }]">
-                      <p>MAX</p>
+                      <p class="custom-paragraph">MAX</p>
                       <pv-input-number v-model="maxValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="this.minValue" :max="99" >
                         <template #incrementbuttonicon>
                           <span class="pi pi-plus" />
@@ -99,7 +99,7 @@ export default {
                     </div>
                   </div>
 
-                  <p>The duration is in days</p>
+                  <p class="custom-paragraph">The duration is in days</p>
 
                 </div>
               </div>
