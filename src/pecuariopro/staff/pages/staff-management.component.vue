@@ -146,6 +146,8 @@ export default {
         <pv-column :sortable="true" field="campaigns_id" header="Campaigns" style="min-width: 6rem"/>
         <!-- Name Column -->
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 6rem"/>
+        <!-- Last Name Column -->
+        <pv-column :sortable="true" field="last_name" header="Last Name" style="min-width: 6rem"/>
         <!-- Status Column -->
         <pv-column :sortable="false" field="on_job_status" header="Status" style="min-width: 6rem"/>
         <!-- Job Description Column -->
