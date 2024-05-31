@@ -561,10 +561,8 @@
       "name": "Jhon",
       "last_name": "Miller",
       "email": "jhonworker@pecuario.pro",
-      "on_job_status": "On",
-      "job_description": "Graze group 2 cows",
-      "date_start": "2024-05-01",
-      "date_end": "2024-06-30"
+      "on_job_status": "Off",
+      "job_description": "Graze group 2 cows"
     },
     {
       "id": 2,
@@ -620,6 +618,43 @@
       "job_description": "Graze group 1 cows",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
+    },
+    {
+      "id": "7",
+      "campaigns_id": "90",
+      "name": "Makanaky",
+      "last_name": "La realeza",
+      "email": "Makanaky@Larealeza.com",
+      "on_job_status": "On",
+      "job_description": "daaaaaa"
+    }
+  ],
+  "veterinarians": [
+    {
+      "id": 1,
+      "firstname": "John",
+      "last_name": "Doe",
+      "speciality": "Surgery",
+      "phone_number": "555-1234",
+      "email": "john.doe@fckdapolice.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Lima",
+      "status": "Active",
+      "linkedin": "www.soyunlink.com"
+    },
+    {
+      "id": 2,
+      "firstname": "Jane",
+      "last_name": "Smith",
+      "speciality": "Nutrition",
+      "phone_number": "555-5678",
+      "email": "jane.smith@yahoo.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Ancash",
+      "status": "Active",
+      "linkedin": "www.soyunlink.com"
     }
   ]
 }

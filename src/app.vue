@@ -182,6 +182,13 @@ export default {
                           </ul>
                         </li>
                         <li>
+                          <a>
+                            <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-auto">
+
+                            </ul>
+                          </a>
+                        </li>
+                        <li>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-warehouse mr-2"></i>
                             <span class="font-medium">Inventory</span>

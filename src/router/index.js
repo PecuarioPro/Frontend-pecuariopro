@@ -9,6 +9,7 @@ import notFoundComponent from "../public/pages/not-found.component.vue";
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
 import staffViewComponent from "../pecuariopro/staff/pages/staff-view.component.vue";
+import veterinariansCardComponent from "../pecuariopro/veterinarians/components/veterinarians-card.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,6 +18,7 @@ const router = createRouter({
         { path: "/statistics",  component: statisticsVaccineComponent, meta: { title: "Statistics" }},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
+
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,
@@ -37,6 +39,9 @@ const router = createRouter({
 
         // Path to manage staff
         { path: "/staff-manage", component: staffManagementComponent, meta: { title: "Staff Manage" } },
+
+        //Path to veterinarian
+        { path: "/veterinarians", component: veterinariansCardComponent,meta: { title: "Veterian"} },
 
         // Path to handle unmatched URLs, using notFoundComponent
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
