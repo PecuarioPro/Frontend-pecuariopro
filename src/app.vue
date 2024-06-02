@@ -196,6 +196,14 @@ export default {
                           </a>
                         </li>
                         <li>
+                          <router-link to="/veterinarians" @click=toggleDrawer()>
+                            <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration:none" >
+                              <i class="pi pi-heart mr-2 " ></i>
+                              <span class="font-medium">Veterinarian</span>
+                            </a>
+                          </router-link>
+                        </li>
+                        <li>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-calendar mr-2"></i>
                             <span class="font-medium">Calendar</span>

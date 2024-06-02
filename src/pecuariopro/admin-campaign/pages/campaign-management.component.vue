@@ -210,7 +210,7 @@ export default {
   <section class="campaign-section" :style="{ position: 'relative'} ">
     <pv-toast />
     <div  class="container-title">
-      <h2 class="title"> Your Campaigns</h2>
+
       <div>
         <div v-if="!deleteFlag">
           <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>

@@ -1,5 +1,5 @@
 export class Veterinarian {
-    constructor(id,firstName, lastName,speciality, phone_number, email, work_start_time, work_end_time, city, status, linkedin) {
+    constructor(id,first_name, last_name,speciality, phone_number, email, work_start_time, work_end_time, city, status, linkedin, photoUrl) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -11,6 +11,7 @@ export class Veterinarian {
         this.city = city;
         this.status = status;
         this.linkedin = linkedin;
+        this.photoUrl = photoUrl;
     }
     static fromDisplayableVeterinarian(displayableVeterinarian) {
         return new Veterinarian(
@@ -23,7 +24,8 @@ export class Veterinarian {
             displayableVeterinarian.work_end_time,
             displayableVeterinarian.city,
             displayableVeterinarian.status,
-            displayableVeterinarian.linkedin
+            displayableVeterinarian.linkedin,
+            displayableVeterinarian.photoUrl
         )
     }
     static toDisplayableVeterinarian(veterinarian){
@@ -38,7 +40,8 @@ export class Veterinarian {
             work_end_time: veterinarian.work_end_time,
             city: veterinarian.city,
             status: veterinarian.status,
-            linkedin: veterinarian.linkedin
+            linkedin: veterinarian.linkedin,
+            photoUrl: veterinarian.photoUrl
         }
     }
 }
