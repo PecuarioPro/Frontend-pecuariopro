@@ -46,9 +46,6 @@ export default {
               <p>City: {{ veterinarian.city }}</p>
             </div>
             <div>
-              <p>Status: {{ veterinarian.status }}</p>
-            </div>
-            <div>
               <p>LinkedIn: <a :href="veterinarian.linkedin" target="_blank">{{ veterinarian.linkedin }}</a></p>
             </div>
           </div>

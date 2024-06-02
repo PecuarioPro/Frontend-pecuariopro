@@ -47,39 +47,36 @@ export default {
 <template>
   <section class="veterinarians-management">
     <pv-toast/>
-    <h2 class="title"> Our Veterinarians</h2>
+    <h2 class="title">Our Veterinarians</h2>
     <!-- Cards-->
     <div class="container-veterinarians">
-      <div v-for="veterinarian in veterinarians" :key="veterinarian.id" class="card">
-        <VeterinariansViewComponent :veterinarian="veterinarian"/>
+      <div class="row">
+        <div v-for="veterinarian in veterinarians" :key="veterinarian.id" class="col-md-6">
+          <VeterinariansViewComponent :veterinarian="veterinarian"/>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.custom-card {
-  margin-bottom: 20px;
-}
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.card-title {
+.title {
   font-weight: bold;
-}
-.veterinarian-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 .card-content p {
   margin: 5px 0;
 }
-.card-footer {
+.row {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 </style>
