@@ -163,8 +163,8 @@ export default {
 
     const cards = [
       { title: 'Food', description: 'Inventory', icon: 'pi pi-apple' },
-      { title: 'Vaccine', description: 'Inventory', icon: 'pi pi-wrench' },
-      { title: 'Tools', description: 'Inventory', icon: 'pi pi-pen-to-square' }
+      { title: 'Vaccine', description: 'Inventory', icon: 'pi pi-pen-to-square' },
+      { title: 'Tools', description: 'Inventory', icon: 'pi pi-wrench' }
     ];
 
     const showInventoryDialog = (title) => {
