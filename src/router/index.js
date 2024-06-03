@@ -10,6 +10,7 @@ import staffManagementComponent from "../pecuariopro/staff/pages/staff-managemen
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
 import staffViewComponent from "../pecuariopro/staff/pages/staff-view.component.vue";
 import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages/veterinarians-management.component.vue";
+import inventoryComponent from "../pecuariopro/inventory/components/inventory.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -18,6 +19,7 @@ const router = createRouter({
         { path: "/statistics",  component: statisticsVaccineComponent, meta: { title: "Statistics" }},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
+        { path: "/inventory", component: inventoryComponent, meta: { title: "Inventory" }},
         { path: "/veterinarians", component: VeterinariansManagementComponent,meta: { title: "Veterinarian"} },
         {
             path: "/campaigns/:campaignId",

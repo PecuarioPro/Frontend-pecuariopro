@@ -9,7 +9,8 @@ export default {
         {label: 'Animal', to: '/animal'},
         {label: 'Vaccine', to: '/vaccine'},
         {label: 'Campaign', to: '/campaign'},
-        {label: 'Staff', to: '/staff-view'}
+        {label: 'Staff', to: '/staff-view'},
+        {label: 'Inventory', to: '/inventory'}
       ]
     }
   },
