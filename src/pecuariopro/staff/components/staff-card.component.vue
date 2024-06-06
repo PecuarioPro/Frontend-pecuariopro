@@ -11,15 +11,16 @@ export default {
   computed: {
     cardColor(){
       switch (this.staff.on_job_status) {
-        case 'On':
+        case 'Available':
           return { opacity: 1 }
-        case 'Off':
+        case 'Working':
           return { opacity: 0.5 }
         default:
           return { opacity: 1 }
       }
     },
-  }
+  },
+
 }
 </script>
 
@@ -50,7 +51,7 @@ export default {
         <div>
           <br/>
           <p style="font-weight: bold">Status:</p>
-          <pv-avatar :label="staff.on_job_status" class="mr-2" style="background-color: #34d399; color: #020617" />
+          <pv-avatar :label="staff.on_job_status" class="mr-2" style="background-color: #34d399; color: #020617; width: 10rem;" />
         </div>
       </template>
 
@@ -72,6 +73,13 @@ export default {
   display: flex;
   justify-content: center;
   margin: 1rem;
+}
+
+.staff-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .card-container{

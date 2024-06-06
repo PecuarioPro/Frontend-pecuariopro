@@ -561,7 +561,7 @@
       "name": "Jhon",
       "last_name": "Miller",
       "email": "jhonworker@pecuario.pro",
-      "on_job_status": "Off",
+      "on_job_status": "Working",
       "job_description": "Graze group 2 cows"
     },
     {
@@ -570,7 +570,7 @@
       "name": "Francisco",
       "last_name": "Garces",
       "email": "franciscoworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Feed and vaccinate cows of group 3",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -581,7 +581,7 @@
       "name": "Eloy",
       "last_name": "Robles",
       "email": "eloyworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Feed and vaccinate cows of group 5",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -592,7 +592,7 @@
       "name": "Alfred",
       "last_name": "Santos",
       "email": "alfredworker@pecuario.pro",
-      "on_job_status": "Off",
+      "on_job_status": "Working",
       "job_description": "Check health status of livestock 1 and 4",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -603,7 +603,7 @@
       "name": "Francisco",
       "last_name": "Vargas",
       "email": "vargasworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Check health status of livestock 1 and 4",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -614,7 +614,7 @@
       "name": "Damian",
       "last_name": "Zabala",
       "email": "damianworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Graze group 1 cows",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -625,7 +625,7 @@
       "name": "Makanaky",
       "last_name": "La realeza",
       "email": "Makanaky@Larealeza.com",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "daaaaaa"
     }
   ],
