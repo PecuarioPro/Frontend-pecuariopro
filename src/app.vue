@@ -9,7 +9,8 @@ export default {
         {label: 'Animal', to: '/animal'},
         {label: 'Vaccine', to: '/vaccine'},
         {label: 'Campaign', to: '/campaign'},
-        {label: 'Staff', to: '/staff'}
+        {label: 'Staff', to: '/staff-view'},
+        {label: 'Inventory', to: '/inventory'}
       ]
     }
   },
@@ -147,17 +148,63 @@ export default {
                           </ul>
                         </li>
                         <li>
-                          <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                          <a
+                              v-ripple
+                              v-styleclass="{
+                                                selector: '@next',
+                                                enterClass: 'hidden',
+                                                enterActiveClass: 'slidedown',
+                                                leaveToClass: 'hidden',
+                                                leaveActiveClass: 'slideup'
+                                            }"
+                              class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                          >
                             <i class="pi pi-users mr-2"></i>
-                            <span class="font-medium">Team</span>
+                            <span class="font-medium">Staff</span>
+                            <i class="pi pi-chevron-down ml-auto"></i>
+                          </a>
+                          <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
+                            <li>
+                              <router-link to="staff-view" @click=toggleDrawer()>
+                                <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                  <i class="pi pi-users mr-2"></i>
+                                  <span class="font-medium">View Staff</span>
+                                </a>
+                              </router-link>
+                            </li>
+                            <li>
+                              <router-link to="staff-manage" @click=toggleDrawer()>
+                                <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                  <i class="pi pi-users mr-2"></i>
+                                  <span class="font-medium">Manage Staff</span>
+                                </a>
+                              </router-link>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a>
+                            <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-auto">
+
+                            </ul>
                           </a>
                         </li>
                         <li>
+                          <router-link to="/inventory" @click=toggleDrawer()>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-warehouse mr-2"></i>
                             <span class="font-medium">Inventory</span>
 <!--                            <span class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle" style="min-width: 1.5rem; height: 1.5rem">3</span>-->
                           </a>
+                          </router-link>
+                        </li>
+                        <li>
+                          <router-link to="/veterinarians" @click=toggleDrawer()>
+                            <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration:none" >
+                              <i class="pi pi-heart mr-2 " ></i>
+                              <span class="font-medium">Veterinarian</span>
+                            </a>
+                          </router-link>
                         </li>
                         <li>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">

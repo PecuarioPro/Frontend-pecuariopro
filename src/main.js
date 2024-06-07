@@ -47,6 +47,7 @@ import Chart from 'primevue/chart';
 import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
 import RadioButton from 'primevue/radiobutton';
+import SplitButton from "primevue/splitbutton";
 
 createApp(App)
     .use(router)
@@ -83,6 +84,7 @@ createApp(App)
     .component('pv-avatar',Avatar)
     .component('pv-speed-dial',SpeedDial)
     .component('pv-calendar',Calendar)
+    .component('pv-split-button', SplitButton)
     .directive('styleclass', StyleClass)
     .directive('ripple', Ripple)          // Registra la directiva Ripple
     .mount('#app')

@@ -561,10 +561,8 @@
       "name": "Jhon",
       "last_name": "Miller",
       "email": "jhonworker@pecuario.pro",
-      "on_job_status": "On",
-      "job_description": "Graze group 2 cows",
-      "date_start": "2024-05-01",
-      "date_end": "2024-06-30"
+      "on_job_status": "Working",
+      "job_description": "Graze group 2 cows"
     },
     {
       "id": 2,
@@ -572,7 +570,7 @@
       "name": "Francisco",
       "last_name": "Garces",
       "email": "franciscoworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Feed and vaccinate cows of group 3",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -583,7 +581,7 @@
       "name": "Eloy",
       "last_name": "Robles",
       "email": "eloyworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Feed and vaccinate cows of group 5",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -594,7 +592,7 @@
       "name": "Alfred",
       "last_name": "Santos",
       "email": "alfredworker@pecuario.pro",
-      "on_job_status": "Off",
+      "on_job_status": "Working",
       "job_description": "Check health status of livestock 1 and 4",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -605,7 +603,7 @@
       "name": "Francisco",
       "last_name": "Vargas",
       "email": "vargasworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Check health status of livestock 1 and 4",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
@@ -616,10 +614,119 @@
       "name": "Damian",
       "last_name": "Zabala",
       "email": "damianworker@pecuario.pro",
-      "on_job_status": "On",
+      "on_job_status": "Available",
       "job_description": "Graze group 1 cows",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
+    },
+    {
+      "id": "7",
+      "campaigns_id": "90",
+      "name": "Makanaky",
+      "last_name": "La realeza",
+      "email": "Makanaky@Larealeza.com",
+      "on_job_status": "Available",
+      "job_description": "daaaaaa"
+    }
+  ],
+  "veterinarians": [
+    {
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "speciality": "Cirugía",
+      "phone_number": "555-1234",
+      "email": "john.doe@fckdapolice.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Lima",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/1.webp"
+    },
+    {
+      "id": 2,
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "speciality": "Nutrición",
+      "phone_number": "555-5678",
+      "email": "jane.smith@yahoo.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Ancash",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/2.webp"
+    },
+    {
+      "id": 3,
+      "first_name": "Pedro",
+      "last_name": "García",
+      "speciality": "Veterinaria de Salud Pública",
+      "phone_number": "555-4321",
+      "email": "pedro.garcia@gmail.com",
+      "work_start_time": "09:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Cusco",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/3.webp"
+    },
+    {
+      "id": 4,
+      "first_name": "María",
+      "last_name": "Martínez",
+      "speciality": "Producción Animal",
+      "phone_number": "555-8765",
+      "email": "maria.martinez@hotmail.com",
+      "work_start_time": "08:30 am",
+      "work_end_time": "16:30 pm",
+      "city": "Trujillo",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/4.webp"
+    },
+    {
+      "id": 5,
+      "first_name": "Carlos",
+      "last_name": "Hernández",
+      "speciality": "Bienestar Animal",
+      "phone_number": "555-9876",
+      "email": "carlos.hernandez@yahoo.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Arequipa",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/5.webp"
+    },
+    {
+      "id": 6,
+      "first_name": "Ana",
+      "last_name": "López",
+      "speciality": "Sanidad Animal",
+      "phone_number": "555-5432",
+      "email": "ana.lopez@outlook.com",
+      "work_start_time": "09:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Piura",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/6.webp"
+    },
+    {
+      "id": 7,
+      "first_name": "Javier",
+      "last_name": "González",
+      "speciality": "Ciencias Clínicas",
+      "phone_number": "555-6543",
+      "email": "javier.gonzalez@gmail.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Iquitos",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/7.webp"
     }
   ]
 }

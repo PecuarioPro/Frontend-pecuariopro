@@ -2,10 +2,11 @@
 import {FilterMatchMode} from "primevue/api";
 import Toolbar from 'primevue/toolbar';
 import CreateAndEdit from "../../../shared/components/create-and-edit.component.vue";
+import InputSwitch from 'primevue/inputswitch';
 
 export default {
   name: "staff-edit",
-  components: {CreateAndEdit},
+  components: {CreateAndEdit, InputSwitch},
   inheritAttrs: false,
   props: {
     items: {type: Array, required: true},
@@ -97,8 +98,22 @@ export default {
 
   <!-- Toolbar Section -->
   <pv-toolbar class="mb-4">
+
+    <!-- New Button -->
     <template #start>
       <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+    </template>
+
+    <!-- Global Search -->
+    <template #center>
+      <div class="flex justify-content-end">
+        <pv-icon-field iconPosition="left">
+          <pv-input-icon>
+            <i class="pi pi-search" />
+          </pv-input-icon>
+          <pv-input-text v-model="filters['global'].value" placeholder="Search Workers" />
+        </pv-icon-field>
+      </div>
     </template>
 
   </pv-toolbar>
@@ -112,22 +127,10 @@ export default {
       :rows="10"
       :rows-per-page-options="[5, 10, 20]"
       :value="items"
-      :globalFilterFields="['id', 'campaigns_id', 'name', 'on_job_status', 'job_description']"
+      :globalFilterFields="['id', 'campaigns_id', 'name', 'last_name', 'on_job_status', 'job_description']"
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{title.plural}}"
       data-key="id"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
-
-    <!-- Global Search -->
-    <template #header>
-      <div class="flex justify-content-end">
-        <pv-icon-field iconPosition="left">
-          <pv-input-icon>
-            <i class="pi pi-search" />
-          </pv-input-icon>
-          <pv-input-text v-model="filters['global'].value" placeholder="Search Workers" />
-        </pv-icon-field>
-      </div>
-    </template>
 
     <template #empty> No staff found. </template>
 

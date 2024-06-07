@@ -8,6 +8,9 @@ import batchDetailsComponent from "../pecuariopro/admin-batches/components/batch
 import notFoundComponent from "../public/pages/not-found.component.vue";
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
+import staffViewComponent from "../pecuariopro/staff/pages/staff-view.component.vue";
+import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages/veterinarians-management.component.vue";
+import inventoryComponent from "../pecuariopro/inventory/components/inventory.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -16,6 +19,8 @@ const router = createRouter({
         { path: "/statistics",  component: statisticsVaccineComponent, meta: { title: "Statistics" }},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
+        { path: "/inventory", component: inventoryComponent, meta: { title: "Inventory" }},
+        { path: "/veterinarians", component: VeterinariansManagementComponent,meta: { title: "Veterinarian"} },
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,
@@ -31,8 +36,11 @@ const router = createRouter({
             meta: { title: "Batch Details" }
         },
 
-        // Path to staff
-        { path: "/staff", component: staffManagementComponent, meta: { title: "Staff" } },
+        // Path to view staff
+        { path: "/staff-view", component: staffViewComponent, meta: { title: "Staff View" } },
+
+        // Path to manage staff
+        { path: "/staff-manage", component: staffManagementComponent, meta: { title: "Staff Manage" } },
 
         // Path to handle unmatched URLs, using notFoundComponent
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
