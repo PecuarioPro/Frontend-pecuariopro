@@ -627,15 +627,6 @@
       "job_description": "Graze group 1 cows",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
-    },
-    {
-      "id": "7",
-      "campaigns_id": "90",
-      "name": "Makanaky",
-      "last_name": "La realeza",
-      "email": "Makanaky@Larealeza.com",
-      "on_job_status": "Available",
-      "job_description": "daaaaaa"
     }
   ],
   "veterinarians": [
