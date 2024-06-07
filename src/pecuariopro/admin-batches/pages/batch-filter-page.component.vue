@@ -2,8 +2,7 @@
 export default {
   name: "batch-filter-page",
   props: {
-    visible:Boolean,
-    wasFilter:Boolean
+    visible:Boolean
   },
   data(){
     return{
@@ -14,6 +13,7 @@ export default {
       ],
       selectedStatus:null,
       filterNameValue:null,
+      minmaxValues:{},
       minValue:null,
       maxValue:null
     }
@@ -22,20 +22,25 @@ export default {
     close() {
       this.$emit('closeFilter');
     },
-    filterForName(){
-      this.$emit('filter1',this.filterNameValue);
-      this.wasFilter=true;
-      this.close();
-    },
-    filterForStatus(){
-      if(this.selectedStatus){
-        this.$emit('filter-status',this.selectedStatus);
+    filterForName() {
+      if (this.filterNameValue !== null) {
+        this.$emit('filter1', this.filterNameValue);
         this.close();
-        this.wasFilter=true;
       }
     },
-    filterForArea(){
-
+    filterForStatus() {
+      if (this.selectedStatus) {
+        this.$emit('filter-status', this.selectedStatus);
+        this.close();
+      }
+    },
+    filterForArea() {
+      if (this.minValue != null ) {
+        this.minmaxValues.minValue = this.minValue;
+        this.minmaxValues.maxValue = this.maxValue;
+        this.$emit('filter-area', this.minmaxValues);
+        this.close();
+      }
     }
   }
 }
@@ -54,7 +59,7 @@ export default {
                   <pv-input-icon class="pi pi-search" > </pv-input-icon>
                   <pv-input-text placeholder="Search" v-model="filterNameValue" @change="filterForName"/>
                 </pv-icon-field>
-                <p class="custom-paragraph">Search for the name of your campaign </p>
+                <p class="custom-paragraph">Search for the name of your batch </p>
               </div>
             </div>
             <div class="flex py-4 container-buttons-actions" >
@@ -65,7 +70,7 @@ export default {
         </pv-stepper-panel>
         <pv-stepper-panel header="Status">
           <template #content="{ prevCallback, nextCallback }">
-            <div class="flex flex-column h-10rem">
+            <div class="flex flex-column h-12rem">
               <div class=" border-round surface-ground flex-auto flex align-items-center font-medium " id="container-condition">
                 <div class="flex flex-column gap-2 container-radio-buttons flex ">
                   <p>Select the condition</p>
@@ -83,7 +88,7 @@ export default {
             </div>
           </template>
         </pv-stepper-panel>
-        <pv-stepper-panel header="Duration">
+        <pv-stepper-panel header="Area">
           <template #content="{ prevCallback }">
             <div class="flex flex-column h-12.5rem">
               <div class="surface-border border-round surface-ground flex-auto flex flex-column justify-content-center align-items-center font-medium">
@@ -92,7 +97,7 @@ export default {
                 <div class="flex-auto flex justify-content-center align-items-center font-medium">
                   <div class="input-number-duration ">
                     <p class="custom-paragraph">MIN</p>
-                    <pv-input-number v-model="minValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99" >
+                    <pv-input-number v-model="minValue" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="9999" >
                       <template #incrementbuttonicon>
                         <span class="pi pi-plus" />
                       </template>
@@ -115,7 +120,7 @@ export default {
                   </div>
                 </div>
 
-                <p class="custom-paragraph">The duration is in days</p>
+                <p class="custom-paragraph">The area is in meters</p>
 
               </div>
             </div>

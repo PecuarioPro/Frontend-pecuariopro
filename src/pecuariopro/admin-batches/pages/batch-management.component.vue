@@ -163,13 +163,33 @@ export default {
       this.batches = this.allBatches.filter(batch => {
         return batch.name && batch.name.toLowerCase().includes(searchValue);
       });
+      this.wasFilter = true;
     },
     onFilterForStatus(value){
       const statusValue = value.toLowerCase();
 
       this.batches = this.allBatches.filter(batch => {
         return batch.status.toLowerCase() === statusValue;
-      })
+      });
+      this.wasFilter = true;
+    },
+    onFilterArea(object){
+      if(object.maxValue === object.minValue){
+        this.batches = this.allBatches.filter( batch =>{
+          return batch.area > object.minValue && batch.area < object.maxValue;
+        });
+      }
+      else{
+        this.batches = this.allBatches.filter( batch =>{
+          return batch.area > object.minValue;
+        });
+      }
+      this.wasFilter=true;
+    },
+    closeFilter(){
+      this.batches = this.allBatches;
+      this.wasFilter=false;
+
     }
 
 
@@ -204,6 +224,16 @@ export default {
       </div>
     </div>
 
+    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if=" wasFilter!==false" >
+      <div class="filter-total-results flex gap-3">
+        <p> Total Results:</p>
+        <p>{{batches.length.toString()}}</p>
+      </div>
+
+      <pv-button class="mr-2 title-button " icon="pi pi-times" text rounded severity="secondary"  @click="closeFilter"></pv-button>
+    </div>
+
+
     <div class="container-cards">
       <div v-for="batch in batches" :key="batch.id">
         <div class="flex align-items-center" v-if="deleteFlag">
@@ -228,7 +258,7 @@ export default {
           <batch-filter-page @closeFilter="onFilterSelected"
                        @filter1="onFilter($event)"
                        @filter-status="onFilterForStatus($event)"
-                             :wasFilter="wasFilter"
+                       @filter-area="onFilterArea($event)"
           />
         </pv-sidebar>
       </div>
@@ -279,6 +309,10 @@ export default {
 }
 .button-group-mobile {
   display: flex;
+}
+.on-filter{
+  width: 100%;
+  justify-content: space-between;
 }
 @media (min-width: 750px) {
   .container-title {
