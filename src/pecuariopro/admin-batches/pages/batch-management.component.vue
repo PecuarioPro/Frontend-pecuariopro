@@ -5,20 +5,25 @@ import {Batch} from "../model/batch.entity.js";
 import BatchCreateAndEdit from "../components/batch-create-and-edit.component.vue";
 import CampaignCreateAndEdit from "../../admin-campaign/components/campaign-create-and-edit.component.vue";
 import CampaignView from "../../admin-campaign/components/campaign-view.vue";
+import BatchFilterPage from "./batch-filter-page.component.vue";
 
 export default {
   name: "batch-management",
-  components: {CampaignView, CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
+  components: {BatchFilterPage, CampaignView, CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
   data() {
     return {
       batch: {},
       batchesService: null,
       batches: [],
-      selectedBatches:[],
+      allBatches:[],//array for filter
+      selectedBatches:[], //array for delete selected
       isVisibleCard: false,
       isEdit: false,
       submitted: false,
-      deleteFlag:false
+      deleteFlag:false,
+      visibleFilter:false,
+      wasFilter:false
+
     };
   },
   created() {
@@ -31,6 +36,9 @@ export default {
     },
     findIndexById(id) {
       return this.batches.findIndex((batch) => batch.id === id);
+    },
+    onFilterSelected(){
+    this.visibleFilter=!this.visibleFilter;
     },
     handleViewBovines(batch) {
       this.$router.push({
@@ -45,6 +53,7 @@ export default {
         this.batches = batches.filter(batch => batch.campaignId == this.$route.params.campaignId)
             .map(batch => Batch.toDisplayableBatch(batch));
         console.log("batches filtrados",this.batches);
+        this.allBatches = [...this.batches];
       });
     },
 
@@ -99,6 +108,7 @@ export default {
         });
       }
       this.deleteFlag = !this.deleteFlag;
+      this.allBatches = [...this.batches];
     },
     onDeleteItemEventHandler(item) {
       this.batch = item;
@@ -118,6 +128,8 @@ export default {
 
       })
       console.log('Estas son las campaigns',this.batches);
+      this.allBatches = [...this.batches];
+
     },
     updateBatch(){
       this.batch = Batch.fromDisplayableBatch(this.batch);
@@ -128,6 +140,8 @@ export default {
             this.notifySuccessfulAction("Batch Updated");
 
           });
+      this.allBatches = [...this.batches];
+
     },
     deleteBatch(){
       this.batchesService.delete(this.batch.id)
@@ -135,8 +149,30 @@ export default {
             this.batches=this.batches.filter((t)=>t.id !==this.batch.id);
             this.batch = {};
             this.notifySuccessfulAction("Batch Deleted");
-          })
+          });
+      this.allBatches = [...this.batches];
+    },
+
+    //Filter methods
+    onFilter(value){
+      if (typeof value !== 'string') {
+        return;
+      }
+      const searchValue = value.toLowerCase();
+
+      this.batches = this.allBatches.filter(batch => {
+        return batch.name && batch.name.toLowerCase().includes(searchValue);
+      });
+    },
+    onFilterForStatus(value){
+      const statusValue = value.toLowerCase();
+
+      this.batches = this.allBatches.filter(batch => {
+        return batch.status.toLowerCase() === statusValue;
+      })
     }
+
+
 
   }
 }
@@ -151,7 +187,7 @@ export default {
       <div>
         <div class="button-group-desktop" v-if="!deleteFlag">
           <pv-button class="mr-2 title-button btn-new" icon="pi pi-plus" label="New" severity="secondary" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text @click="onFilterSelected"></pv-button>
           <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text @click="deleteAction"></pv-button>
         </div>
         <div class="button-group-mobile" v-if="!deleteFlag">
@@ -183,6 +219,25 @@ export default {
     :edit="isEdit"
     @canceled="onCanceledEventHandler"
     @saved2="onSavedEventHandler($event)"/>
+
+  <div class="app-content">
+
+    <template>
+      <div class="card flex justify-content-center">
+        <pv-sidebar v-model:visible="visibleFilter"  position="right" style="width: 25rem;">
+          <batch-filter-page @closeFilter="onFilterSelected"
+                       @filter1="onFilter($event)"
+                       @filter-status="onFilterForStatus($event)"
+                             :wasFilter="wasFilter"
+          />
+        </pv-sidebar>
+      </div>
+    </template>
+  </div>
+
+
+
+
 </template>
 
 <style scoped>

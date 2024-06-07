@@ -50,7 +50,6 @@ export default {
 
     },
     filterForDate(){
-
       console.log(typeof this.initialDateValue);
       this.datesValue.initial=this.initialDateValue;
       this.datesValue.final=this.finalDateValue;

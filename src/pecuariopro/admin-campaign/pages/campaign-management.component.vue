@@ -16,14 +16,15 @@ export default {
       title:{ singular: 'Bovine', plural: 'Bovines' },
       campaign: {},
       campaigns: [],
-      allCampaigns:[],
+      allCampaigns:[],//array for filter
       campaignService:null,
-      selectedCampaigns:[],
+      selectedCampaigns:[],//array for delete selected
       isVisibleCard: false,
       isEdit: false,
       submitted: false,
       deleteFlag:false,
-      visibleFilter:false
+      visibleFilter:false,
+      wasFilter:false
     }
 
   },
@@ -179,6 +180,7 @@ export default {
       this.campaigns = this.allCampaigns.filter(campaign => {
         return campaign.name && campaign.name.toLowerCase().includes(searchValue);
       });
+      this.wasFilter=true;
     },
 
     onFilterForCondition(value){
@@ -186,20 +188,27 @@ export default {
 
       this.campaigns = this.allCampaigns.filter(campaign => {
         return campaign.condition.toLowerCase() === conditionValue;
-      })
+      });
+      this.wasFilter=true;
     },
 
     onFilterForDuration(object){
       this.campaigns = this.allCampaigns.filter( campaign =>{
         console.log('Soy campaign', this,campaign.id,this.campaign.duration,object);
         return campaign.duration > object.minValue && campaign.duration < object.maxValue;
-      })
+      });
+      this.wasFilter=true;
     },
 
     onFilterDate(object){
       this.campaigns = this.allCampaigns.filter(campaign =>{
         return campaign.dateStart >= object.initial && campaign.dateEnd <= object.final;
-      })
+      });
+      this.wasFilter=true;
+    },
+    closeFilter(){
+     this.campaigns=this.allCampaigns;
+     this.wasFilter=false;
     }
 
   }
@@ -232,13 +241,13 @@ export default {
       </div>
     </div>
 
-    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if="campaigns.length !== allCampaigns.length" >
+    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if=" wasFilter!==false" >
       <div class="filter-total-results flex gap-3">
         <p> Total Results:</p>
         <p>{{campaigns.length.toString()}}</p>
       </div>
 
-      <pv-button class="mr-2 title-button " icon="pi pi-times" text rounded severity="secondary"  @click="campaigns=allCampaigns"></pv-button>
+      <pv-button class="mr-2 title-button " icon="pi pi-times" text rounded severity="secondary"  @click="closeFilter"></pv-button>
     </div>
 
 
