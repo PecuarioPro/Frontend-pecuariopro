@@ -12,12 +12,29 @@ export default {
   data() {
     return {
       submitted: false,
+      dialogSize: 'default'
     }
+  },
+  mounted() {
+    this.detectScreenSize();
+    window.addEventListener('resize', this.detectScreenSize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.detectScreenSize);
   },
   methods:{
     created(){
       this.item2=this.item.origin;
       console.log(this.item);
+    }, detectScreenSize() {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 768) {
+        this.dialogSize = 'standard';
+      } else if (screenWidth >= 768 && screenWidth < 1200) {
+        this.dialogSize = 'large';
+      } else {
+        this.dialogSize = 'extra-large';
+      }
     },
     canceledEventHandler() {
       this.$emit('canceled');
@@ -45,7 +62,7 @@ export default {
 </script>
 
 <template>
-  <create-and-edit :entity="this.item" :visible="visible" entityName="Bovine" @canceled="canceledEventHandler" @saved="savedEventHandler" size="extra-large">
+  <create-and-edit :entity="this.item" :visible="visible" entityName="Bovine" @canceled="canceledEventHandler" @saved="savedEventHandler" :size="this.dialogSize">
     <template #content>
       <div class="p-fluid container-dialog">
 
@@ -123,7 +140,7 @@ export default {
   margin-bottom:5px;
 }
 
-@media (min-width: 1400px){
+@media (min-width: 1200px){
   .container-dialog{
     display:flex;
     gap:20px;

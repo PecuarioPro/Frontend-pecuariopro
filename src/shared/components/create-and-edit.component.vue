@@ -22,7 +22,7 @@ export default {
       let dialogStyle = defaultStyle;
       dialogStyle = this.size === 'stand' ? {width: '1600px'}:defaultStyle;
       dialogStyle = this.size === 'l' ? { width: '900px'}:defaultStyle;
-      dialogStyle = this.size === 'extra-large' ? {width: '1200px'}:defaultStyle;
+      dialogStyle = this.size === 'extra-large' ? {width: '1100px'}:defaultStyle;
       return dialogStyle;
     }
 
