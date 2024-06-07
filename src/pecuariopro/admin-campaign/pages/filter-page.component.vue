@@ -30,24 +30,32 @@ export default {
     },
     filterForName(){
       this.$emit('filter1',this.filterNameValue);
+      this.close();
     },
     filterForCondition(){
       if(this.selectedConditions){
         this.$emit('filter-condition',this.selectedConditions);
+        this.close();
       }
     },
     filterForDuration(){
       console.log(this.minValue,this.maxValue);
-      this.minmaxValues.minValue = this.minValue;
-     this. minmaxValues.maxValue = this.maxValue;
-      this.$emit('filter-duration', this.minmaxValues);
+      if(this.minValue !=null && this.maxValue != null){
+        this.minmaxValues.minValue = this.minValue;
+        this. minmaxValues.maxValue = this.maxValue;
+        this.$emit('filter-duration', this.minmaxValues);
+        this.close();
+      }
+
+
     },
     filterForDate(){
-
       console.log(typeof this.initialDateValue);
       this.datesValue.initial=this.initialDateValue;
       this.datesValue.final=this.finalDateValue;
       this.$emit('filter-date', this.datesValue);
+      this.close();
+
     }
 
   }

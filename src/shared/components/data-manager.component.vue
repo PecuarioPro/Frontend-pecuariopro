@@ -1,8 +1,10 @@
 <script>
 import {FilterMatchMode} from "primevue/api";
 
+
 export default {
   name: "data-manager",
+  components: {},
   inheritAttrs: false,
   props: {
     items: {type: Array, required: true},
@@ -45,6 +47,7 @@ export default {
     },
     editItem(item) {
       this.$emit('edit-item', item);
+      console.log("este es el item desde raiz",this.item);
     },
     confirmDeleteItem(item) {
       this.$confirm.require({
@@ -78,9 +81,13 @@ export default {
   <pv-confirm-dialog/>
   <h3>Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
-    <pv-toolbar class="mb-4">
+    <pv-toolbar class="mb-4 flex justify-content-end">
       <template #start>
-        <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+        <div>
+        <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="Primary" @click="newItem"/>
+        <pv-button text :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete" severity="Secondary"
+                   @click="confirmDeleteSelected"/>
+        </div>
       </template>
     </pv-toolbar>
 
@@ -97,8 +104,22 @@ export default {
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{title.plural}}"
       data-key="id"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
+
+    <template #header>
+      <div class="flex justify-content-start">
+        <pv-icon-field iconPosition="left">
+          <pv-input-icon>
+            <i class="pi pi-search" />
+          </pv-input-icon>
+          <pv-input-text v-model="filters['global'].value" placeholder="Search" />
+        </pv-icon-field>
+      </div>
+    </template>
+
+    <pv-column :exportable="false" selectionMode="multiple" style="width: 3rem"/>
     <slot name="custom-columns"></slot>
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field" :field="column.field" :header="column.header"/>
+
     <pv-column :exportable="false" style="min-width:8rem">
       <template #body="slotProps">
     <pv-button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editItem(slotProps.data)"/>

@@ -190,11 +190,13 @@ export default {
                           </a>
                         </li>
                         <li>
+                          <router-link to="/inventory" @click=toggleDrawer()>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-warehouse mr-2"></i>
                             <span class="font-medium">Inventory</span>
 <!--                            <span class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle" style="min-width: 1.5rem; height: 1.5rem">3</span>-->
                           </a>
+                          </router-link>
                         </li>
                         <li>
                           <router-link to="/veterinarians" @click=toggleDrawer()>

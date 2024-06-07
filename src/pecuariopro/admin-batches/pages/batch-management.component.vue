@@ -5,20 +5,25 @@ import {Batch} from "../model/batch.entity.js";
 import BatchCreateAndEdit from "../components/batch-create-and-edit.component.vue";
 import CampaignCreateAndEdit from "../../admin-campaign/components/campaign-create-and-edit.component.vue";
 import CampaignView from "../../admin-campaign/components/campaign-view.vue";
+import BatchFilterPage from "./batch-filter-page.component.vue";
 
 export default {
   name: "batch-management",
-  components: {CampaignView, CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
+  components: {BatchFilterPage, CampaignView, CampaignCreateAndEdit, BatchCreateAndEdit, BatchView},
   data() {
     return {
       batch: {},
       batchesService: null,
       batches: [],
-      selectedBatches:[],
+      allBatches:[],//array for filter
+      selectedBatches:[], //array for delete selected
       isVisibleCard: false,
       isEdit: false,
       submitted: false,
-      deleteFlag:false
+      deleteFlag:false,
+      visibleFilter:false,
+      wasFilter:false
+
     };
   },
   created() {
@@ -31,6 +36,9 @@ export default {
     },
     findIndexById(id) {
       return this.batches.findIndex((batch) => batch.id === id);
+    },
+    onFilterSelected(){
+    this.visibleFilter=!this.visibleFilter;
     },
     handleViewBovines(batch) {
       this.$router.push({
@@ -45,6 +53,7 @@ export default {
         this.batches = batches.filter(batch => batch.campaignId == this.$route.params.campaignId)
             .map(batch => Batch.toDisplayableBatch(batch));
         console.log("batches filtrados",this.batches);
+        this.allBatches = [...this.batches];
       });
     },
 
@@ -99,6 +108,7 @@ export default {
         });
       }
       this.deleteFlag = !this.deleteFlag;
+      this.allBatches = [...this.batches];
     },
     onDeleteItemEventHandler(item) {
       this.batch = item;
@@ -118,6 +128,8 @@ export default {
 
       })
       console.log('Estas son las campaigns',this.batches);
+      this.allBatches = [...this.batches];
+
     },
     updateBatch(){
       this.batch = Batch.fromDisplayableBatch(this.batch);
@@ -128,6 +140,8 @@ export default {
             this.notifySuccessfulAction("Batch Updated");
 
           });
+      this.allBatches = [...this.batches];
+
     },
     deleteBatch(){
       this.batchesService.delete(this.batch.id)
@@ -135,8 +149,50 @@ export default {
             this.batches=this.batches.filter((t)=>t.id !==this.batch.id);
             this.batch = {};
             this.notifySuccessfulAction("Batch Deleted");
-          })
+          });
+      this.allBatches = [...this.batches];
+    },
+
+    //Filter methods
+    onFilter(value){
+      if (typeof value !== 'string') {
+        return;
+      }
+      const searchValue = value.toLowerCase();
+
+      this.batches = this.allBatches.filter(batch => {
+        return batch.name && batch.name.toLowerCase().includes(searchValue);
+      });
+      this.wasFilter = true;
+    },
+    onFilterForStatus(value){
+      const statusValue = value.toLowerCase();
+
+      this.batches = this.allBatches.filter(batch => {
+        return batch.status.toLowerCase() === statusValue;
+      });
+      this.wasFilter = true;
+    },
+    onFilterArea(object){
+      if(object.maxValue === object.minValue){
+        this.batches = this.allBatches.filter( batch =>{
+          return batch.area > object.minValue && batch.area < object.maxValue;
+        });
+      }
+      else{
+        this.batches = this.allBatches.filter( batch =>{
+          return batch.area > object.minValue;
+        });
+      }
+      this.wasFilter=true;
+    },
+    closeFilter(){
+      this.batches = this.allBatches;
+      this.wasFilter=false;
+
     }
+
+
 
   }
 }
@@ -149,10 +205,15 @@ export default {
     <div  class="container-title">
       <h2 class="title"> My Batches</h2>
       <div>
-        <div v-if="!deleteFlag">
-          <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="secondary" v-if="!deleteFlag" @click="deleteAction"></pv-button>
+        <div class="button-group-desktop" v-if="!deleteFlag">
+          <pv-button class="mr-2 title-button btn-new" icon="pi pi-plus" label="New" severity="secondary" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text @click="onFilterSelected"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text @click="deleteAction"></pv-button>
+        </div>
+        <div class="button-group-mobile" v-if="!deleteFlag">
+          <pv-button class="mr-2 icon-button btn-new" icon="pi pi-plus" severity="secondary" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-filter" severity="secondary" text></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-trash" severity="secondary" text @click="deleteAction"></pv-button>
         </div>
 
         <div v-if="deleteFlag">
@@ -162,6 +223,16 @@ export default {
 
       </div>
     </div>
+
+    <div class="on-filter flex display-flex align-items-center flex-direction-row justify-content-space-between " v-if=" wasFilter!==false" >
+      <div class="filter-total-results flex gap-3">
+        <p> Total Results:</p>
+        <p>{{batches.length.toString()}}</p>
+      </div>
+
+      <pv-button class="mr-2 title-button " icon="pi pi-times" text rounded severity="secondary"  @click="closeFilter"></pv-button>
+    </div>
+
 
     <div class="container-cards">
       <div v-for="batch in batches" :key="batch.id">
@@ -178,38 +249,84 @@ export default {
     :edit="isEdit"
     @canceled="onCanceledEventHandler"
     @saved2="onSavedEventHandler($event)"/>
+
+  <div class="app-content">
+
+    <template>
+      <div class="card flex justify-content-center">
+        <pv-sidebar v-model:visible="visibleFilter"  position="right" style="width: 25rem;">
+          <batch-filter-page @closeFilter="onFilterSelected"
+                       @filter1="onFilter($event)"
+                       @filter-status="onFilterForStatus($event)"
+                       @filter-area="onFilterArea($event)"
+          />
+        </pv-sidebar>
+      </div>
+    </template>
+  </div>
+
+
+
+
 </template>
 
 <style scoped>
-.container-cards{
-  display:flex;
-  justify-content:center;
+.container-cards {
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 100px;
   height: 100vh;
-  gap:20px;
+  gap: 20px;
   width: 100%;
 }
-.container-title{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  border-bottom: 1px solid #34d399; /* borde de color verde */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* sombra para resaltar */
-
-}
-.title-button{
-  height:50px;
-  color:white;
-  font-size:15px;
+.title{
   font-weight:500;
+  font-size:25px;
+}
+.container-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #34d399;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.title-button {
+  height: 50px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
   text-align: center;
 }
-
-@media (min-width: 750px) {
+.btn-action:hover {
+  color: #32C793;
 }
-
-@media (min-width: 1400px) {
-
+.btn-new:hover {
+  color: #32C793;
+}
+.button-group-desktop {
+  display: none;
+}
+.button-group-mobile {
+  display: flex;
+}
+.on-filter{
+  width: 100%;
+  justify-content: space-between;
+}
+@media (min-width: 750px) {
+  .container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0px;
+  }
+  .button-group-desktop {
+    display: flex;
+  }
+  .button-group-mobile {
+    display: none;
+  }
 }
 </style>

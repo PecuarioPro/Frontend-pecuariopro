@@ -174,15 +174,10 @@
       "id": "2",
       "name": "Luna",
       "raza": "Holstein",
-      "weight": 400.5,
       "date": "2024-05-02",
-      "origin": {
-        "department": "Arequipa",
-        "city": "Arequipa",
-        "district": "Arequipa"
-      },
+      "origin": {},
       "observations": "High milk production",
-      "batchId": 1
+      "batchId": "1"
     },
     {
       "id": "3",
@@ -317,6 +312,20 @@
         "district": "Lambayeque"
       },
       "observations": "nothing",
+      "batchId": "1"
+    },
+    {
+      "id": "tcafugK",
+      "name": "example bovine fix",
+      "raza": "adasda",
+      "weight": 334,
+      "date": "2024-06-08",
+      "origin": {
+        "department": "Lima",
+        "city": "Lima",
+        "district": "Lima"
+      },
+      "observations": "asdadaadd",
       "batchId": "1"
     }
   ],
