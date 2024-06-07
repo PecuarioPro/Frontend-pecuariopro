@@ -149,10 +149,15 @@ export default {
     <div  class="container-title">
       <h2 class="title"> My Batches</h2>
       <div>
-        <div v-if="!deleteFlag">
-          <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="secondary" v-if="!deleteFlag" @click="deleteAction"></pv-button>
+        <div class="button-group-desktop" v-if="!deleteFlag">
+          <pv-button class="mr-2 title-button btn-new" icon="pi pi-plus" label="New" severity="secondary" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text @click="deleteAction"></pv-button>
+        </div>
+        <div class="button-group-mobile" v-if="!deleteFlag">
+          <pv-button class="mr-2 icon-button btn-new" icon="pi pi-plus" severity="secondary" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-filter" severity="secondary" text></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-trash" severity="secondary" text @click="deleteAction"></pv-button>
         </div>
 
         <div v-if="deleteFlag">
@@ -181,35 +186,58 @@ export default {
 </template>
 
 <style scoped>
-.container-cards{
-  display:flex;
-  justify-content:center;
+.container-cards {
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 100px;
   height: 100vh;
-  gap:20px;
+  gap: 20px;
   width: 100%;
 }
-.container-title{
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  border-bottom: 1px solid #34d399; /* borde de color verde */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* sombra para resaltar */
-
-}
-.title-button{
-  height:50px;
-  color:white;
-  font-size:15px;
+.title{
   font-weight:500;
+  font-size:25px;
+}
+.container-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #34d399;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.title-button {
+  height: 50px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
   text-align: center;
 }
-
-@media (min-width: 750px) {
+.btn-action:hover {
+  color: #32C793;
 }
-
-@media (min-width: 1400px) {
-
+.btn-new:hover {
+  color: #32C793;
+}
+.button-group-desktop {
+  display: none;
+}
+.button-group-mobile {
+  display: flex;
+}
+@media (min-width: 750px) {
+  .container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0px;
+  }
+  .button-group-desktop {
+    display: flex;
+  }
+  .button-group-mobile {
+    display: none;
+  }
 }
 </style>

@@ -75,7 +75,7 @@ export default {
 <div class="batch-section">
   <div  class="container-title">
     <router-link to="/campaign">
-      <pv-button icon="pi pi-arrow-left" class="title-button" rounded ></pv-button>
+      <pv-button icon="pi pi-arrow-left" class="title-button-2" rounded ></pv-button>
     </router-link>
     <h1 v-if="campaign" class="title">{{ campaign.name }}</h1>
   </div>
@@ -93,21 +93,33 @@ export default {
 }
 .container-title{
   display:flex;
-  align-items:center;
+  flex-direction:column;
+  align-items:start;
   gap:5px;
 }
-.title-button{
+
+.title-button-2{
   border-radius: 15px;
   color:white;
   background-color: transparent;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-
 }
-.title-button:hover {
+.title-button-2:hover {
   background-color: #27272a;
-  color: #ffffff;
+  color: #34d399;
+}
+.title{
+  font-size:30px;
+}
+@media (min-width: 750px) {
+
+.container-title{
+  flex-direction:row;
+  align-items: center;
 }
 
+
+}
 </style>

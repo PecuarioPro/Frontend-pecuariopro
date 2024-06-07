@@ -209,18 +209,24 @@ export default {
 <template>
   <section class="campaign-section" :style="{ position: 'relative'} ">
     <pv-toast />
-    <div  class="container-title">
-
+    <div class="container-title">
+      <p class="container-title--title">My campaigns</p>
       <div>
-        <div v-if="!deleteFlag">
-          <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" @click="onFilterSelected" ></pv-button>
-          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="secondary" v-if="!deleteFlag" @click="deleteAction"></pv-button>
+        <div class="button-group-desktop" v-if="!deleteFlag">
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-plus" label="New" severity="secondary" @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text  @click="onFilterSelected"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text  @click="deleteAction"></pv-button>
+        </div>
+
+        <div class="button-group-mobile" v-if="!deleteFlag">
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-plus" severity="secondary"  @click="onNewItemEventHandler"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-filter" severity="secondary" @click="onFilterSelected"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-trash" severity="secondary" @click="deleteAction"></pv-button>
         </div>
 
         <div v-if="deleteFlag">
-          <pv-button class="mr-2 title-button" icon="pi pi-trash" severity="success" label="Delete" @click="deleteSelection"></pv-button>
-          <pv-button class="mr-2 title-button"  severity="secondary" v-if="deleteFlag" label="Cancel" @click="deleteAction"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" label="Delete" @click="deleteSelection"></pv-button>
+          <pv-button class="mr-2 title-button btn-action"  severity="secondary" v-if="deleteFlag" text label="Cancel" @click="deleteAction"></pv-button>
         </div>
 
       </div>
@@ -284,22 +290,23 @@ export default {
 .on-filter{
   width: 100%;
   justify-content: space-between;
-  border-bottom: #32C793 1px solid ;
 }
 .container-cards{
   display:flex;
   justify-content:center;
   flex-wrap: wrap;
-  margin-top: 100px;
+  margin-top: 50px;
   height: 100vh;
   gap:20px;
   width: 100%;
 }
 .container-title{
+  margin-top: 15px;
   display:flex;
+  flex-direction:column;
   justify-content: space-between;
-  align-items:center;
-
+  padding:8px;
+  border-bottom:#32C793 1px solid ;
 }
 .title-button{
   height:50px;
@@ -308,10 +315,45 @@ export default {
   font-weight:500;
   text-align: center;
 }
+
+.btn-action:hover{
+  color:#32C793;
+}
+
 .filter-total-results p{
   font-weight:500;
 }
+
+.button-group-desktop {
+  display: none;
+}
+
+.button-group-mobile {
+  display: flex;
+}
+
+.container-title--title{
+  font-weight:500;
+  font-size:25px;
+}
+
 @media (min-width: 750px) {
+
+  .container-title{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items:center;
+    padding-bottom:0px;
+  }
+  .button-group-desktop {
+    display: flex;
+  }
+
+  .button-group-mobile {
+    display: none;
+  }
+
 }
 
 @media (min-width: 1400px) {
