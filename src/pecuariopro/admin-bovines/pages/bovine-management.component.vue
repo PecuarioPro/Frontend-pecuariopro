@@ -182,14 +182,16 @@ export default {
 
         <pv-column :sortable="true" field="date" header="Date" style="min-width: 8rem"/>
 
-        <pv-column :sortable="true" field="origin.department" header="Department" style="min-width: 8rem"/>
-
         <pv-column :sortable="true" field="origin.city" header="City" style="min-width: 8rem" />
 
-        <pv-column :sortable="true" field="origin.district" header="District" style="min-width: 8rem" />
 
 
         <!-- Columna Ver Más -->
+      </template>
+      <template #actions="{ slotProps }">
+        <pv-button icon="pi pi-pencil" text class="mr-2" @click="onEditItemEventHandler(slotProps.data)" />
+        <pv-button icon="pi pi-eye" text class="mr-2" @click="onViewItemEventHandler(slotProps.data)" /> <!-- Nuevo botón -->
+        <pv-button icon="pi pi-trash" text severity="danger" @click="onDeleteItemEventHandler(slotProps.data)" />
       </template>
     </data-manager>
     </div>

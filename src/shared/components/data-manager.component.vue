@@ -122,8 +122,11 @@ export default {
 
     <pv-column :exportable="false" style="min-width:8rem">
       <template #body="slotProps">
-    <pv-button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editItem(slotProps.data)"/>
-    <pv-button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
+        <slot name="actions" v-bind:slotProps="slotProps">
+        <pv-button icon="pi pi-pencil"  text class="mr-2" @click="editItem(slotProps.data)"/>
+    <pv-button icon="pi pi-trash"  text severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
+        </slot>
+
       </template>
     </pv-column>
   </pv-data-table>

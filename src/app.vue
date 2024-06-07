@@ -25,16 +25,14 @@ export default {
 <template>
   <div>
     <header>
-      <pv-toolbar class="bg-primary" fixed>
+      <pv-toolbar class="toolbar" fixed>
         <template #start>
-          <pv-button icon="pi pi-bars" @click=toggleDrawer() />
-          <h1>PecuarioPro</h1>
+          <pv-button class="menu-button" icon="pi pi-bars" @click="toggleDrawer()" />
+          <h1 class="toolbar-title">PecuarioPro</h1>
         </template>
         <template #end>
           <div class="flex-column">
-            <router-link v-for="item in items" :key="item.label" :to="item.to">
-              <pv-button class="p-button-text text-white">{{item.label}}</pv-button>
-            </router-link>
+            <!-- Items can be added here if needed -->
           </div>
         </template>
       </pv-toolbar>
@@ -165,7 +163,7 @@ export default {
                           </a>
                           <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
                             <li>
-                              <router-link to="staff-view" @click=toggleDrawer()>
+                              <router-link to="/staff-view" @click=toggleDrawer()>
                                 <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                   <i class="pi pi-users mr-2"></i>
                                   <span class="font-medium">View Staff</span>
@@ -173,7 +171,7 @@ export default {
                               </router-link>
                             </li>
                             <li>
-                              <router-link to="staff-manage" @click=toggleDrawer()>
+                              <router-link to="/staff-manage" @click=toggleDrawer()>
                                 <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                   <i class="pi pi-users mr-2"></i>
                                   <span class="font-medium">Manage Staff</span>
@@ -238,3 +236,35 @@ export default {
     <router-view/>
   </div>
 </template>
+
+<style scoped>
+.toolbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: white;
+}
+
+.menu-button {
+  font-size: 24px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  color: #d4d4d4; /* Change color on hover */
+}
+
+.toolbar-title {
+  margin-left: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+</style>
