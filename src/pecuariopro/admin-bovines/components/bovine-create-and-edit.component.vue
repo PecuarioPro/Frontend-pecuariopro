@@ -48,60 +48,59 @@ export default {
   <create-and-edit :entity="this.item" :visible="visible" entityName="Bovine" @canceled="canceledEventHandler" @saved="savedEventHandler">
     <template #content>
       <div class="p-fluid">
-<!--        <div class="p-field mt-5">-->
-<!--          <pv-float-label>-->
-<!--            <label for="ID">ID</label>-->
-<!--            <pv-input-text id="ID" v-model="this."/>-->
-<!--          </pv-float-label>-->
-<!--        </div>-->
-        <div class="field mt-5">
+
+        <div class="field mt-5 container-field">
+          <label for="name">Name</label>
           <pv-float-label>
-            <label for="name">Name</label>
             <pv-input-text id="name" v-model="this.item.name" :class="{'p-invalid': submitted && !this.item.name}"/>
             <small v-if="submitted && !this.item.name" class="p-invalid">Name is required.</small>
           </pv-float-label>
         </div>
-        <div class="p-field mt-5">
+        <div class="field mt-5 container-field">
+          <label for="race">Race</label>
           <pv-float-label>
-            <label for="race">Race</label>
-            <input id="race" v-model="this.item.raza" class="p-inputtext p-component" type="text"/>
-          </pv-float-label>
-        </div>
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="date">Date</label>
-            <input id="date" v-model="this.item.date" class="p-inputtext p-component" type="date"/>
-          </pv-float-label>
-        </div>
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="weight">Weight</label>
-            <pv-input-number id="weight" v-model="this.item.weight" />
-            <small v-if="submitted && !this.item.weight" class="p-invalid">Weight is required.</small>
-          </pv-float-label>
-        </div>
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="department">Department</label>
-            <input id="department" v-model="this.item2.department" class="p-inputtext p-component" />
-          </pv-float-label>
-        </div>
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="city">City</label>
-            <input id="city" v-model="this.item2.city" class="p-inputtext p-component" />
-          </pv-float-label>
-        </div>
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="district">District</label>
-            <input id="district" v-model="this.item2.district" class="p-inputtext p-component" />
+            <pv-input-text id="race" v-model="this.item.raza" :class="{'p-invalid': submitted && !this.item.raza}"/>
+            <small v-if="submitted && !this.item.raza" class="p-invalid">Race is required.</small>
           </pv-float-label>
         </div>
 
-        <div class="p-field mt-5">
+        <div class="field mt-5 container-field">
+          <label for="date">Date</label>
           <pv-float-label>
-            <label for="observations">Additional Information</label>
+            <pv-calendar inputId="date" v-model="this.item.date" showIcon iconDisplay="input" :class="{'p-invalid': submitted && !this.item.date}"/>
+            <small v-if="submitted && !this.item.date" class="p-invalid">Date is required.</small>
+          </pv-float-label>
+        </div>
+
+        <div class="field mt-5 container-field">
+          <label for="weight">Weight</label>
+          <pv-float-label>
+            <pv-input-number id="weight" v-model="this.item.weight" :class="{'p-invalid': submitted && !this.item.weight}"/>
+            <small v-if="submitted && !this.item.weight" class="p-invalid">Weight is required.</small>
+          </pv-float-label>
+        </div>
+        <div class="field mt-5 container-field">
+          <label for="department">Department</label>
+          <pv-float-label>
+            <pv-input-text id="department" v-model="this.item2.department" class="p-inputtext p-component" />
+          </pv-float-label>
+        </div>
+        <div class="field mt-5 container-field">
+          <label for="city">City</label>
+          <pv-float-label>
+            <pv-input-text id="city" v-model="this.item2.city" class="p-inputtext p-component" />
+          </pv-float-label>
+        </div>
+        <div class="field mt-5 container-field">
+          <label for="district">District</label>
+          <pv-float-label>
+            <pv-input-text id="district" v-model="this.item2.district" class="p-inputtext p-component" />
+          </pv-float-label>
+        </div>
+
+        <div class="field mt-5 container-field">
+          <label for="observations">Additional Information</label>
+          <pv-float-label>
             <pv-textarea v-model="this.item.observations" autoResize rows="10" cols="30" />
           </pv-float-label>
         </div>
@@ -111,5 +110,7 @@ export default {
 </template>
 
 <style scoped>
-
+.container-field label{
+  margin-bottom:5px;
+}
 </style>
