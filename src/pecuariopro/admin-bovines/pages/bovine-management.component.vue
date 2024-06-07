@@ -23,7 +23,9 @@ export default {
       bovineService:null,
       isVisibleCard: false,
       isEdit: false,
-      submitted: false
+      submitted: false,
+      screenSize: window.innerWidth
+
     }
   },
   created(){
@@ -37,7 +39,11 @@ export default {
       this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId).map((bovine)=> Bovine.toDisplayableBovine(bovine));
     });
     console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
+    window.addEventListener('resize', this.handleResize);
 
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods:{
 
@@ -154,6 +160,8 @@ export default {
 <template>
   <div class="w-full principal-container">
     <!-- Bovine Data Manager -->
+    <div class="container-data-table">
+
     <data-manager
         :title=title
         v-bind:items="bovines"
@@ -164,13 +172,28 @@ export default {
       <template #custom-columns>
         <!-- Columna ID -->
         <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem" />
+
         <!-- Columna Nombre -->
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem"/>
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem">
+        </pv-column>
         <!-- Columna Raza -->
-        <pv-column :sortable="true" field="raza" header="Raza" style="min-width: 8rem" class="race-column"/>
+        <pv-column :sortable="true" field="raza" header="Race" style="min-width: 8rem" class="race-column" v-if="screenSize >= 768"/>
+
+        <pv-column :sortable="true" field="weight" header="Weight" style="min-width: 8rem"  v-if="screenSize >= 1024"/>
+
+        <pv-column :sortable="true" field="date" header="Date" style="min-width: 8rem" v-if="screenSize >= 1280"/>
+
+        <pv-column :sortable="true" field="origin.department" header="Department" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+
+        <pv-column :sortable="true" field="origin.city" header="City" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+
+        <pv-column :sortable="true" field="origin.district" header="District" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+
+
         <!-- Columna Ver Más -->
       </template>
     </data-manager>
+    </div>
     <bovine-create-and-edit
       :item="bovine"
       :item2="origin"
