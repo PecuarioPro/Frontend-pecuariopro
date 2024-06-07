@@ -47,6 +47,7 @@ export default {
     },
     editItem(item) {
       this.$emit('edit-item', item);
+      console.log("este es el item desde raiz",this.item);
     },
     confirmDeleteItem(item) {
       this.$confirm.require({

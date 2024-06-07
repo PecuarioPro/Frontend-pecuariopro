@@ -37,13 +37,10 @@ export default {
       let bovines = response.data;
       console.log(bovines);
       this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId).map((bovine)=> Bovine.toDisplayableBovine(bovine));
+      console.log("mis bovines filtrados", this.bovines);
     });
     console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
-    window.addEventListener('resize', this.handleResize);
 
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize);
   },
   methods:{
 
@@ -60,6 +57,7 @@ export default {
       this.submitted = false;
       this.isEdit = false;
       this.isVisibleCard = true;
+      this.origin = {};
       console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
     },
     onEditItemEventHandler(item) {
@@ -67,6 +65,7 @@ export default {
       this.submitted = false;
       this.isEdit = true;
       this.isVisibleCard = true;
+      this.origin=this.bovine.origin;
       console.log(`soy el flag de editar y estoy prendiendo ${this.isVisibleCard}`)
       // this.createAndEditDialogIsVisible = true aqui ira la card para editar;
     },
@@ -177,17 +176,17 @@ export default {
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem">
         </pv-column>
         <!-- Columna Raza -->
-        <pv-column :sortable="true" field="raza" header="Race" style="min-width: 8rem" class="race-column" v-if="screenSize >= 768"/>
+        <pv-column :sortable="true" field="raza" header="Race" style="min-width: 8rem" class="race-column"/>
 
-        <pv-column :sortable="true" field="weight" header="Weight" style="min-width: 8rem"  v-if="screenSize >= 1024"/>
+        <pv-column :sortable="true" field="weight" header="Weight" style="min-width: 8rem" />
 
-        <pv-column :sortable="true" field="date" header="Date" style="min-width: 8rem" v-if="screenSize >= 1280"/>
+        <pv-column :sortable="true" field="date" header="Date" style="min-width: 8rem"/>
 
-        <pv-column :sortable="true" field="origin.department" header="Department" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+        <pv-column :sortable="true" field="origin.department" header="Department" style="min-width: 8rem"/>
 
-        <pv-column :sortable="true" field="origin.city" header="City" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+        <pv-column :sortable="true" field="origin.city" header="City" style="min-width: 8rem" />
 
-        <pv-column :sortable="true" field="origin.district" header="District" style="min-width: 8rem" v-if="screenSize >= 1440"/>
+        <pv-column :sortable="true" field="origin.district" header="District" style="min-width: 8rem" />
 
 
         <!-- Columna Ver Más -->
@@ -200,7 +199,7 @@ export default {
       :edit="isEdit"
       :visible="isVisibleCard"
       v-on:canceled="onCanceledEventHandler"
-      v-on:saved="onSavedEventHandler($event)"/>
+      v-on:saved2="onSavedEventHandler($event)"/>
 
 
   </div>

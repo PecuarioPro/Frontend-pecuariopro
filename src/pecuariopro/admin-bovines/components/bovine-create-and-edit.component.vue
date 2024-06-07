@@ -15,6 +15,10 @@ export default {
     }
   },
   methods:{
+    created(){
+      this.item2=this.item.origin;
+      console.log(this.item);
+    },
     canceledEventHandler() {
       this.$emit('canceled');
     },
@@ -24,7 +28,7 @@ export default {
      this.updateItem();
       // Verificar si los campos requeridos están llenos
       if (this.item.name && this.item.weight && this.item.raza) {
-        this.$emit('saved', this.item);
+        this.$emit('saved2', this.item);
       }
     },
     updateItem() {

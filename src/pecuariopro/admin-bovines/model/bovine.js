@@ -33,7 +33,7 @@ export class Bovine {
             id: bovine.id,
             name: bovine.name,
             raza: bovine.raza,
-            peso: bovine.weight,
+            weight: bovine.weight,
             date: bovine.date,
             origin: bovine.origin,
             observations: bovine.observations,
