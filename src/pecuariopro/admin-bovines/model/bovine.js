@@ -1,17 +1,16 @@
-import {Origin} from "./origin.entity.js";
+import { Origin } from "./origin.entity.js";
 
 export class Bovine {
-    constructor(id, name, raza, weight, date,origin, observations,batchId) {
+    constructor(id, name, raza, weight, date, origin, observations, batchId, imgUrls) {
         this.id = id;
         this.name = name;
         this.raza = raza;
         this.weight = weight;
         this.date = date;
         this.origin = origin;
-        //this.origin = new Origin;
         this.observations = observations;
         this.batchId = batchId;
-
+        this.imgUrls = imgUrls;
     }
 
     static fromDisplayableBovine(displayableBovine) {
@@ -23,8 +22,8 @@ export class Bovine {
             displayableBovine.date,
             displayableBovine.origin,
             displayableBovine.observations,
-            displayableBovine.batchId
-
+            displayableBovine.batchId,
+            displayableBovine.imgUrls
         );
     }
 
@@ -37,9 +36,8 @@ export class Bovine {
             date: bovine.date,
             origin: bovine.origin,
             observations: bovine.observations,
-            batchId: bovine.batchId
-
+            batchId: bovine.batchId,
+            imgUrls: bovine.imgUrls
         };
     }
-
 }

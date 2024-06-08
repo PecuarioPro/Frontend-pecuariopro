@@ -168,7 +168,10 @@
         "district": "Lima"
       },
       "observations": "Healthy",
-      "batchId": 1
+      "batchId": 1,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "2",
@@ -177,7 +180,10 @@
       "date": "2024-05-02",
       "origin": {},
       "observations": "High milk production",
-      "batchId": "1"
+      "batchId": "1",
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "3",
@@ -191,7 +197,10 @@
         "district": "Huancayo"
       },
       "observations": "Strong and healthy",
-      "batchId": 2
+      "batchId": 2,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "4",
@@ -200,7 +209,10 @@
       "weight": 234,
       "date": "2024-05-04",
       "observations": {},
-      "batchId": 2
+      "batchId": 2,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "5",
@@ -214,7 +226,10 @@
         "district": "Chiclayo"
       },
       "observations": "Golpe brazo derecho",
-      "batchId": 3
+      "batchId": 3,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "6",
@@ -228,7 +243,10 @@
         "district": "Chiclayo"
       },
       "observations": "Ninguna",
-      "batchId": 3
+      "batchId": 3,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "7",
@@ -242,7 +260,10 @@
         "district": "Chiclayo"
       },
       "observations": "Mancha negra en espalda",
-      "batchId": 4
+      "batchId": 4,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "8",
@@ -256,7 +277,10 @@
         "district": "Chiclayo"
       },
       "observations": "Marca en la pezuña",
-      "batchId": 4
+      "batchId": 4,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "9",
@@ -270,77 +294,27 @@
         "district": "Chiclayo"
       },
       "observations": "Oreja golpeada",
-      "batchId": 5
+      "batchId": 5,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "10",
-      "name": "Baxter",
-      "raza": "Simmental",
-      "weight": 400,
-      "date": "2024-05-10",
-      "origin": {
-        "department": "Junín",
-        "city": "Huancayo",
-        "district": "Huancayo"
-      },
-      "observations": "Fast growth",
-      "batchId": 5
-    },
-    {
-      "id": "11",
-      "name": "Zafiro",
+      "name": "Loki",
       "raza": "Angus",
-      "weight": 234,
-      "date": "2024-05-17",
+      "weight": 231,
+      "date": "2024-05-10",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "example bovine",
-      "batchId": "1"
-    },
-    {
-      "id": "12",
-      "name": "Esmeralda",
-      "raza": "Charolais",
-      "weight": 334,
-      "date": "2024-05-22",
-      "origin": {
-        "department": "Lambayeque",
-        "city": "Lambayeque",
-        "district": "Lambayeque"
-      },
-      "observations": "nothing",
-      "batchId": "1"
-    },
-    {
-      "id": "tcafugK",
-      "name": "example bovine fix",
-      "raza": "adasda",
-      "weight": 334,
-      "date": "2024-06-08",
-      "origin": {
-        "department": "Lima",
-        "city": "Lima",
-        "district": "Lima"
-      },
-      "observations": "asdadaadd",
-      "batchId": "1"
-    },
-    {
-      "id": "NqEYGLm",
-      "name": "asdsdsd",
-      "raza": "asdsad",
-      "weight": 234,
-      "date": "2024-06-07T05:00:00.000Z",
-      "origin": {
-        "department": "sdasd",
-        "city": "dsad",
-        "district": "asd"
-      },
-      "observations": "asdad",
-      "batchId": "1"
+      "observations": "Herida en la pata trasera izquierda",
+      "batchId": 5,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     }
   ],
   "campaigns": [

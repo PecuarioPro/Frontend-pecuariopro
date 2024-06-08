@@ -21,6 +21,13 @@ export default {
       totalSizePercent: 0,
     }
   },
+  watch: {
+    visible: function(newValue, oldValue) {
+      if (!newValue) {
+        this.resetForm();
+      }
+    }
+  },
   mounted() {
     this.detectScreenSize();
     window.addEventListener('resize', this.detectScreenSize);
@@ -28,11 +35,17 @@ export default {
   beforeDestroy() {
     window.removeEventListener('resize', this.detectScreenSize);
   },
+
   methods:{
     created(){
       this.item2=this.item.origin;
       console.log(this.item);
-    }, detectScreenSize() {
+    },
+    resetForm() {
+      this.submitted = false;
+    },
+
+    detectScreenSize() {
       const screenWidth = window.innerWidth;
       if (screenWidth < 768) {
         this.dialogSize = 'standard';
@@ -46,8 +59,8 @@ export default {
       this.$emit('canceled');
     },
     async savedEventHandler() {
-      console.log(this.item);
-      this.submitted = true;
+      console.log(this.submitted,"soy sub");
+      console.log("AHO",this.item);
       this.updateItem();
       if (this.item.name && this.item.weight && this.item.raza) {
         try {
@@ -58,6 +71,7 @@ export default {
           this.$toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to upload files.', life: 3000 });
         }
       }
+      this.submitted = true;
     },
     updateItem() {
       if (!this.item.origin) {
@@ -73,23 +87,34 @@ export default {
       this.totalSizePercent = this.totalSize / 10;
     },
     async uploadFilesToFirebase() {
-      const uploadPromises = this.files.map(file => {
-        const storageRef = ref(this.firebaseStorage, `PecuarioPro-bovines-resources/${file.name}`);
-        return uploadBytes(storageRef, file).then(snapshot => {
-          console.log(`Uploaded ${file.name}`);
-          return getDownloadURL(snapshot.ref).then(url => {
-            console.log(`File available at ${url}`);
-            // Aquí puedes guardar la URL en tu item si es necesario
+      try {
+        const uploadPromises = this.files.map(file => {
+          const storageRef = ref(this.firebaseStorage, `PecuarioPro-bovines-resources/${file.name}`);
+          return uploadBytes(storageRef, file).then(snapshot => {
+            console.log(`Uploaded ${file.name}`);
+            return getDownloadURL(snapshot.ref).then(url => {
+              console.log(`File available at ${url}`);
+              return url; // Retornar la URL para usarla más tarde
+            });
+          }).catch(error => {
+            console.error(`Error uploading ${file.name}:`, error);
+            throw error;
           });
-        }).catch(error => {
-          console.error(`Error uploading ${file.name}:`, error);
-          throw error;
         });
-      });
 
-      await Promise.all(uploadPromises);
-      this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Files Uploaded', life: 3000 });
+        // Esperar a que todas las promesas se resuelvan y obtener las URLs
+        const urls = await Promise.all(uploadPromises);
+
+        // Asignar las URLs al atributo imgUrls de tu ítem
+        this.item.imgUrls = urls; // Asumiendo que this.bovine es la instancia de tu ítem Bovine
+
+        this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Files Uploaded', life: 3000 });
+      } catch (error) {
+        console.error('Error uploading files:', error);
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: 'File Upload Failed', life: 3000 });
+      }
     }
+
 
 
   }
