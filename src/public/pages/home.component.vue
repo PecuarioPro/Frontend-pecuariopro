@@ -1,6 +1,12 @@
 <script>
 export default {
-  name: "home"
+  name: "home",
+
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+  }
 }
 </script>
 
@@ -138,6 +144,13 @@ export default {
     </div>
 
   </div>
+
+  <div style="text-align: center">
+    <pv-button>
+      <i class="pi pi-sort-up-fill" @click="scrollToTop"></i>
+    </pv-button>
+  </div>
+
 
 </template>
 
