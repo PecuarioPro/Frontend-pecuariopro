@@ -21,6 +21,10 @@ export default {
       totalSizePercent: 0,
     }
   },
+  created(){
+    console.log("bovine create and edit",this.item);
+    console.log("theeeee",this.files);
+  },
   watch: {
     visible: function(newValue, oldValue) {
       if (!newValue) {
@@ -31,16 +35,15 @@ export default {
   mounted() {
     this.detectScreenSize();
     window.addEventListener('resize', this.detectScreenSize);
+    console.log("bovine create and edit",this.item);
+
+
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.detectScreenSize);
   },
 
   methods:{
-    created(){
-      this.item2=this.item.origin;
-      console.log(this.item);
-    },
     resetForm() {
       this.submitted = false;
     },
@@ -62,7 +65,7 @@ export default {
       console.log(this.submitted,"soy sub");
       console.log("AHO",this.item);
       this.updateItem();
-      if (this.item.name && this.item.weight && this.item.raza) {
+      if (this.item.name && this.item.weight && this.item.raza && this.files.length<6) {
         try {
           await this.uploadFilesToFirebase();
           this.$emit('saved2', this.item);
@@ -81,8 +84,12 @@ export default {
       this.item.batchId = this.$route.params.batchId;
       console.log(this.item);
     },
+    deleteExistingImage(index) {
+      this.item.imgUrls.splice(index, 1);
+    },
     onSelectedFiles(event) {
       this.files = event.files;
+      console.log("los files",this.files);
       this.totalSize = this.files.reduce((acc, file) => acc + file.size, 0);
       this.totalSizePercent = this.totalSize / 10;
     },
@@ -184,21 +191,14 @@ export default {
           </div>
         </div>
 
-<!--        <div class="container-gallery ">-->
-<!--          <div class="card">-->
-<!--            <pv-toast />-->
-<!--            <input type="file" name="product_image" id="fileInput" change style="display: none;">-->
-<!--            <pv-button class="mr-2 flex" iconPos="center" text label="Add Images"></pv-button>-->
-<!--          </div>-->
-<!--        </div>-->
 
         <div class="container-gallery">
           <div class="card">
             <pv-toast />
-            <pv-file-upload name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles">
+            <pv-file-upload name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles" invalidFileLimitMessage="You can upload 5 images" fileLimit=5>
               <template #header="slotProps">
                 <div class="custom-header">
-                  <p>Archivos para cargar: {{ slotProps.files.length }}</p>
+                  <p>Files: {{ slotProps.files.length }}</p>
                   <pv-button @click="slotProps.chooseCallback" icon="pi pi-images" text label="Add image"></pv-button>
                   <pv-button @click="slotProps.clearCallback" class="pi pi-trash"  text ></pv-button>
                 </div>
@@ -206,8 +206,20 @@ export default {
 
               <template #empty>
                 <p>Drag and drop files to here to upload.</p>
-              </template>S
+              </template>
+
             </pv-file-upload>
+            <template v-if="this.item.imgUrls && this.item.imgUrls.length > 0">
+              <div class="existing-images">
+                <p>Edit Images:</p>
+                <div v-for="(url, index) in this.item.imgUrls" :key="index" class="existing-image">
+                  <div class="image-container">
+                    <img :src="url" alt="Existing Image">
+                    <pv-button icon="pi pi-trash" severity="danger" text  rounded aria-label="Delete Image" class="delete-image-button"  @click="deleteExistingImage(index)" />
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -222,6 +234,38 @@ export default {
 .card{
   width:100%;
   height:auto;
+}
+.existing-images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+}
+
+.existing-image {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  width: 150px;
+  height:150px;
+  gap:6px;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.delete-image-button {
+
 }
 @media (min-width: 1200px){
   .container-dialog{

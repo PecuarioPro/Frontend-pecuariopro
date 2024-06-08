@@ -168,9 +168,9 @@
         "district": "Lima"
       },
       "observations": "Healthy",
-      "batchId": 1,
+      "batchId": "1",
       "imgUrls": [
-        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=92fe32e8-5ba0-4276-898f-351555061b75"
       ]
     },
     {
