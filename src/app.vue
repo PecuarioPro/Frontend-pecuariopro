@@ -74,13 +74,15 @@ export default {
                       </div>
                       <ul class="list-none p-0 m-0 overflow-hidden">
                         <li>
-                          <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <i class="pi pi-home mr-2"></i>
-                            <span class="font-medium">Dashboard</span>
-                          </a>
+                          <router-link to="/" @click=toggleDrawer() style="text-decoration: none">
+                            <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                              <i class="pi pi-home mr-2"></i>
+                              <span class="font-medium">Home</span>
+                            </a>
+                          </router-link>
                         </li>
                         <li>
-                          <router-link to="/campaign" @click=toggleDrawer()>
+                          <router-link to="/campaign" @click=toggleDrawer() style="text-decoration: none">
                             <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration:none" >
                               <i class="pi pi-bookmark mr-2 " ></i>
                               <span class="font-medium">Campaings</span>
@@ -136,7 +138,7 @@ export default {
                               </ul>
                             </li>
                             <li>
-                              <router-link to="/Statistics" @click=toggleDrawer()>
+                              <router-link to="/Statistics" @click=toggleDrawer() style="text-decoration: none">
                               <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                 <i class="pi pi-chart-line mr-2"></i>
                                 <span class="font-medium">Vaccines Statistics</span>
@@ -163,7 +165,7 @@ export default {
                           </a>
                           <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
                             <li>
-                              <router-link to="/staff-view" @click=toggleDrawer()>
+                              <router-link to="/staff-view" @click=toggleDrawer() style="text-decoration: none">
                                 <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                   <i class="pi pi-users mr-2"></i>
                                   <span class="font-medium">View Staff</span>
@@ -171,7 +173,7 @@ export default {
                               </router-link>
                             </li>
                             <li>
-                              <router-link to="/staff-manage" @click=toggleDrawer()>
+                              <router-link to="/staff-manage" @click=toggleDrawer() style="text-decoration: none">
                                 <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                   <i class="pi pi-users mr-2"></i>
                                   <span class="font-medium">Manage Staff</span>
@@ -188,7 +190,7 @@ export default {
                           </a>
                         </li>
                         <li>
-                          <router-link to="/inventory" @click=toggleDrawer()>
+                          <router-link to="/inventory" @click=toggleDrawer() style="text-decoration: none">
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-warehouse mr-2"></i>
                             <span class="font-medium">Inventory</span>
@@ -197,7 +199,7 @@ export default {
                           </router-link>
                         </li>
                         <li>
-                          <router-link to="/veterinarians" @click=toggleDrawer()>
+                          <router-link to="/veterinarians" @click=toggleDrawer() style="text-decoration: none">
                             <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration:none" >
                               <i class="pi pi-heart mr-2 " ></i>
                               <span class="font-medium">Veterinarian</span>

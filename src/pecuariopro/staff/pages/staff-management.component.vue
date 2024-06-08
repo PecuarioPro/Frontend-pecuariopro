@@ -30,8 +30,17 @@ export default {
     });
     console.log(`flag: ${this.isVisibleCard}`);
 
+    // Show advertising
+    this.showWarningMessage();
+
   },
   methods:{
+
+    showWarningMessage() {
+      // Alert to show advertising
+      alert("Warning! You are entering the page to manage sensitive information.");
+    },
+
     notifySuccessfulAction(message){
       this.$toast.add({severity:"success", summary: "Success", detail: message, life: 3000});
     },
@@ -95,6 +104,7 @@ export default {
       });
       this.notifySuccessfulAction("Staff Deleted");
     },
+
     createStaff() {
       this.staff = Staff.fromDisplayableStaff(this.staff);
       this.staffService.create(this.staff)

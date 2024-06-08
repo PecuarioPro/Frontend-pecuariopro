@@ -11,6 +11,7 @@ import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics
 import staffViewComponent from "../pecuariopro/staff/pages/staff-view.component.vue";
 import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages/veterinarians-management.component.vue";
 import inventoryComponent from "../pecuariopro/inventory/components/inventory.component.vue";
+import homeComponent from "../public/pages/home.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -36,6 +37,9 @@ const router = createRouter({
             meta: { title: "Batch Details" }
         },
 
+        // Root path
+        { path: "/", component: homeComponent, meta: { title: "Home"} },
+
         // Path to view staff
         { path: "/staff-view", component: staffViewComponent, meta: { title: "Staff View" } },
 
@@ -44,9 +48,6 @@ const router = createRouter({
 
         // Path to handle unmatched URLs, using notFoundComponent
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
-
-        // Root path
-        { path: "/", redirect: "/campaign" }
     ]
 });
 
