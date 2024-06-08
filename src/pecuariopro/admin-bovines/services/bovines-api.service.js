@@ -27,5 +27,24 @@ export class BovinesApiService{
         return http.get(`/bovines?name=${name}`);
     }
 
+    getBovinesGroupedByBatchId() {
+        return this.getAll().then(response => {
+            const bovines = response.data;
 
+            const groupedByBatchId = {};
+            bovines.forEach(bovine => {
+                const batchId = bovine.batchId;
+                if (!groupedByBatchId[batchId]) {
+                    groupedByBatchId[batchId] = [];
+                }
+                groupedByBatchId[batchId].push(bovine);
+            });
+
+            return Object.entries(groupedByBatchId).map(([batchId, bovines]) => ({
+                batchId: parseInt(batchId),
+                count: bovines.length,
+                bovines: bovines
+            }));
+        });
+    }
 }

@@ -138,7 +138,7 @@
 
 <script>
 import { ref } from 'vue';
-
+import {useRouter} from "vue-router";
 export default {
   setup() {
     const displayDialog = ref(false);
@@ -173,6 +173,7 @@ export default {
       displayDialog.value = true;
     };
 
+    const router = useRouter();
     const loadInventoryData = (title) => {
       if (title === 'Food') {
         items.value = [
@@ -181,11 +182,7 @@ export default {
           { id: 3, name: 'Heno', quantity: 20, image: 'src/assets/heno.png' }
         ];
       } else if (title === 'Vaccine') {
-        items.value = [
-          { id: 1, name: 'Vaccine(Fever vaccine)', quantity: 15, image: 'src/assets/jeringa.png' },
-          { id: 2, name: 'Vaccine(Brucellosis vaccine)', quantity: 8, image: 'src/assets/jeringa.png' },
-          { id: 3, name: 'Vaccine(Anthrax vaccine)', quantity: 25, image: 'src/assets/jeringa.png' }
-        ];
+        router.push('/vaccine');
       } else if (title === 'Tools') {
         items.value = [
           { id: 1, name: 'Hammer', quantity: 3, image: 'src/assets/hammer.png' },

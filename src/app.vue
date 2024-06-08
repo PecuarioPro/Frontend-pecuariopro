@@ -130,10 +130,12 @@ export default {
                                   </a>
                                 </li>
                                 <li>
+                                  <router-link to="/animalTotal" @click=toggleDrawer() style="text-decoration: none">
                                   <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                     <i class="pi pi-search mr-2"></i>
                                     <span class="font-medium">Animal</span>
                                   </a>
+                                  </router-link>
                                 </li>
                               </ul>
                             </li>
