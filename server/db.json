@@ -327,6 +327,20 @@
       },
       "observations": "asdadaadd",
       "batchId": "1"
+    },
+    {
+      "id": "NqEYGLm",
+      "name": "asdsdsd",
+      "raza": "asdsad",
+      "weight": 234,
+      "date": "2024-06-07T05:00:00.000Z",
+      "origin": {
+        "department": "sdasd",
+        "city": "dsad",
+        "district": "asd"
+      },
+      "observations": "asdad",
+      "batchId": "1"
     }
   ],
   "campaigns": [
@@ -627,6 +641,15 @@
       "job_description": "Graze group 1 cows",
       "date_start": "2024-05-01",
       "date_end": "2024-06-30"
+    },
+    {
+      "id": "7",
+      "campaigns_id": "90",
+      "name": "Makanaky",
+      "last_name": "La realeza",
+      "email": "Makanaky@Larealeza.com",
+      "on_job_status": "Available",
+      "job_description": "daaaaaa"
     }
   ],
   "veterinarians": [

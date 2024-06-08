@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-dark-green/theme.css'
 import App from "./app.vue";
+
+
 // PrimeIcons
 import 'primeicons/primeicons.css';
 
@@ -12,6 +14,9 @@ import 'primeflex/primeflex.css';
 import ToastService from "primevue/toastservice";
 import DialogService from "primevue/dialogservice";
 import ConfirmationService from "primevue/confirmationservice";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+
 
 
 // PrimeVue Components
@@ -48,6 +53,19 @@ import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
 import RadioButton from 'primevue/radiobutton';
 import SplitButton from "primevue/splitbutton";
+import Badge from 'primevue/badge';
+import ProgressBar from 'primevue/progressbar';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBGQMuUsRAs93CevEn84uHD7zO21kM3v_k",
+    authDomain: "pecuariopro-98bb9.firebaseapp.com",
+    projectId: "pecuariopro-98bb9",
+    storageBucket: "pecuariopro-98bb9.appspot.com",
+    messagingSenderId: "60716147983",
+    appId: "1:60716147983:web:8d48321037ce86fafe4a7a"
+};
+const firebaseApp = initializeApp(firebaseConfig);
+const storage = getStorage(firebaseApp);
 
 createApp(App)
     .use(router)
@@ -56,6 +74,8 @@ createApp(App)
     .use(DialogService)
     .use(ConfirmationService)
     .component('Chart', Chart)
+    .component('pv-progress-bar',ProgressBar)
+    .component('pv-badge',Badge)
     .component('pv-button', Button)
     .component('pv-radio-button',RadioButton)
     .component('pv-data-table', DataTable)
@@ -86,6 +106,8 @@ createApp(App)
     .component('pv-calendar',Calendar)
     .component('pv-split-button', SplitButton)
     .directive('styleclass', StyleClass)
-    .directive('ripple', Ripple)          // Registra la directiva Ripple
+    .directive('ripple', Ripple)
+    .provide('firebaseApp', firebaseApp)
+    .provide('firebaseStorage', storage)
     .mount('#app')
 

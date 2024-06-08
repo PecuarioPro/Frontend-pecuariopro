@@ -1,18 +1,24 @@
 <script>
 import createAndEdit from "../../../shared/components/create-and-edit.component.vue";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 export default {
   name: "bovine-create-and-edit.component",
-  components: { createAndEdit },
+  components: {createAndEdit },
   props: {
     item: null,
     item2:null,
     visible: Boolean,
     statuses: Array
   },
+  inject: ['firebaseStorage'],
   data() {
     return {
       submitted: false,
-      dialogSize: 'default'
+      dialogSize: 'default',
+      files: [],
+      totalSize: 0,
+      totalSizePercent: 0,
     }
   },
   mounted() {
@@ -39,13 +45,18 @@ export default {
     canceledEventHandler() {
       this.$emit('canceled');
     },
-    savedEventHandler() {
+    async savedEventHandler() {
       console.log(this.item);
       this.submitted = true;
-     this.updateItem();
-      // Verificar si los campos requeridos están llenos
+      this.updateItem();
       if (this.item.name && this.item.weight && this.item.raza) {
-        this.$emit('saved2', this.item);
+        try {
+          await this.uploadFilesToFirebase();
+          this.$emit('saved2', this.item);
+        } catch (error) {
+          console.error('Error uploading files:', error);
+          this.$toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to upload files.', life: 3000 });
+        }
       }
     },
     updateItem() {
@@ -55,7 +66,31 @@ export default {
       this.item.origin = this.item2;
       this.item.batchId = this.$route.params.batchId;
       console.log(this.item);
+    },
+    onSelectedFiles(event) {
+      this.files = event.files;
+      this.totalSize = this.files.reduce((acc, file) => acc + file.size, 0);
+      this.totalSizePercent = this.totalSize / 10;
+    },
+    async uploadFilesToFirebase() {
+      const uploadPromises = this.files.map(file => {
+        const storageRef = ref(this.firebaseStorage, `PecuarioPro-bovines-resources/${file.name}`);
+        return uploadBytes(storageRef, file).then(snapshot => {
+          console.log(`Uploaded ${file.name}`);
+          return getDownloadURL(snapshot.ref).then(url => {
+            console.log(`File available at ${url}`);
+            // Aquí puedes guardar la URL en tu item si es necesario
+          });
+        }).catch(error => {
+          console.error(`Error uploading ${file.name}:`, error);
+          throw error;
+        });
+      });
+
+      await Promise.all(uploadPromises);
+      this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Files Uploaded', life: 3000 });
     }
+
 
   }
 }
@@ -124,12 +159,32 @@ export default {
           </div>
         </div>
 
+<!--        <div class="container-gallery ">-->
+<!--          <div class="card">-->
+<!--            <pv-toast />-->
+<!--            <input type="file" name="product_image" id="fileInput" change style="display: none;">-->
+<!--            <pv-button class="mr-2 flex" iconPos="center" text label="Add Images"></pv-button>-->
+<!--          </div>-->
+<!--        </div>-->
+
         <div class="container-gallery">
-          hsdffds
+          <div class="card">
+            <pv-toast />
+            <pv-file-upload name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles">
+              <template #header="slotProps">
+                <div class="custom-header">
+                  <p>Archivos para cargar: {{ slotProps.files.length }}</p>
+                  <pv-button @click="slotProps.chooseCallback" icon="pi pi-images" text label="Add image"></pv-button>
+                  <pv-button @click="slotProps.clearCallback" class="pi pi-trash"  text ></pv-button>
+                </div>
+              </template>
 
+              <template #empty>
+                <p>Drag and drop files to here to upload.</p>
+              </template>S
+            </pv-file-upload>
+          </div>
         </div>
-
-
       </div>
     </template>
   </create-and-edit>
@@ -139,17 +194,32 @@ export default {
 .container-field label{
   margin-bottom:5px;
 }
-
+.card{
+  width:100%;
+  height:auto;
+}
 @media (min-width: 1200px){
   .container-dialog{
     display:flex;
     gap:20px;
+    width:100%;
+    height:100%;
+
   }
   .container-form{
     width:400px;
     display:flex;
     flex-direction:column;
     align-items: center;
+    height:auto;
+  }
+  .container-gallery{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    width:680px;
+    margin-top:40px;
   }
   .container-field{
     width:100%;
