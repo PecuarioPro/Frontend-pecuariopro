@@ -41,6 +41,12 @@
       "email": "vasquezelverth@gmail.com",
       "password": "hola12345",
       "id": 7
+    },
+    {
+      "name": "Hanna Velasquez ",
+      "email": "hanna123@gmail.com",
+      "password": "amoaminino",
+      "id": 8
     }
   ],
   "vaccines": [
