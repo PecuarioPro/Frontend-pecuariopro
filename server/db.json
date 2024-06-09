@@ -1,4 +1,30 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "qwerty"
+    },
+    {
+      "name": "Maycol Rojas",
+      "email": "maycoljhordan07@gmail.com",
+      "password": "sasdasda",
+      "id": 3
+    },
+    {
+      "name": "Hanna Vargas",
+      "email": "cafemofa@gmail.com",
+      "password": "a202219984",
+      "id": 4
+    }
+  ],
   "vaccines": [
     {
       "id": "1",

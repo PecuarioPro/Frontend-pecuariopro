@@ -14,6 +14,8 @@ import inventoryComponent from "../pecuariopro/inventory/components/inventory.co
 import homeComponent from "../public/pages/home.component.vue";
 import bovineTotal from "../pecuariopro/admin-bovines/pages/bovine-total.vue";
 import StatisticsComponent from "../pecuariopro/Stadistics/Statistics.component.vue";
+import loginUserComponent from "../pecuariopro/Users/components/login-user.component.vue";
+import registerUserComponent from "../pecuariopro/Users/components/register-user.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -25,6 +27,8 @@ const router = createRouter({
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
         { path: "/inventory", component: inventoryComponent, meta: { title: "Inventory" }},
+        { path: "/home", component: homeComponent, meta: { title: "Home"} },
+        { path: "/register", component: registerUserComponent, meta: {title: "Register"}},
         { path: "/veterinarians", component: VeterinariansManagementComponent,meta: { title: "Veterinarian"} },
         {
             path: "/campaigns/:campaignId",
@@ -42,7 +46,7 @@ const router = createRouter({
         },
 
         // Root path
-        { path: "/", component: homeComponent, meta: { title: "Home"} },
+        { path: "/", component: loginUserComponent, meta: { title: "login"} },
 
         // Path to view staff
         { path: "/staff-view", component: staffViewComponent, meta: { title: "Staff View" } },

@@ -1,6 +1,12 @@
 <script>
+import { useRoute} from "vue-router";
+
 export default {
   name: 'App',
+  setup() {
+    const route = useRoute();
+    return { route };
+  },
   data() {
     return {
       drawer: false,
@@ -24,7 +30,7 @@ export default {
 
 <template>
   <div>
-    <header>
+    <header v-if="route.path !== '/' && route.path !== '/register'">
       <pv-toolbar class="toolbar" fixed>
         <template #start>
           <pv-button class="menu-button" icon="pi pi-bars" @click="toggleDrawer()" />
@@ -39,7 +45,7 @@ export default {
     </header>
 
 
-    <div class="app-content">
+    <div class="app-content" v-if="route.path !== '/' && route.path !== '/register'">
 
       <template>
         <div class="card flex justify-content-center">
