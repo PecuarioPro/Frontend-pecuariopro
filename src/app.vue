@@ -30,7 +30,7 @@ export default {
 
 <template>
   <div>
-    <header v-if="route.path !== '/' && route.path !== '/register'">
+    <header v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
       <pv-toolbar class="toolbar" fixed>
         <template #start>
           <pv-button class="menu-button" icon="pi pi-bars" @click="toggleDrawer()" />
@@ -45,7 +45,7 @@ export default {
     </header>
 
 
-    <div class="app-content" v-if="route.path !== '/' && route.path !== '/register'">
+    <div class="app-content" v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
 
       <template>
         <div class="card flex justify-content-center">
@@ -228,13 +228,6 @@ export default {
                     </li>
                   </ul>
                 </div>
-                <div class="mt-auto">
-                  <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
-                  <a v-ripple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                    <pv-avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-                    <span class="font-bold">Usuario 1 </span>
-                  </a>
-                </div>
               </div>
             </template>
           </pv-sidebar>
@@ -274,5 +267,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.white-text {
+  color: white;
+}
 </style>

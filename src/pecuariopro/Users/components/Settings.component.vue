@@ -80,6 +80,7 @@ export default {
   },
   data() {
     return {
+      displayConfirmation: false,
       user: {
         id: null,
         name: '',
@@ -109,6 +110,7 @@ export default {
         this.user.name = user.name;
         this.user.email = user.email;
         this.user.password = user.password;
+        localStorage.setItem('userName', this.user.name);
       }
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -125,25 +127,17 @@ export default {
       }
 
       if (this.editName || this.editEmail || this.editPassword) {
-        this.confirmEdit();
+        this.displayConfirmation = true;
+        this.showUpdateMessage = true;
       } else {
         this.showUpdateMessage = false;
       }
     },
     confirmEdit() {
-      this.$confirm({
-        message: 'Are you sure you want to make changes?',
-        header: 'Confirmation',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          console.log('Confirmed changes');
-          this.showUpdateMessage = true;
-        },
-        reject: () => {
-          console.log('Rejected changes');
-          this.cancelEdit();
-        }
-      });
+      console.log('Confirmed changes');
+      this.showUpdateMessage = true;
+      localStorage.setItem('userName', this.user.name);
+      this.displayConfirmation = false;
     },
     async updateUser() {
       try {
@@ -151,6 +145,8 @@ export default {
         const updatedUser = await userApiService.update(this.user.id, this.user);
         console.log('Updated user:', updatedUser);
         this.showUpdateMessage = false;
+        // Guardar el nombre de usuario en localStorage
+        localStorage.setItem('userName', this.user.name);
       } catch (error) {
         console.error('Error updating user:', error);
       }
@@ -158,6 +154,7 @@ export default {
     logout() {
       console.log('Logout');
       localStorage.removeItem('userEmail');
+      localStorage.removeItem('userName');
       this.$router.push('/login');
     },
     cancelEdit() {
@@ -165,8 +162,8 @@ export default {
       this.editEmail = false;
       this.editPassword = false;
       this.showUpdateMessage = false;
-      // Refetch user data to revert changes if needed
       this.fetchUserData();
+      this.displayConfirmation = false;
     },
     async fetchUserData() {
       try {
@@ -232,10 +229,11 @@ export default {
 }
 
 .p-button {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .p-button-icon {
   vertical-align: middle;
 }
 </style>
+
