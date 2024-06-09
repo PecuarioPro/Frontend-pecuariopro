@@ -13,16 +13,16 @@
       "password": "qwerty"
     },
     {
-      "name": "Maycol Rojas",
+      "id": 3,
+      "name": "Maycol Vargas",
       "email": "maycoljhordan07@gmail.com",
-      "password": "sasdasda",
-      "id": 3
+      "password": "sasdasda"
     },
     {
+      "id": 4,
       "name": "Hanna Vargas",
       "email": "cafemofa@gmail.com",
-      "password": "a202219984",
-      "id": 4
+      "password": "a20221998"
     }
   ],
   "vaccines": [

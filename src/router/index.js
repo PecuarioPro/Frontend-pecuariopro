@@ -16,6 +16,7 @@ import bovineTotal from "../pecuariopro/admin-bovines/pages/bovine-total.vue";
 import StatisticsComponent from "../pecuariopro/Stadistics/Statistics.component.vue";
 import loginUserComponent from "../pecuariopro/Users/components/login-user.component.vue";
 import registerUserComponent from "../pecuariopro/Users/components/register-user.component.vue";
+import settingsComponent from "../pecuariopro/Users/components/Settings.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -28,8 +29,10 @@ const router = createRouter({
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
         { path: "/inventory", component: inventoryComponent, meta: { title: "Inventory" }},
         { path: "/home", component: homeComponent, meta: { title: "Home"} },
+        { path: "/login", component: loginUserComponent, meta: {title: "Login"}},
         { path: "/register", component: registerUserComponent, meta: {title: "Register"}},
         { path: "/veterinarians", component: VeterinariansManagementComponent,meta: { title: "Veterinarian"} },
+        { path: "/settings", component: settingsComponent,meta: {title: "Settings"} },
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,

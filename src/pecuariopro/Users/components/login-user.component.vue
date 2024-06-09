@@ -60,6 +60,7 @@ export default {
 
         if (user && user.password === this.password) {
           console.log('Logged in:', user);
+          localStorage.setItem('userEmail', this.email);
           this.$router.push('/home');
         } else {
           this.showErrorMessage('Invalid credentials');
