@@ -3,7 +3,6 @@ import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-dark-green/theme.css'
 import App from "./app.vue";
 
-
 // PrimeIcons
 import 'primeicons/primeicons.css';
 
