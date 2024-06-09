@@ -758,5 +758,46 @@
       "linkedin": "www.soyunlink.com",
       "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/7.webp"
     }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "name": "Pasture",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpasto.png?alt=media&token=dff58457-20af-4a8e-97b5-d75d7b06ae00"
+    },
+    {
+      "id": 2,
+      "name": "Wheat",
+      "quantity": 5,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Ftrigo.png?alt=media&token=363f5000-0699-47c8-b44e-4df91212a1a8"
+    },
+    {
+      "id": 3,
+      "name": "Heno",
+      "quantity": 20,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fheno.png?alt=media&token=f67dab17-49ed-4dca-92c5-d777baaed3de"
+    }
+  ],
+  "tools": [
+    {
+      "id": 1,
+      "name": "Hammer",
+      "quantity": 3,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fhammer.png?alt=media&token=32973929-6b63-4310-bd25-89a040f65cb8"
+    },
+    {
+      "id": 2,
+      "name": "Pliers",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpliers.png?alt=media&token=40dcc168-4cbf-494c-889e-480bb7d03ae6"
+    },
+    {
+      "id": 3,
+      "name": "Bucket",
+      "quantity": 7,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
+    }
+
   ]
 }

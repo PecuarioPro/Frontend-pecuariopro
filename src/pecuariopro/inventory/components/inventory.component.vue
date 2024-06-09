@@ -114,7 +114,6 @@
     </template>
   </pv-dialog>
 
-
   <pv-dialog v-model:visible="displayAddDialog" :header="'Add ' + selectedInventory" :style="{ width: '30vw' }" :modal="true">
     <div class="form-group">
       <label for="name">Name</label>
@@ -138,7 +137,9 @@
 
 <script>
 import { ref } from 'vue';
-import {useRouter} from "vue-router";
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+
 export default {
   setup() {
     const displayDialog = ref(false);
@@ -167,38 +168,43 @@ export default {
       { title: 'Tools', description: 'Inventory', icon: 'pi pi-wrench' }
     ];
 
-    const showInventoryDialog = (title) => {
+    const showInventoryDialog = async (title) => {
+      console.log(`Opening dialog for ${title}`);
       selectedInventory.value = title;
-      loadInventoryData(title);
+      await loadInventoryData(title);
       displayDialog.value = true;
+      console.log(`Dialog state: ${displayDialog.value}`);
     };
 
     const router = useRouter();
-    const loadInventoryData = (title) => {
-      if (title === 'Food') {
-        items.value = [
-          { id: 1, name: 'Pasture', quantity: 10, image: 'src/assets/pasto.png' },
-          { id: 2, name: 'Wheat', quantity: 5, image: 'src/assets/trigo.png' },
-          { id: 3, name: 'Heno', quantity: 20, image: 'src/assets/heno.png' }
-        ];
-      } else if (title === 'Vaccine') {
-        router.push('/vaccine');
-      } else if (title === 'Tools') {
-        items.value = [
-          { id: 1, name: 'Hammer', quantity: 3, image: 'src/assets/hammer.png' },
-          { id: 2, name: 'Pliers', quantity: 10, image: 'src/assets/pliers.png' },
-          { id: 3, name: 'Bucket', quantity: 7, image: 'src/assets/gansito.png' }
-        ];
+    const loadInventoryData = async (title) => {
+      console.log(`Loading inventory data for ${title}`);
+      try {
+        if (title === 'Food') {
+          const response = await axios.get('http://localhost:3000/food');
+          items.value = response.data;
+          console.log('Loaded food items:', items.value);
+        } else if (title === 'Vaccine') {
+          await router.push('/vaccine');
+        } else if (title === 'Tools') {
+          const response = await axios.get('http://localhost:3000/tools');
+          items.value = response.data;
+          console.log('Loaded tools items:', items.value);
+        }
+      } catch (error) {
+        console.error('Error loading inventory data:', error);
+        // Manejar el error de manera adecuada, por ejemplo, mostrar un mensaje al usuario
       }
     };
-
     const openAddDialog = () => {
       newItem.value = { name: '', quantity: 0, image: '' };
       displayAddDialog.value = true;
     };
 
-    const saveNewItem = () => {
-      items.value.push({ ...newItem.value, id: items.value.length + 1 });
+    const saveNewItem = async () => {
+      const endpoint = selectedInventory.value.toLowerCase();
+      await axios.post(`http://localhost:3000/${endpoint}`, newItem.value);
+      await loadInventoryData(selectedInventory.value);
       closeAddDialog();
     };
 
@@ -214,8 +220,10 @@ export default {
       // implementar backend
     };
 
-    const deleteItem = (item) => {
-      // implementar backend
+    const deleteItem = async (item) => {
+      const endpoint = selectedInventory.value.toLowerCase();
+      await axios.delete(`http://localhost:3000/${endpoint}/${item.id}`);
+      await loadInventoryData(selectedInventory.value);
     };
 
     const closeDialog = () => {
