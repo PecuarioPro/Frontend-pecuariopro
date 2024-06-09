@@ -62,21 +62,41 @@ export default {
 <style scoped>
 .title {
   font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
-.card-content p {
-  margin: 5px 0;
+
+.container-veterinarians {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding:10px;
 }
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin: -15px;
 }
 
 .col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-  padding-right: 15px;
-  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 15px;
+}
+
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .col-md-6 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
 }
 </style>
