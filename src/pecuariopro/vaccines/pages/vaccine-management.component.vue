@@ -1,11 +1,12 @@
 <script>
 import DataManager from "../../../shared/components/data-manager.component.vue";
 import VaccineCreateAndEdit from "../components/vaccine-create-and-edit.component.vue";
-import {Vaccine} from "../model/vaccine.entity.js";
-import{VaccinesApiService} from "../services/vaccine-api.service.js";
+import { Vaccine } from "../model/vaccine.entity.js";
+import { VaccinesApiService } from "../services/vaccine-api.service.js";
+
 export default {
   name: "vaccine-management",
-  components: { VaccineCreateAndEdit, DataManager},
+  components: { VaccineCreateAndEdit, DataManager },
   data() {
     return {
       title: { singular: 'Vaccine', plural: 'Vaccines' },
@@ -16,14 +17,18 @@ export default {
       createAndEditDialogIsVisible: false,
       isEdit: false,
       submitted: false,
-      showWelcomeMessage: true
-    }
+      showWelcomeMessage: true,
+      reasonModalIsVisible: false,
+      reasonText: ""
+    };
   },
   methods: {
-    notifySuccessfulAction(message) {
-      this.$toast.add({severity: "success", summary: "Success", detail: message, life: 3000});
+    toggleRow(data) {
+      this.$set(data, 'expanded', !data.expanded);
     },
-
+    notifySuccessfulAction(message) {
+      this.$toast.add({ severity: "success", summary: "Success", detail: message, life: 3000 });
+    },
     findIndexById(id) {
       return this.vaccines.findIndex((vaccine) => vaccine.id === id);
     },
@@ -71,13 +76,12 @@ export default {
             this.vaccine = Vaccine.toDisplayableVaccine(response.data);
             this.vaccines.push(this.vaccine);
             this.notifySuccessfulAction("Vaccine Created");
-            this.createAndEditDialogIsVisible = false;
+            createAndEditDialogIsVisible
           })
           .catch((error) => {
             console.error('Error creating vaccine:', error);
           });
     },
-
     updateVaccine() {
       this.vaccine = Vaccine.fromDisplayableVaccine(this.vaccine);
       this.vaccineService
@@ -110,14 +114,19 @@ export default {
     hideWelcomeMessage() {
       setTimeout(() => {
         this.showWelcomeMessage = false;
-      }, 5000);
+      }, 500);
+    },
+    showReason(reason) {
+      this.reasonText = reason;
+      this.reasonModalIsVisible = true;
+    },
+    hideReason() {
+      this.reasonModalIsVisible = false;
     }
   },
   created() {
     this.vaccineService = new VaccinesApiService();
-
     this.vaccineService.getAll().then((response) => {
-      console.log(response.data);
       let vaccines = response.data;
       this.vaccines = vaccines.map((vaccine) => Vaccine.toDisplayableVaccine(vaccine));
     });
@@ -147,7 +156,7 @@ export default {
     </div>
   </div>
 
-  <div class="w-full">
+  <div class="w-full principal-container">
     <data-manager
         class="custom-table"
         :title="title"
@@ -159,17 +168,36 @@ export default {
       <template #custom-columns>
         <pv-column :sortable="true" field="id"   header="id"    style="min-width: 10rem"/>
         <pv-column :sortable="true" field="name" header="Name"  style="min-width: 20rem"/>
-        <pv-column :sortable="true" field="reason" header="Reason" style="min-width: 20rem"/>
         <pv-column :sortable="true" field="date" header="Date"  style="min-width: 15rem"/>
         <pv-column :sortable="true" field="code" header="Code"  style="min-width: 15rem"/>
+        <pv-column header="Actions" style="min-width: 10rem">
+          <template #body="slotProps">
+            <button class="action-button reason-button" @click="showReason(slotProps.data.reason)">
+              Reason
+            </button>
+          </template>
+        </pv-column>
       </template>
     </data-manager>
+
     <vaccine-create-and-edit
         :item="vaccine"
         :edit="isEdit"
         :visible="createAndEditDialogIsVisible"
         v-on:canceled="onCanceledEventHandler"
         v-on:saved="onSavedEventHandler($event)"/>
+
+    <div v-if="reasonModalIsVisible" class="reason-modal-overlay">
+      <div class="reason-modal">
+        <div class="reason-button">
+          <h3>Reason</h3>
+          <button class="close-button" @click="hideReason">&times;</button>
+        </div>
+        <div class="reason-modal-content">
+          <p>{{ reasonText }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -178,21 +206,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-@media screen and (max-width: 960px) {
-  :deep(.p-toolbar) {
-    flex-wrap: wrap;
-
-  }
-}
-
-@media (min-width: 1024px) {
-  .vaccines {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
 }
 
 .welcome-message-overlay {
@@ -210,7 +223,7 @@ export default {
 
 .welcome-message {
   background-color: #023F3A;
-  color : #E1D29A;
+  color: #E1D29A;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -227,5 +240,94 @@ export default {
 
 .tip-message {
   margin-top: 10px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.action-button i {
+  font-size: 1.2em;
+}
+.principal-container{
+  padding:20px;
+}
+.reason-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.reason-modal {
+  background-color:  #33d29b ;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.reason-button {
+  background-color:  #33d29b ;
+  color: #000000;
+  border: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+
+.reason-modal-content {
+  margin-top: 10px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+  .custom-table .p-datatable .p-datatable-thead > tr > th:nth-child(2),
+  .custom-table .p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .custom-table .p-datatable .p-datatable-thead > tr > th:nth-child(3),
+  .custom-table .p-datatable .p-datatable-tbody > tr > td:nth-child(3) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .custom-table .p-datatable .p-datatable-thead > tr > th:nth-child(4),
+  .custom-table .p-datatable .p-datatable-tbody > tr > td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 420px) and (max-height: 932px) {
+  .custom-table .p-datatable .p-datatable-thead > tr > th:not(:nth-child(4)),
+  .custom-table .p-datatable .p-datatable-tbody > tr > td:not(:nth-child(4)) {
+    display: none;
+  }
 }
 </style>

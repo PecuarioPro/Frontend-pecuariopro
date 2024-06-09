@@ -1,4 +1,48 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "password123"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smit",
+      "email": "jane.smith@example.com",
+      "password": "qwerty"
+    },
+    {
+      "id": 3,
+      "name": "Maycol Vargas",
+      "email": "maycoljhordan07@gmail.com",
+      "password": "sasdasda"
+    },
+    {
+      "id": 4,
+      "name": "Hanna Vargas",
+      "email": "cafemofa@gmail.com",
+      "password": "a20221998"
+    },
+    {
+      "name": "Elverth",
+      "email": "elverthvasquez@gmail.com",
+      "password": "hola123",
+      "id": 5
+    },
+    {
+      "name": "Elverth Vasquez Villalobos",
+      "email": "elverthvasquez@gmail.com",
+      "password": "vava123",
+      "id": 6
+    },
+    {
+      "name": "qeqwe",
+      "email": "vasquezelverth@gmail.com",
+      "password": "hola12345",
+      "id": 7
+    }
+  ],
   "vaccines": [
     {
       "id": "1",
@@ -123,7 +167,7 @@
       "id": "19",
       "name": "Bovine African Swine Fever Vaccine",
       "reason": "Prevention of bovine african swine fever",
-      "date": "2021-05-19",
+      "date": "2023-05-19",
       "code": "VAC-019"
     },
     {
@@ -139,115 +183,620 @@
       "reason": "Feber",
       "date": "2024-04-28",
       "code": "VAC-021"
-    },
-    {
-      "id": "22",
-      "name": "example",
-      "reason": "Feber",
-      "date": "2024-05-07",
-      "code": "VAC-022"
     }
   ],
   "bovines": [
     {
+      "id": "1",
+      "name": "Bella",
+      "raza": "Angus",
+      "weight": 350,
+      "date": "2024-05-01",
+      "origin": {
+        "department": "Lima",
+        "city": "Lima",
+        "district": "Lima"
+      },
+      "observations": "Healthy",
+      "batchId": "1",
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=19d44121-e92a-4a01-9d5e-195a491b63ae",
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2FAPC%203%201.jpg?alt=media&token=8eb17a70-dcc0-4273-bfd3-0a1c2f5d14df",
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2FAPC3%202.jpg?alt=media&token=850de62d-ca35-46b3-902a-0998c125173e"
+      ]
+    },
+    {
       "id": "2",
       "name": "Luna",
       "raza": "Holstein",
-      "weight": 400.5,
-      "date": "03/29/2024",
-      "origin": {
-        "department": "Arequipa",
-        "city": "Arequipa",
-        "district": "Arequipa"
-      },
-      "observations": "High milk production"
+      "weight": 354,
+      "date": "2024-05-02",
+      "origin": {},
+      "observations": "High milk production",
+      "batchId": "1",
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Fvacas.jpg?alt=media&token=9a41765b-f49f-4f25-ab20-ab537117ba75"
+      ]
     },
     {
       "id": "3",
       "name": "Rex",
       "raza": "Hereford",
       "weight": 380.25,
-      "date": "04/02/2024",
+      "date": "2024-05-03",
       "origin": {
         "department": "Junín",
         "city": "Huancayo",
         "district": "Huancayo"
       },
-      "observations": "Strong and healthy"
+      "observations": "Strong and healthy",
+      "batchId": 2,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
       "id": "4",
       "name": "Empyron",
       "raza": "Angus",
       "weight": 234,
-      "date": "2024-05-05",
-      "origin": {},
-      "observations": {}
+      "date": "2024-05-04",
+      "observations": {},
+      "batchId": 2,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
-      "id": "6",
+      "id": "5",
       "name": "Kyro",
       "raza": "Charolais",
       "weight": 212,
-      "date": "2024-04-28",
+      "date": "2024-05-05",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Golpe brazo derecho"
+      "observations": "Golpe brazo derecho",
+      "batchId": 3,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
-      "id": "7",
+      "id": "6",
       "name": "Thor",
       "raza": "Angus",
       "weight": 213,
-      "date": "2024-05-12",
-      "origin": {
-        "department": "Lambayeque",
-        "city": "Chiclayo",
-        "district": "Chiclayo"
-      },
-      "observations": "Ninguna"
-    },
-    {
-      "id": "8",
-      "name": "Fizon",
-      "raza": "Angus",
-      "weight": 345,
       "date": "2024-05-06",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Mancha negra en espalda"
+      "observations": "Ninguna",
+      "batchId": 3,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
-      "id": "9",
-      "name": "Pai",
-      "raza": "Charolais",
-      "weight": 344,
-      "date": "2024-05-21",
+      "id": "7",
+      "name": "Fizon",
+      "raza": "Angus",
+      "weight": 345,
+      "date": "2024-05-07",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Marca en la pezuña"
+      "observations": "Mancha negra en espalda",
+      "batchId": 4,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
     },
     {
-      "id": "10",
-      "name": "Faru",
-      "raza": "Sebu",
-      "weight": 123,
+      "id": "8",
+      "name": "Pai",
+      "raza": "Charolais",
+      "weight": 344,
       "date": "2024-05-08",
       "origin": {
         "department": "Lambayeque",
         "city": "Chiclayo",
         "district": "Chiclayo"
       },
-      "observations": "Oreja golpeada"
+      "observations": "Marca en la pezuña",
+      "batchId": 4,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Faru",
+      "raza": "Sebu",
+      "weight": 123,
+      "date": "2024-05-09",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Oreja golpeada",
+      "batchId": 5,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Loki",
+      "raza": "Angus",
+      "weight": 231,
+      "date": "2024-05-10",
+      "origin": {
+        "department": "Lambayeque",
+        "city": "Chiclayo",
+        "district": "Chiclayo"
+      },
+      "observations": "Herida en la pata trasera izquierda",
+      "batchId": 5,
+      "imgUrls": [
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+      ]
+    }
+  ],
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Campaña de Engorde de Bovinos",
+      "dateStart": "2024-05-01T00:00:00.000Z",
+      "dateEnd": "2024-06-30T00:00:00.000Z",
+      "objective": "Engordar 100 toros",
+      "condition": "Active",
+      "duration": 60
+    },
+    {
+      "id": 2,
+      "name": "Campaña de Vacunación de Vacas",
+      "dateStart": "2024-07-01",
+      "dateEnd": "2024-07-15",
+      "objective": "Vacunar todas las vacas del ganado",
+      "condition": "Active",
+      "duration": 14
+    },
+    {
+      "id": 3,
+      "name": "Campaña de Engorde de Vacas",
+      "dateStart": "2024-08-01",
+      "dateEnd": "2024-09-30",
+      "objective": "Engordar 200 vacas",
+      "condition": "Finished",
+      "duration": 61
+    },
+    {
+      "id": 4,
+      "name": "Campaña de Inseminación Artificial de Vacas",
+      "dateStart": "2024-06-01",
+      "dateEnd": "2024-07-31",
+      "objective": "Realizar inseminación artificial en 50 vacas",
+      "condition": "Active",
+      "duration": 60
+    },
+    {
+      "id": 5,
+      "name": "Campaña de Control de Enfermedades en Toros",
+      "dateStart": "2024-08-01",
+      "dateEnd": "2024-09-30",
+      "objective": "Realizar pruebas y tratamientos preventivos en 50 toros",
+      "condition": "Finished",
+      "duration": 61
+    },
+    {
+      "id": 6,
+      "name": "Campaña de Mejora Genética en Vacas",
+      "dateStart": "2024-10-01",
+      "dateEnd": "2024-12-31",
+      "objective": "Implementar programas de mejora genética en 100 vacas",
+      "condition": "Active",
+      "duration": 91
+    },
+    {
+      "id": 7,
+      "name": "Campaña de Control de Peso en Vacas",
+      "dateStart": "2025-01-01",
+      "dateEnd": "2025-02-28",
+      "objective": "Realizar pesaje y control de peso en 300 vacas",
+      "condition": "Finished",
+      "duration": 59
+    },
+    {
+      "id": 8,
+      "name": "Campaña de Reproducción de Toros",
+      "dateStart": "2025-03-01",
+      "dateEnd": "2025-04-30",
+      "objective": "Garantizar la reproducción exitosa de 30 toros",
+      "condition": "Active",
+      "duration": 61
+    },
+    {
+      "id": 9,
+      "name": "Campaña de Desparasitación de Vacas",
+      "dateStart": "2025-05-01",
+      "dateEnd": "2025-06-30",
+      "objective": "Desparasitar 500 vacas",
+      "condition": "Active",
+      "duration": 61
+    },
+    {
+      "id": 10,
+      "name": "Campaña de Control de Fertilidad en Vacas",
+      "dateStart": "2025-07-01",
+      "dateEnd": "2025-08-31",
+      "objective": "Realizar pruebas de fertilidad en 200 vacas",
+      "condition": "Finished",
+      "duration": 61
+    }
+  ],
+  "batches": [
+    {
+      "id": 1,
+      "name": "Lote A",
+      "area": 100,
+      "status": "En proceso",
+      "campaignId": 1
+    },
+    {
+      "id": 2,
+      "name": "Lote B",
+      "area": 200,
+      "status": "En espera",
+      "campaignId": 1
+    },
+    {
+      "id": 3,
+      "name": "Lote C",
+      "area": 150,
+      "status": "Completado",
+      "campaignId": 1
+    },
+    {
+      "id": 4,
+      "name": "Lote D",
+      "area": 180,
+      "status": "En proceso",
+      "campaignId": 5
+    },
+    {
+      "id": 5,
+      "name": "Lote E",
+      "area": 220,
+      "status": "En espera",
+      "campaignId": 5
+    },
+    {
+      "id": 6,
+      "name": "Lote F",
+      "area": 190,
+      "status": "Completado",
+      "campaignId": 5
+    },
+    {
+      "id": 7,
+      "name": "Lote G",
+      "area": 250,
+      "status": "En proceso",
+      "campaignId": 6
+    },
+    {
+      "id": 8,
+      "name": "Lote H",
+      "area": 300,
+      "status": "En espera",
+      "campaignId": 6
+    },
+    {
+      "id": 9,
+      "name": "Lote I",
+      "area": 280,
+      "status": "Completado",
+      "campaignId": 6
+    },
+    {
+      "id": 10,
+      "name": "Lote J",
+      "area": 120,
+      "status": "En proceso",
+      "campaignId": 2
+    },
+    {
+      "id": 11,
+      "name": "Lote K",
+      "area": 180,
+      "status": "En espera",
+      "campaignId": 2
+    },
+    {
+      "id": 12,
+      "name": "Lote L",
+      "area": 200,
+      "status": "Completado",
+      "campaignId": 2
+    },
+    {
+      "id": 13,
+      "name": "Lote M",
+      "area": 150,
+      "status": "En proceso",
+      "campaignId": 3
+    },
+    {
+      "id": 14,
+      "name": "Lote N",
+      "area": 210,
+      "status": "En espera",
+      "campaignId": 3
+    },
+    {
+      "id": 15,
+      "name": "Lote O",
+      "area": 240,
+      "status": "Completado",
+      "campaignId": 3
+    },
+    {
+      "id": 16,
+      "name": "Lote P",
+      "area": 180,
+      "status": "En proceso",
+      "campaignId": 4
+    },
+    {
+      "id": 17,
+      "name": "Lote Q",
+      "area": 220,
+      "status": "En espera",
+      "campaignId": 4
+    },
+    {
+      "id": 18,
+      "name": "Lote R",
+      "area": 270,
+      "status": "Completado",
+      "campaignId": 4
+    },
+    {
+      "id": 19,
+      "name": "Lote S",
+      "area": 190,
+      "status": "En proceso",
+      "campaignId": 7
+    },
+    {
+      "id": 20,
+      "name": "Lote T",
+      "area": 230,
+      "status": "En espera",
+      "campaignId": 7
+    }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "campaigns_id": 1,
+      "name": "Jhon",
+      "last_name": "Miller",
+      "email": "jhonworker@pecuario.pro",
+      "on_job_status": "Working",
+      "job_description": "Graze group 2 cows"
+    },
+    {
+      "id": 2,
+      "campaigns_id": 2,
+      "name": "Francisco",
+      "last_name": "Garces",
+      "email": "franciscoworker@pecuario.pro",
+      "on_job_status": "Available",
+      "job_description": "Feed and vaccinate cows of group 3",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 3,
+      "campaigns_id": 3,
+      "name": "Eloy",
+      "last_name": "Robles",
+      "email": "eloyworker@pecuario.pro",
+      "on_job_status": "Available",
+      "job_description": "Feed and vaccinate cows of group 5",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 4,
+      "campaigns_id": 4,
+      "name": "Alfred",
+      "last_name": "Santos",
+      "email": "alfredworker@pecuario.pro",
+      "on_job_status": "Working",
+      "job_description": "Check health status of livestock 1 and 4",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 5,
+      "campaigns_id": 5,
+      "name": "Francisco",
+      "last_name": "Vargas",
+      "email": "vargasworker@pecuario.pro",
+      "on_job_status": "Available",
+      "job_description": "Check health status of livestock 1 and 4",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": 6,
+      "campaigns_id": 6,
+      "name": "Damian",
+      "last_name": "Zabala",
+      "email": "damianworker@pecuario.pro",
+      "on_job_status": "Available",
+      "job_description": "Graze group 1 cows",
+      "date_start": "2024-05-01",
+      "date_end": "2024-06-30"
+    },
+    {
+      "id": "7",
+      "campaigns_id": "90",
+      "name": "Makanaky",
+      "last_name": "La realeza",
+      "email": "Makanaky@Larealeza.com",
+      "on_job_status": "Available",
+      "job_description": "daaaaaa"
+    }
+  ],
+  "veterinarians": [
+    {
+      "id": 1,
+      "first_name": "John",
+      "last_name": "Doe",
+      "speciality": "Cirugía",
+      "phone_number": "555-1234",
+      "email": "john.doe@fckdapolice.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Lima",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/1.webp"
+    },
+    {
+      "id": 2,
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "speciality": "Nutrición",
+      "phone_number": "555-5678",
+      "email": "jane.smith@yahoo.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Ancash",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/2.webp"
+    },
+    {
+      "id": 3,
+      "first_name": "Pedro",
+      "last_name": "García",
+      "speciality": "Veterinaria de Salud Pública",
+      "phone_number": "555-4321",
+      "email": "pedro.garcia@gmail.com",
+      "work_start_time": "09:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Cusco",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/3.webp"
+    },
+    {
+      "id": 4,
+      "first_name": "María",
+      "last_name": "Martínez",
+      "speciality": "Producción Animal",
+      "phone_number": "555-8765",
+      "email": "maria.martinez@hotmail.com",
+      "work_start_time": "08:30 am",
+      "work_end_time": "16:30 pm",
+      "city": "Trujillo",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/4.webp"
+    },
+    {
+      "id": 5,
+      "first_name": "Carlos",
+      "last_name": "Hernández",
+      "speciality": "Bienestar Animal",
+      "phone_number": "555-9876",
+      "email": "carlos.hernandez@yahoo.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Arequipa",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/5.webp"
+    },
+    {
+      "id": 6,
+      "first_name": "Ana",
+      "last_name": "López",
+      "speciality": "Sanidad Animal",
+      "phone_number": "555-5432",
+      "email": "ana.lopez@outlook.com",
+      "work_start_time": "09:00 am",
+      "work_end_time": "17:00 pm",
+      "city": "Piura",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/6.webp"
+    },
+    {
+      "id": 7,
+      "first_name": "Javier",
+      "last_name": "González",
+      "speciality": "Ciencias Clínicas",
+      "phone_number": "555-6543",
+      "email": "javier.gonzalez@gmail.com",
+      "work_start_time": "08:00 am",
+      "work_end_time": "16:00 pm",
+      "city": "Iquitos",
+      "status": "Activo",
+      "linkedin": "www.soyunlink.com",
+      "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/7.webp"
+    }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "name": "Pasture",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpasto.png?alt=media&token=dff58457-20af-4a8e-97b5-d75d7b06ae00"
+    },
+    {
+      "id": 2,
+      "name": "Wheat",
+      "quantity": 5,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Ftrigo.png?alt=media&token=363f5000-0699-47c8-b44e-4df91212a1a8"
+    },
+    {
+      "id": 3,
+      "name": "Heno",
+      "quantity": 20,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fheno.png?alt=media&token=f67dab17-49ed-4dca-92c5-d777baaed3de"
+    }
+  ],
+  "tools": [
+    {
+      "id": 1,
+      "name": "Hammer",
+      "quantity": 3,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fhammer.png?alt=media&token=32973929-6b63-4310-bd25-89a040f65cb8"
+    },
+    {
+      "id": 2,
+      "name": "Pliers",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpliers.png?alt=media&token=40dcc168-4cbf-494c-889e-480bb7d03ae6"
+    },
+    {
+      "id": 3,
+      "name": "Bucket",
+      "quantity": 7,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
     }
   ]
 }
