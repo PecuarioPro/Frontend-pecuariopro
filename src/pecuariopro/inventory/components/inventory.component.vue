@@ -30,7 +30,7 @@
       <h4>Food Inventory Description</h4>
       <pv-toolbar>
         <template #start>
-          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" />
+          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" @click="openAddDialog" />
           <pv-button icon="pi pi-print" class="mr-2" severity="secondary" />
           <pv-button icon="pi pi-upload" severity="secondary" />
         </template>
@@ -51,7 +51,7 @@
       <h4>Vaccine Inventory Description</h4>
       <pv-toolbar>
         <template #start>
-          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" />
+          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" @click="openAddDialog" />
           <pv-button icon="pi pi-print" class="mr-2" severity="secondary" />
           <pv-button icon="pi pi-upload" severity="secondary" />
         </template>
@@ -72,7 +72,7 @@
       <h4>Tools Inventory Description</h4>
       <pv-toolbar>
         <template #start>
-          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" />
+          <pv-button icon="pi pi-plus" class="mr-2" severity="secondary" @click="openAddDialog" />
           <pv-button icon="pi pi-print" class="mr-2" severity="secondary" />
           <pv-button icon="pi pi-upload" severity="secondary" />
         </template>
@@ -100,7 +100,7 @@
               <div class="product-quantity">Quantity: {{ item.quantity }}</div>
             </div>
             <div class="product-action">
-              <pv-button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" @click="editItem(item)"></pv-button>
+              <pv-button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" @click="openEditDialog(item)"></pv-button>
               <pv-button icon="pi pi-trash" class="p-button-rounded p-button-danger" @click="deleteItem(item)"></pv-button>
             </div>
           </div>
@@ -133,6 +133,26 @@
       <pv-button label="Save" @click="saveNewItem"></pv-button>
     </template>
   </pv-dialog>
+
+  <pv-dialog v-model:visible="displayEditDialog" :header="'Edit ' + selectedInventory" :style="{ width: '30vw' }" :modal="true">
+    <div class="form-group">
+      <label for="editName">Name</label>
+      <pv-input-text v-model="editItemData.name" id="editName" placeholder="Enter item name" />
+    </div>
+    <div class="form-group">
+      <label for="editQuantity">Quantity</label>
+      <pv-input-number v-model="editItemData.quantity" id="editQuantity" placeholder="Enter item quantity" />
+    </div>
+    <div class="form-group" v-if="selectedInventory === 'Food'">
+      <label for="editImage">Image URL</label>
+      <pv-input-text v-model="editItemData.image" id="editImage" placeholder="Enter image URL" />
+    </div>
+
+    <template #footer>
+      <pv-button label="Cancel" @click="closeEditDialog"></pv-button>
+      <pv-button label="Save" @click="saveEditedItem"></pv-button>
+    </template>
+  </pv-dialog>
 </template>
 
 <script>
@@ -144,9 +164,16 @@ export default {
   setup() {
     const displayDialog = ref(false);
     const displayAddDialog = ref(false);
+    const displayEditDialog = ref(false);
     const selectedInventory = ref('');
     const items = ref([]);
     const newItem = ref({
+      name: '',
+      quantity: 0,
+      image: ''
+    });
+    const editItemData = ref({
+      id: null,
       name: '',
       quantity: 0,
       image: ''
@@ -212,18 +239,46 @@ export default {
       displayAddDialog.value = false;
     };
 
-    const addItem = () => {
-      openAddDialog();
+    const openEditDialog = (item) => {
+      editItemData.value = { ...item };
+      displayEditDialog.value = true;
     };
 
-    const editItem = (item) => {
-      // implementar backend
+    const saveEditedItem = async () => {
+      try {
+        const endpoint = `http://localhost:3000/food/${editItemData.value.id}`; // Ensure correct endpoint with ID
+        const response = await axios.put(endpoint, editItemData.value);
+        if (response.status === 200) {
+          // ... success handling
+        } else {
+          console.error('Error updating item:', response.data);
+          // ... error handling
+        }
+      } catch (error) {
+        console.error('Error updating item:', error);
+        // ... error handling
+      }
+    };
+
+
+    const closeEditDialog = () => {
+      displayEditDialog.value = false;
     };
 
     const deleteItem = async (item) => {
-      const endpoint = selectedInventory.value.toLowerCase();
-      await axios.delete(`http://localhost:3000/${endpoint}/${item.id}`);
-      await loadInventoryData(selectedInventory.value);
+      try {
+        const endpoint = selectedInventory.value.toLowerCase();
+        const response = await axios.delete(`http://localhost:3000/${endpoint}/${item.id}`);
+        if (response.status === 200) {
+          await loadInventoryData(selectedInventory.value);
+        } else {
+          console.error('Error deleting item:', response.data);
+
+        }
+      } catch (error) {
+        console.error('Error deleting item:', error);
+
+      }
     };
 
     const closeDialog = () => {
@@ -237,18 +292,21 @@ export default {
     return {
       displayDialog,
       displayAddDialog,
+      displayEditDialog,
       selectedInventory,
       items,
       newItem,
+      editItemData,
       cards,
       items1,
       showInventoryDialog,
       closeDialog,
-      addItem,
       openAddDialog,
       saveNewItem,
       closeAddDialog,
-      editItem,
+      openEditDialog,
+      saveEditedItem,
+      closeEditDialog,
       deleteItem,
       onImageError
     };
