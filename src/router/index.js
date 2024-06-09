@@ -13,12 +13,14 @@ import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages
 import inventoryComponent from "../pecuariopro/inventory/components/inventory.component.vue";
 import homeComponent from "../public/pages/home.component.vue";
 import bovineTotal from "../pecuariopro/admin-bovines/pages/bovine-total.vue";
+import StatisticsComponent from "../pecuariopro/Stadistics/Statistics.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/animal",    component: bovineManagementComponent, meta: { title: "Animal"}},
         { path: "/animalTotal",    component: bovineTotal, meta: { title: "Total"}},
+        { path: "/statisticsBovine", component: StatisticsComponent, meta: { title: "Statistics Bovine"} },
         { path: "/statistics",  component: statisticsVaccineComponent, meta: { title: "Statistics" }},
         { path: "/vaccine",  component: vaccineManagementComponent, meta: { title: "Vaccine" }},
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},

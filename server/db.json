@@ -139,20 +139,6 @@
       "reason": "Feber",
       "date": "2024-04-28",
       "code": "VAC-021"
-    },
-    {
-      "id": "22",
-      "name": "example",
-      "reason": "Feber",
-      "date": "2024-05-07",
-      "code": "VAC-022"
-    },
-    {
-      "id": "87",
-      "name": "Bovine Rabick",
-      "reason": "Prevention of Rabick",
-      "date": "2024-05-13",
-      "code": "0803"
     }
   ],
   "bovines": [
@@ -177,12 +163,13 @@
       "id": "2",
       "name": "Luna",
       "raza": "Holstein",
+      "weight": 354,
       "date": "2024-05-02",
       "origin": {},
       "observations": "High milk production",
       "batchId": "1",
       "imgUrls": [
-        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=616a36a7-5376-4cbf-a69e-2f8bf7a7184d"
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Fvacas.jpg?alt=media&token=9a41765b-f49f-4f25-ab20-ab537117ba75"
       ]
     },
     {

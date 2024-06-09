@@ -27,5 +27,14 @@ export class CampaignApiService{
         return http.get(`/campaigns?name=${name}`);
     }
 
+    async getTotalCampaigns() {
+        try {
+            const response = await this.getAll();
+            return response.data.length;
+        } catch (error) {
+            console.error('Error fetching total vaccines:', error);
+            throw error;
+        }
+    }
 
 }
