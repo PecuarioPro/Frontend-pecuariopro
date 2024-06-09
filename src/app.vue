@@ -212,12 +212,6 @@ export default {
                         </li>
                         <li>
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <i class="pi pi-calendar mr-2"></i>
-                            <span class="font-medium">Calendar</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-spin pi-cog mr-2" ></i>
                             <span class="font-medium">Settings</span>
                           </a>

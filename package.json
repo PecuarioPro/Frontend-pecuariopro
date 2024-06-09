@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.14",
+    "@fullcalendar/vue3": "^6.1.14",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "firebase": "^10.12.2",
