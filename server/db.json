@@ -23,6 +23,12 @@
       "name": "Hanna Vargas",
       "email": "cafemofa@gmail.com",
       "password": "a20221998"
+    },
+    {
+      "name": "Elverth",
+      "email": "elverthvasquez@gmail.com",
+      "password": "hola123",
+      "id": 5
     }
   ],
   "vaccines": [

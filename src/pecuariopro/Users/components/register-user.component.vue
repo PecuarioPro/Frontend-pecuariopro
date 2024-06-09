@@ -1,29 +1,29 @@
 <template>
   <div class="container">
     <div class="register-container">
-      <h2 class="register-text">Registro en Pecuario Pro</h2>
+      <h2 class="register-text">Registration in Pecuario Pro</h2>
       <div class="card">
         <div class="card-body">
           <form @submit.prevent="register">
             <div class="form-group">
-              <input type="text" id="name" v-model="name" class="form-control" placeholder="Nombre" required>
+              <input type="text" id="name" v-model="name" class="form-control" placeholder="Name" required>
             </div>
             <div class="form-group">
               <input type="email" id="email" v-model="email" class="form-control" placeholder="Email" required>
             </div>
             <div class="form-group">
               <div class="password-container">
-                <input :type="showPassword ? 'text' : 'password'" id="password" v-model="password" class="form-control" placeholder="Contraseña" required>
+                <input :type="showPassword ? 'text' : 'password'" id="password" v-model="password" class="form-control" placeholder="Password" required>
                 <span class="toggle-password" @click="togglePassword">
                   <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
                 </span>
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
             </div>
             <div class="form-group">
-              <p class="login-text">¿Ya tienes una cuenta? <router-link to="/">Inicia sesión aquí</router-link></p>
+              <p class="login-text">¿Have you account? <router-link to="/">Log in here</router-link></p>
             </div>
           </form>
         </div>
@@ -66,14 +66,27 @@ export default {
 
 <style scoped>
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url("../../../assets/pexels-matthew-montrone-230847-1324803.jpg");
+  overflow: hidden; /* Asegura que el pseudo-elemento no se desborde */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("../../../assets/pexels-francesco-ungaro-1525041.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .register-container {
@@ -112,13 +125,16 @@ export default {
   height: 40px;
   margin: 5px 0;
   background-color: #32C793;
-  color: #ffffff;
+  color: #37444d ;
   border: none;
   border-radius: 40px;
+  font-weight:500;
 }
 
 .btn-primary:hover {
   background-color: #1E845E;
+  color:white;
+  cursor:pointer;
 }
 
 .password-container {

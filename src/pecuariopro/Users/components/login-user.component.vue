@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="login-container">
-      <h2 class="welcome-text">Bienvenido a Pecuario Pro</h2>
+      <h2 class="welcome-text">Welcome to Pecuario Pro</h2>
       <div class="card">
         <div class="card-body">
           <form @submit.prevent="login">
@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+              <button type="submit" class="btn btn-primary btn-block">Sign in</button>
             </div>
             <div class="form-group">
               <div class="checkbox-container">
@@ -85,15 +85,29 @@ export default {
 
 <style scoped>
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden; /* Asegura que el pseudo-elemento no se desborde */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: url("../../../assets/pexels-francesco-ungaro-1525041.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.3;
+  z-index: -1;
 }
+
 .form-control::placeholder {
   color: white;
   top: 48px;
@@ -112,7 +126,7 @@ export default {
   width: 100%;
   height: 50px;
   border-radius: 40px;
-  background-color: rgba(300, 300, 300, 0.1);
+  background-color: rgba(300, 300, 300, 0.3);
   padding-left: 25px;
 }
 
@@ -128,11 +142,13 @@ export default {
   color: #37444d ;
   border: 45px;
   border-radius: 40px;
-
+  font-weight:500;
 }
 
 .btn-primary:hover {
   background-color: #1E845E;
+  color:white;
+  cursor:pointer;
 }
 
 .password-container {
