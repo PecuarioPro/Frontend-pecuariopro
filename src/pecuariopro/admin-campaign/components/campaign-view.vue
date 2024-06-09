@@ -25,14 +25,6 @@ export default {
           command: () => {
             this.$emit('Delete',this.campaign);
           }
-        },
-        {
-          label: 'Upload',
-          icon: 'pi pi-upload'
-          // ,
-          // command: () => {
-          //   this.$router.push('/fileupload');
-          // }
         }
       ]
     }

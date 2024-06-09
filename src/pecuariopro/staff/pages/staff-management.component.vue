@@ -138,7 +138,7 @@ export default {
 </script>
 
 <template>
-  <div class="staff-full">
+  <div class="staff-full principal-container">
     <!-- Staff Data Manager -->
     <staff-edit
         class="custom-table"
@@ -179,5 +179,7 @@ export default {
 </template>
 
 <style scoped>
-
+.principal-container{
+  padding:10px;
+}
 </style>

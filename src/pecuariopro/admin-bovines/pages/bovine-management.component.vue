@@ -190,7 +190,7 @@ export default {
       </template>
       <template #actions="{ slotProps }">
         <pv-button icon="pi pi-pencil" text class="mr-2" @click="onEditItemEventHandler(slotProps.data)" />
-        <pv-button icon="pi pi-eye" text class="mr-2" @click="onViewItemEventHandler(slotProps.data)" /> <!-- Nuevo botón -->
+<!--        <pv-button icon="pi pi-eye" text class="mr-2" @click="onViewItemEventHandler(slotProps.data)" /> &lt;!&ndash; Nuevo botón &ndash;&gt;-->
         <pv-button icon="pi pi-trash" text severity="danger" @click="onDeleteItemEventHandler(slotProps.data)" />
       </template>
     </data-manager>

@@ -26,14 +26,6 @@ export default {
           command: () => {
             this.$emit('Delete',this.batch);
           }
-        },
-        {
-          label: 'Upload',
-          icon: 'pi pi-upload'
-          // ,
-          // command: () => {
-          //   this.$router.push('/fileupload');
-          // }
         }
       ]
     }

@@ -156,7 +156,7 @@ export default {
     </div>
   </div>
 
-  <div class="w-full">
+  <div class="w-full principal-container">
     <data-manager
         class="custom-table"
         :title="title"
@@ -253,7 +253,9 @@ export default {
 .action-button i {
   font-size: 1.2em;
 }
-
+.principal-container{
+  padding:20px;
+}
 .reason-modal-overlay {
   position: fixed;
   top: 0;

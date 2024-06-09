@@ -112,8 +112,12 @@ export default {
         // Esperar a que todas las promesas se resuelvan y obtener las URLs
         const urls = await Promise.all(uploadPromises);
 
-        // Asignar las URLs al atributo imgUrls de tu ítem
-        this.item.imgUrls = urls; // Asumiendo que this.bovine es la instancia de tu ítem Bovine
+        if (this.item.imgUrls) {
+          this.item.imgUrls.push(...urls);
+        } else {
+          this.item.imgUrls = urls;
+        }
+
 
         this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Files Uploaded', life: 3000 });
       } catch (error) {
@@ -212,9 +216,11 @@ export default {
             <template v-if="this.item.imgUrls && this.item.imgUrls.length > 0">
               <div class="existing-images">
                 <p>Edit Images:</p>
-                <div v-for="(url, index) in this.item.imgUrls" :key="index" class="existing-image">
-                  <div class="image-container">
-                    <img :src="url" alt="Existing Image">
+                <div  class="existing-image">
+                  <div v-for="(url, index) in this.item.imgUrls" :key="index" class="container-item">
+                    <div class="image-container">
+                      <img :src="url" alt="Existing Image">
+                    </div>
                     <pv-button icon="pi pi-trash" severity="danger" text  rounded aria-label="Delete Image" class="delete-image-button"  @click="deleteExistingImage(index)" />
                   </div>
                 </div>
@@ -239,11 +245,17 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction:column;
+  height:auto;
+  padding:15px;
 }
 
 .existing-image {
   width: 100%;
-  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  min-height:500px;
+  flex-direction:row;
+  gap:10px;
 }
 
 .image-container {
@@ -256,11 +268,18 @@ export default {
   height:150px;
   gap:6px;
 }
-
+.container-item{
+  width:auto;
+  height:auto;
+  gap:5px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 .image-container img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   border: 1px solid #ccc;
 }
 

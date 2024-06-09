@@ -29,6 +29,18 @@
       "email": "elverthvasquez@gmail.com",
       "password": "hola123",
       "id": 5
+    },
+    {
+      "name": "Elverth Vasquez Villalobos",
+      "email": "elverthvasquez@gmail.com",
+      "password": "vava123",
+      "id": 6
+    },
+    {
+      "name": "qeqwe",
+      "email": "vasquezelverth@gmail.com",
+      "password": "hola12345",
+      "id": 7
     }
   ],
   "vaccines": [
@@ -188,7 +200,9 @@
       "observations": "Healthy",
       "batchId": "1",
       "imgUrls": [
-        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=92fe32e8-5ba0-4276-898f-351555061b75"
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2Ftoro%202.jpg?alt=media&token=19d44121-e92a-4a01-9d5e-195a491b63ae",
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2FAPC%203%201.jpg?alt=media&token=8eb17a70-dcc0-4273-bfd3-0a1c2f5d14df",
+        "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-bovines-resources%2FAPC3%202.jpg?alt=media&token=850de62d-ca35-46b3-902a-0998c125173e"
       ]
     },
     {

@@ -99,13 +99,8 @@ export default {
   <!-- Toolbar Section -->
   <pv-toolbar class="mb-4">
 
-    <!-- New Button -->
-    <template #start>
-      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
-    </template>
 
-    <!-- Global Search -->
-    <template #center>
+    <template #start>
       <div class="flex justify-content-end">
         <pv-icon-field iconPosition="left">
           <pv-input-icon>
@@ -115,6 +110,13 @@ export default {
         </pv-icon-field>
       </div>
     </template>
+    <!-- New Button -->
+    <template #end>
+      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+    </template>
+
+    <!-- Global Search -->
+
 
   </pv-toolbar>
 
