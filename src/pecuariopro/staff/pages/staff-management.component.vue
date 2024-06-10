@@ -30,8 +30,17 @@ export default {
     });
     console.log(`flag: ${this.isVisibleCard}`);
 
+    // Show advertising
+    this.showWarningMessage();
+
   },
   methods:{
+
+    showWarningMessage() {
+      // Alert to show advertising
+      alert("Warning! You are entering the page to manage sensitive information.");
+    },
+
     notifySuccessfulAction(message){
       this.$toast.add({severity:"success", summary: "Success", detail: message, life: 3000});
     },
@@ -95,6 +104,7 @@ export default {
       });
       this.notifySuccessfulAction("Staff Deleted");
     },
+
     createStaff() {
       this.staff = Staff.fromDisplayableStaff(this.staff);
       this.staffService.create(this.staff)
@@ -128,7 +138,7 @@ export default {
 </script>
 
 <template>
-  <div class="staff-full">
+  <div class="staff-full principal-container">
     <!-- Staff Data Manager -->
     <staff-edit
         class="custom-table"
@@ -146,6 +156,8 @@ export default {
         <pv-column :sortable="true" field="campaigns_id" header="Campaigns" style="min-width: 6rem"/>
         <!-- Name Column -->
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 6rem"/>
+        <!-- Last Name Column -->
+        <pv-column :sortable="true" field="last_name" header="Last Name" style="min-width: 6rem"/>
         <!-- Status Column -->
         <pv-column :sortable="false" field="on_job_status" header="Status" style="min-width: 6rem"/>
         <!-- Job Description Column -->
@@ -167,5 +179,7 @@ export default {
 </template>
 
 <style scoped>
-
+.principal-container{
+  padding:10px;
+}
 </style>

@@ -100,13 +100,13 @@ export default {
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
-            <label for="date_start">Start Date</label>
+            <label for="date_start">  </label>
             <input id="date_start" v-model="item.date_start" class="p-inputtext p-component" type="date"/>
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
-            <label for="date_end">End Date</label>
+            <label for="date_end">  </label>
             <input id="date_end" v-model="item.date_end" class="p-inputtext p-component" type="date"/>
           </pv-float-label>
         </div>

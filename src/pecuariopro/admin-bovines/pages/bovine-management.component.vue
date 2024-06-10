@@ -23,7 +23,9 @@ export default {
       bovineService:null,
       isVisibleCard: false,
       isEdit: false,
-      submitted: false
+      submitted: false,
+      screenSize: window.innerWidth
+
     }
   },
   created(){
@@ -35,6 +37,7 @@ export default {
       let bovines = response.data;
       console.log(bovines);
       this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId).map((bovine)=> Bovine.toDisplayableBovine(bovine));
+      console.log("mis bovines filtrados", this.bovines);
     });
     console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
 
@@ -54,6 +57,7 @@ export default {
       this.submitted = false;
       this.isEdit = false;
       this.isVisibleCard = true;
+      this.origin = {};
       console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
     },
     onEditItemEventHandler(item) {
@@ -61,6 +65,7 @@ export default {
       this.submitted = false;
       this.isEdit = true;
       this.isVisibleCard = true;
+      this.origin=this.bovine.origin;
       console.log(`soy el flag de editar y estoy prendiendo ${this.isVisibleCard}`)
       // this.createAndEditDialogIsVisible = true aqui ira la card para editar;
     },
@@ -152,8 +157,10 @@ export default {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full principal-container">
     <!-- Bovine Data Manager -->
+    <div class="container-data-table">
+
     <data-manager
         :title=title
         v-bind:items="bovines"
@@ -163,21 +170,38 @@ export default {
         v-on:delete-selected-items="onDeleteSelectedItemsEventHandler($event)">
       <template #custom-columns>
         <!-- Columna ID -->
-        <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem"/>
+        <pv-column :sortable="true" field="id" header="ID" style="min-width: 6rem" />
+
         <!-- Columna Nombre -->
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem"/>
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem">
+        </pv-column>
         <!-- Columna Raza -->
-        <pv-column :sortable="true" field="raza" header="Raza" style="min-width: 8rem"/>
+        <pv-column :sortable="true" field="raza" header="Race" style="min-width: 8rem" class="race-column"/>
+
+        <pv-column :sortable="true" field="weight" header="Weight" style="min-width: 8rem" />
+
+        <pv-column :sortable="true" field="date" header="Date" style="min-width: 8rem"/>
+
+        <pv-column :sortable="true" field="origin.city" header="City" style="min-width: 8rem" />
+
+
+
         <!-- Columna Ver Más -->
       </template>
+      <template #actions="{ slotProps }">
+        <pv-button icon="pi pi-pencil" text class="mr-2" @click="onEditItemEventHandler(slotProps.data)" />
+<!--        <pv-button icon="pi pi-eye" text class="mr-2" @click="onViewItemEventHandler(slotProps.data)" /> &lt;!&ndash; Nuevo botón &ndash;&gt;-->
+        <pv-button icon="pi pi-trash" text severity="danger" @click="onDeleteItemEventHandler(slotProps.data)" />
+      </template>
     </data-manager>
+    </div>
     <bovine-create-and-edit
       :item="bovine"
       :item2="origin"
       :edit="isEdit"
       :visible="isVisibleCard"
       v-on:canceled="onCanceledEventHandler"
-      v-on:saved="onSavedEventHandler($event)"/>
+      v-on:saved2="onSavedEventHandler($event)"/>
 
 
   </div>
@@ -190,11 +214,23 @@ export default {
   justify-content: space-between;
 }
 
+.principal-container{
+  padding:20px;
+}
+
+.race-column{
+display:none;
+}
+
 @media screen and (max-width: 960px) {
   :deep(.p-toolbar) {
     flex-wrap: wrap;
 
   }
+  .race-column{
+    display:table-cell;
+  }
+
 }
 
 @media (min-width: 1024px) {

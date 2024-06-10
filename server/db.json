@@ -41,12 +41,6 @@
       "email": "vasquezelverth@gmail.com",
       "password": "hola12345",
       "id": 7
-    },
-    {
-      "name": "Elverth Vasquez Villalobos",
-      "email": "combate0404@gmail.com",
-      "password": "hola1234",
-      "id": 8
     }
   ],
   "vaccines": [
@@ -385,6 +379,15 @@
       "duration": 61
     },
     {
+      "id": 4,
+      "name": "Campaña de Inseminación Artificial de Vacas",
+      "dateStart": "2024-06-01",
+      "dateEnd": "2024-07-31",
+      "objective": "Realizar inseminación artificial en 50 vacas",
+      "condition": "Active",
+      "duration": 60
+    },
+    {
       "id": 5,
       "name": "Campaña de Control de Enfermedades en Toros",
       "dateStart": "2024-08-01",
@@ -437,15 +440,6 @@
       "objective": "Realizar pruebas de fertilidad en 200 vacas",
       "condition": "Finished",
       "duration": 61
-    },
-    {
-      "name": "example 99",
-      "dateStart": "2024-06-09T05:00:00.000Z",
-      "dateEnd": "2024-06-30T05:00:00.000Z",
-      "objective": "Engordar toros",
-      "condition": "Active",
-      "duration": 21,
-      "id": 11
     }
   ],
   "batches": [
@@ -553,6 +547,27 @@
       "area": 240,
       "status": "Completado",
       "campaignId": 3
+    },
+    {
+      "id": 16,
+      "name": "Lote P",
+      "area": 180,
+      "status": "En proceso",
+      "campaignId": 4
+    },
+    {
+      "id": 17,
+      "name": "Lote Q",
+      "area": 220,
+      "status": "En espera",
+      "campaignId": 4
+    },
+    {
+      "id": 18,
+      "name": "Lote R",
+      "area": 270,
+      "status": "Completado",
+      "campaignId": 4
     },
     {
       "id": 19,
@@ -742,6 +757,46 @@
       "status": "Activo",
       "linkedin": "www.soyunlink.com",
       "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/7.webp"
+    }
+  ],
+  "food": [
+    {
+      "id": 1,
+      "name": "Pasture",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpasto.png?alt=media&token=dff58457-20af-4a8e-97b5-d75d7b06ae00"
+    },
+    {
+      "id": 2,
+      "name": "Wheat",
+      "quantity": 5,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Ftrigo.png?alt=media&token=363f5000-0699-47c8-b44e-4df91212a1a8"
+    },
+    {
+      "id": 3,
+      "name": "Heno",
+      "quantity": 20,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fheno.png?alt=media&token=f67dab17-49ed-4dca-92c5-d777baaed3de"
+    }
+  ],
+  "tools": [
+    {
+      "id": 1,
+      "name": "Hammer",
+      "quantity": 3,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fhammer.png?alt=media&token=32973929-6b63-4310-bd25-89a040f65cb8"
+    },
+    {
+      "id": 2,
+      "name": "Pliers",
+      "quantity": 10,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpliers.png?alt=media&token=40dcc168-4cbf-494c-889e-480bb7d03ae6"
+    },
+    {
+      "id": 3,
+      "name": "Bucket",
+      "quantity": 7,
+      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
     }
   ]
 }

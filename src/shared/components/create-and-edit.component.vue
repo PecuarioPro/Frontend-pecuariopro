@@ -20,8 +20,9 @@ export default {
     },
     getDialogStyle() {
       let dialogStyle = defaultStyle;
-      dialogStyle = this.size === 'standard' ? { width: '600px'} : defaultStyle;
-      dialogStyle = this.size === 'large' ? { width: '900px'} : defaultStyle;
+      dialogStyle = this.size === 'stand' ? {width: '1600px'}:defaultStyle;
+      dialogStyle = this.size === 'l' ? { width: '900px'}:defaultStyle;
+      dialogStyle = this.size === 'extra-large' ? {width: '1100px'}:defaultStyle;
       return dialogStyle;
     }
 

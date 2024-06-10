@@ -5,7 +5,8 @@ export default {
   components:{ createAndEdit},
   props:{
     item:null,
-    visible: Boolean
+    visible: Boolean,
+    edit:Boolean
   },
   data() {
     return {
@@ -16,14 +17,15 @@ export default {
   methods:{
     canceledEventHandler() {
       this.$emit('canceled');
+      this.submitted = false;
     },
     savedEventHandler() {
       console.log("Enviar de campaign",this.item);
       this.submitted = true;
       //&& this.item.objective && this.validateDates()
-       if (this.item.name) {
+       if (this.item.name&& this.item.objective && this.validateDates()) {
         console.log("si entre");
-        this.$emit('saved', this.item);
+          this.$emit('saved2', this.item);
        }
     },
     validateDates() {
@@ -40,7 +42,7 @@ export default {
 </script>
 
 <template>
-  <create-and-edit :entity="item" :visible="visible" entityName="Campaign" @canceled="canceledEventHandler" @saved="savedEventHandler">
+  <create-and-edit :entity="item" :edit="edit" :visible="visible" entityName="Campaign" @canceled="canceledEventHandler" @saved="savedEventHandler">
     <template #content>
 
       <div class="p-fluid">
@@ -74,6 +76,7 @@ export default {
             <small v-if="submitted && dateError" class="p-invalid">{{ dateError }}</small>
           </pv-float-label>
         </div>
+
       </div>
 
     </template>

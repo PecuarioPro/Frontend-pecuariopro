@@ -27,5 +27,14 @@ export class BatchApiService{
         return http.get(`/batches?name=${name}`);
     }
 
+    async getTotalBatches() {
+        try {
+            const response = await this.getAll();
+            return response.data.length;
+        } catch (error) {
+            console.error('Error fetching total vaccines:', error);
+            throw error;
+        }
+    }
 
 }

@@ -57,8 +57,7 @@ export default {
             startDate,
             endDate,
             campaignData.objective,
-            campaignData.batches,
-            campaignData.workers
+            campaignData.condition
         );
         console.log("soy la campaign escogida ", this.campaign);
 
@@ -67,12 +66,6 @@ export default {
       });
     }
 
-    // findCampaign(){
-    //   console.log("SOY EL PARAMETRO", typeof this.$route.params.campaignId);
-    //   this.campaign= this.campaigns.find(campaign => campaign.id == this.$route.params.campaignId);
-    //   console.log("Hola soy la campaign");
-    //   console.log(this.campaign);
-    // }
   }
 
 }
@@ -81,20 +74,13 @@ export default {
 <template>
 <div class="batch-section">
   <div  class="container-title">
-    <h2 v-if="campaign" class="title">{{ campaign.name }}</h2>
-    <div>
-      <pv-button class="mr-2 title-button" icon="pi pi-plus" label="New" severity="success" ></pv-button>
-      <pv-button class="mr-2 title-button" icon="pi pi-filter" label="Filter" severity="secondary" ></pv-button>
-    </div>
-
-
+    <router-link to="/campaign">
+      <pv-button icon="pi pi-arrow-left" class="title-button-2" rounded ></pv-button>
+    </router-link>
+    <h1 v-if="campaign" class="title">{{ campaign.name }}</h1>
   </div>
 
   <batch-management />
-
-  <router-link to="/campaign">
-
-  </router-link>
 
 </div>
 
@@ -107,16 +93,33 @@ export default {
 }
 .container-title{
   display:flex;
-  justify-content: space-between;
-  align-items:center;
-
+  flex-direction:column;
+  align-items:start;
+  gap:5px;
 }
-.title-button{
-  height:50px;
+
+.title-button-2{
+  border-radius: 15px;
   color:white;
-  font-size:15px;
-  font-weight:500;
-  text-align: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.title-button-2:hover {
+  background-color: #27272a;
+  color: #34d399;
+}
+.title{
+  font-size:30px;
+}
+@media (min-width: 750px) {
+
+.container-title{
+  flex-direction:row;
+  align-items: center;
 }
 
+
+}
 </style>
