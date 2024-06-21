@@ -767,12 +767,6 @@
   ],
   "food": [
     {
-      "id": 1,
-      "name": "Pasture",
-      "quantity": 10,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpasto.png?alt=media&token=dff58457-20af-4a8e-97b5-d75d7b06ae00"
-    },
-    {
       "id": 2,
       "name": "Wheat",
       "quantity": 5,
@@ -803,6 +797,12 @@
       "name": "Bucket",
       "quantity": 7,
       "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
+    },
+    {
+      "name": "caca",
+      "quantity": 34,
+      "image": "",
+      "id": 4
     }
   ]
 }
