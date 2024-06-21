@@ -1,40 +1,47 @@
 import { Origin } from "./origin.entity.js";
 
 export class Bovine {
-    constructor(id, name, raza, weight, date, origin, observations, batchId, imgUrls) {
+    constructor(id,bovineIdentifier, name, breedId, weight, date, departmentId,cityId,districtId, observations, batchId, imgUrls) {
         this.id = id;
+        this.bovineIdentifier = bovineIdentifier;
         this.name = name;
-        this.raza = raza;
+        this.breedId = breedId;
         this.weight = weight;
         this.date = date;
-        this.origin = origin;
+        this.departmentId = departmentId;
+        this.cityId = cityId;
+        this.districtId = districtId;
         this.observations = observations;
         this.batchId = batchId;
         this.imgUrls = imgUrls;
     }
 
-    static fromDisplayableBovine(displayableBovine) {
+    static fromDisplayableBovine(displayableBovine,breedId,departmentId,cityId,districtId) {
         return new Bovine(
             displayableBovine.id,
+            displayableBovine.bovineIdentifier,
             displayableBovine.name,
-            displayableBovine.raza,
+            breedId,
             displayableBovine.weight,
             displayableBovine.date,
-            displayableBovine.origin,
+            departmentId,
+            cityId,
+            districtId,
             displayableBovine.observations,
             displayableBovine.batchId,
             displayableBovine.imgUrls
         );
     }
 
-    static toDisplayableBovine(bovine) {
+    static toDisplayableBovine(bovine,origin,breed) {
         return {
             id: bovine.id,
+            bovineIdentifier: bovine.bovineIdentifier,
             name: bovine.name,
-            raza: bovine.raza,
+            breed: breed,
             weight: bovine.weight,
             date: bovine.date,
-            origin: bovine.origin,
+            origin: origin,
             observations: bovine.observations,
             batchId: bovine.batchId,
             imgUrls: bovine.imgUrls

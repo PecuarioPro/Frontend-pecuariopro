@@ -23,7 +23,6 @@ export default {
   },
   created(){
     console.log("bovine create and edit",this.item);
-    console.log("theeeee",this.files);
   },
   watch: {
     visible: function(newValue, oldValue) {
@@ -148,8 +147,8 @@ export default {
           <div class="field mt-5 container-field">
             <label for="race">Race</label>
             <pv-float-label>
-              <pv-input-text id="race" v-model="this.item.raza" :class="{'p-invalid': submitted && !this.item.race}"/>
-              <small v-if="submitted && !this.item.raza" class="p-invalid">Race is required.</small>
+              <pv-input-text id="race" v-model="this.item.breed" :class="{'p-invalid': submitted && !this.item.race}"/>
+              <small v-if="submitted && !this.item.breed" class="p-invalid">Breed is required.</small>
             </pv-float-label>
           </div>
 
