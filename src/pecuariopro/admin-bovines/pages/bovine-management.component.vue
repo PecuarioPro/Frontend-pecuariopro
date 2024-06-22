@@ -4,6 +4,10 @@ import BovineCreateAndEdit from "../components/bovine-create-and-edit.component.
 import {Bovine} from "../model/bovine.js";
 import {BovinesApiService} from "../services/bovines-api.service.js";
 import {Origin} from "../model/origin.entity.js";
+import {BreedsApiService} from "../services/breeds-api.service.js";
+import {DepartmentsApiService} from "../../../shared/services/origin/departments-api.service.js";
+import {CitiesApiService} from "../../../shared/services/origin/cities-api.service.js";
+import {DistrictsApiService} from "../../../shared/services/origin/districts-api.service.js";
 // import RegisterAndUpdateBovineComponent from "../components/register-and-update-bovine.component.vue";
 // import RegisterAndUpdateBovine from "../components/register-and-update-bovine.component.vue";
 
@@ -17,10 +21,19 @@ export default {
     return{
       title:{ singular: 'Bovine', plural: 'Bovines' },
       bovines:[],
+      selectedBovines:[],
+      races:[],
+      departments:[],
+      cities:[],
+      districts:[],
       bovine:{},
       origin:{},
-      selectedBovines:[],
+
       bovineService:null,
+      breedService:null,
+      departmentService:null,
+      cityService:null,
+      districtService:null,
       isVisibleCard: false,
       isEdit: false,
       submitted: false,
@@ -31,12 +44,16 @@ export default {
   created(){
     this.origin=new Origin;
     this.bovineService = new BovinesApiService();
+    this.breedService = new BreedsApiService();
+    this.departmentService = new DepartmentsApiService();
+    this.cityService = new CitiesApiService();
+    this.districtService = new DistrictsApiService();
     this.bovineService.getAll().then((response) => {
       console.log(response.data);
       console.log("soy el tipo batch",typeof batchId);
       let bovines = response.data;
       console.log(bovines);
-      this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId).map((bovine)=> Bovine.toDisplayableBovine(bovine));
+      this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId);//borre el toDisplayableBovine
       console.log("mis bovines filtrados", this.bovines);
     });
     console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
@@ -103,12 +120,18 @@ export default {
     createBovine(){
     // this.bovine.origin=this.origin;
       this.bovine.id=0;
+      this.bovine.bovineIdentifier="123";
      console.log(this.bovine);
      console.log("Voy a crear");
-      this.bovine = Bovine.fromDisplayableBovine(this.bovine);
+     let breed = this.breedService.findByName(this.bovine.breed);
+      let department = this.departmentService.findByName(this.bovine.origin.department);
+      let city = this.cityService.findByName(this.bovine.origin.city);
+      let district = this.districtService.findByName(this.bovine.origin.district);
+      this.bovine = Bovine.fromDisplayableBovine(this.bovine,breed.id,department.id,city.id,district.id);
       this.bovineService.create(this.bovine)
           .then((response) => {
-            this.bovine = Bovine.toDisplayableBovine(response.data);
+            console.log(response);
+            this.bovine = response.data;
             console.log("Este es el bovino ya creado y apunto de puchear");
             console.log(this.bovine);
             this.bovines.push(this.bovine);

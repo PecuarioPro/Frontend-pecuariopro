@@ -194,8 +194,9 @@
   "bovines": [
     {
       "id": "1",
+      "bovineIdentifier": "1",
       "name": "Bella",
-      "raza": "Angus",
+      "breed": "Angus",
       "weight": 350,
       "date": "2024-05-01",
       "origin": {
@@ -213,8 +214,9 @@
     },
     {
       "id": "2",
+      "bovineIdentifier": "2",
       "name": "Luna",
-      "raza": "Holstein",
+      "breed": "Holstein",
       "weight": 354,
       "date": "2024-05-02",
       "origin": {},
@@ -226,8 +228,9 @@
     },
     {
       "id": "3",
+      "bovineIdentifier": "3",
       "name": "Rex",
-      "raza": "Hereford",
+      "breed": "Hereford",
       "weight": 380.25,
       "date": "2024-05-03",
       "origin": {
@@ -243,8 +246,9 @@
     },
     {
       "id": "4",
+      "bovineIdentifier": "4",
       "name": "Empyron",
-      "raza": "Angus",
+      "breed": "Angus",
       "weight": 234,
       "date": "2024-05-04",
       "observations": {},
@@ -255,8 +259,9 @@
     },
     {
       "id": "5",
+      "bovineIdentifier": "5",
       "name": "Kyro",
-      "raza": "Charolais",
+      "breed": "Charolais",
       "weight": 212,
       "date": "2024-05-05",
       "origin": {
@@ -272,8 +277,9 @@
     },
     {
       "id": "6",
+      "bovineIdentifier": "6",
       "name": "Thor",
-      "raza": "Angus",
+      "breed": "Angus",
       "weight": 213,
       "date": "2024-05-06",
       "origin": {
@@ -289,8 +295,9 @@
     },
     {
       "id": "7",
+      "bovineIdentifier": "7",
       "name": "Fizon",
-      "raza": "Angus",
+      "breed": "Angus",
       "weight": 345,
       "date": "2024-05-07",
       "origin": {
@@ -306,8 +313,9 @@
     },
     {
       "id": "8",
+      "bovineIdentifier": "8",
       "name": "Pai",
-      "raza": "Charolais",
+      "breed": "Charolais",
       "weight": 344,
       "date": "2024-05-08",
       "origin": {
@@ -323,8 +331,9 @@
     },
     {
       "id": "9",
+      "bovineIdentifier": "9",
       "name": "Faru",
-      "raza": "Sebu",
+      "breed": "Sebu",
       "weight": 123,
       "date": "2024-05-09",
       "origin": {
@@ -340,8 +349,9 @@
     },
     {
       "id": "10",
+      "bovineIdentifier": "10",
       "name": "Loki",
-      "raza": "Angus",
+      "breed": "Angus",
       "weight": 231,
       "date": "2024-05-10",
       "origin": {
@@ -767,12 +777,6 @@
   ],
   "food": [
     {
-      "id": 1,
-      "name": "Pasture",
-      "quantity": 10,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpasto.png?alt=media&token=dff58457-20af-4a8e-97b5-d75d7b06ae00"
-    },
-    {
       "id": 2,
       "name": "Wheat",
       "quantity": 5,
@@ -803,6 +807,66 @@
       "name": "Bucket",
       "quantity": 7,
       "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
+    },
+    {
+      "name": "caca",
+      "quantity": 34,
+      "image": "",
+      "id": 4
     }
+  ],
+  "races": [
+    { "id": 1, "name": "Angus" },
+    { "id": 2, "name": "Hereford" },
+    { "id": 3, "name": "Limousin" },
+    { "id": 4, "name": "Charolais" },
+    { "id": 5, "name": "Simmental" },
+    { "id": 6, "name": "Holstein" },
+    { "id": 7, "name": "Jersey" },
+    { "id": 8, "name": "Brahman" },
+    { "id": 9, "name": "Brangus" },
+    { "id": 10, "name": "Santa Gertrudis" },
+    { "id": 11, "name": "Gelbvieh" },
+    { "id": 12, "name": "Angus Rojo" },
+    { "id": 13, "name": "Hereford Polled" },
+    { "id": 14, "name": "Senepol" },
+    { "id": 15, "name": "Bison" }
+  ],
+  "departments": [
+    { "id": 1, "name": "Amazonas" },
+    { "id": 2, "name": "Áncash" },
+    { "id": 3, "name": "Apurímac" },
+    { "id": 4, "name": "Arequipa" },
+    { "id": 5, "name": "Ayacucho" },
+    { "id": 6, "name": "Cajamarca" },
+    { "id": 7, "name": "Callao" },
+    { "id": 8, "name": "Cusco" },
+    { "id": 9, "name": "Huancavelica" },
+    { "id": 10, "name": "Huánuco" }
+  ],
+  "cities": [
+    { "id": 1, "name": "Chachapoyas", "departmentId": 1 },
+    { "id": 2, "name": "Huaraz", "departmentId": 2 },
+    { "id": 3, "name": "Abancay", "departmentId": 3 },
+    { "id": 4, "name": "Arequipa", "departmentId": 4 },
+    { "id": 5, "name": "Huamanga", "departmentId": 5 },
+    { "id": 6, "name": "Cajamarca", "departmentId": 6 },
+    { "id": 7, "name": "Callao", "departmentId": 7 },
+    { "id": 8, "name": "Cusco", "departmentId": 8 },
+    { "id": 9, "name": "Huancayo", "departmentId": 9 },
+    { "id": 10, "name": "Tingo María", "departmentId": 10 }
+  ],
+  "districts": [
+    { "id": 1, "name": "Chachapoyas", "cityId": 1 },
+    { "id": 2, "name": "Caraz", "cityId": 2 },
+    { "id": 3, "name": "Tambobamba", "cityId": 3 },
+    { "id": 4, "name": "Cayma", "cityId": 4 },
+    { "id": 5, "name": "Ayacucho", "cityId": 5 },
+    { "id": 6, "name": "Cajamarca", "cityId": 6 },
+    { "id": 7, "name": "Ventanilla", "cityId": 7 },
+    { "id": 8, "name": "San Sebastián", "cityId": 8 },
+    { "id": 9, "name": "Huancayo", "cityId": 9 },
+    { "id": 10, "name": "Rupa-Rupa", "cityId": 10 }
   ]
 }
+
