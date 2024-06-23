@@ -22,13 +22,16 @@ export default {
       submitted: false,
       deleteFlag:false,
       visibleFilter:false,
-      wasFilter:false
+      wasFilter:false,
+      campaignId:null
 
     };
   },
   created() {
     this.batchesService = new BatchApiService();
+    this.campaignId=this.$route.params.campaignId;
     this.getBatches();
+    console.log(this.campaignId);
   },
   methods: {
     notifySuccessfulAction(message) {
@@ -47,10 +50,10 @@ export default {
       });
     },
     getBatches() {
-      this.batchesService.getAll().then((response) => {
+      this.batchesService.getAll(this.campaignId).then((response) => {
         console.log(response.data);
         let batches = response.data;
-        this.batches = batches.filter(batch => batch.campaignId == this.$route.params.campaignId)
+        this.batches = batches
             .map(batch => Batch.toDisplayableBatch(batch));
         console.log("batches filtrados",this.batches);
         this.allBatches = [...this.batches];
@@ -102,7 +105,7 @@ export default {
       if (this.selectedBatches) {
         this.selectedBatches.forEach((batch) => {
           console.log(this.selectedBatches);
-          this.batchesService.delete(batch).then(() => {
+          this.batchesService.delete(this.campaignId,batch).then(() => {
             this.batches = this.batches.filter((b) => b.id !== batch);
           });
         });
@@ -120,7 +123,7 @@ export default {
       this.batch = Batch.fromDisplayableBatch(this.batch);
       //aggregate default values if is necessary
       this.batch.status= 'Empty';
-      this.batch.campaignId= this.$route.params.campaignId;
+      this.batch.campaignId= this.campaignId;
       this.batchesService.create(this.batch).then((response) => {
         this.batch = Batch.toDisplayableBatch(response.data);
         this.batches.push(this.batch);
@@ -144,7 +147,7 @@ export default {
 
     },
     deleteBatch(){
-      this.batchesService.delete(this.batch.id)
+      this.batchesService.delete(this.campaignId,this.batch.id)
           .then(()=>{
             this.batches=this.batches.filter((t)=>t.id !==this.batch.id);
             this.batch = {};

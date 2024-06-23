@@ -161,6 +161,7 @@ export default {
 
     },
     deleteCampaign(){
+      console.log("tipo del campaign id",typeof this.campaign.id);
       this.campaignService.delete(this.campaign.id)
           .then(()=>{
             this.campaigns=this.campaigns.filter((t)=>t.id !==this.campaign.id);

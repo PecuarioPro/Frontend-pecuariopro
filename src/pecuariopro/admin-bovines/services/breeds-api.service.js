@@ -10,12 +10,12 @@ export class BreedsApiService {
         return http.get(`/breeds/${id}`);
     }
 
-    create(race){
-        return http.post('/breeds',race);
+    create(breed){
+        return http.post('/breeds',breed);
     }
 
-    update(id, race){
-        return http.put(`/breeds/${id}`,race);
+    update(id, breed){
+        return http.put(`/breeds/${id}`,breed);
     }
 
     delete(id){

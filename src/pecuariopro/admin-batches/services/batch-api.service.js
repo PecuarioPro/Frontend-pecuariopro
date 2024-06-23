@@ -1,26 +1,26 @@
 import http from "../../../shared/services/http-common.js";
 export class BatchApiService{
 
-    getAll(){
-        return http.get('/batches');
+    getAll(campaignId){
+        return http.get(`/campaigns/${campaignId}/batches`);
     }
 
-    getById(id){
-        return http.get(`/batches/${id}`);
+    getById(campaignId,id){
+        return http.get(`/campaigns/${campaignId}/batches/${id}`);
     }
 
-    create(campaign){
-        return http.post('/batches',campaign);
-    }
-
-
-    update(id, campaign){
-        return http.put(`/batches/${id}`,campaign);
+    create(batch){
+        return http.post(`campaigns/add-batch`,batch);
     }
 
 
-    delete(id){
-        return http.delete(`/batches/${id}`);
+    update(id, batch){
+        return http.put(`/batches/${id}`,batch);
+    }
+
+
+    delete(campaignId,id){
+        return http.delete(`/campaigns/${campaignId}/batches/${id}`);
     }
 
     findByName(name){

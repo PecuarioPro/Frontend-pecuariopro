@@ -22,8 +22,10 @@ export default {
   },
   methods: {
     findBatch(){
-      console.log("soy el id del gtByiD",this.$route.params.batchId,typeof this.$route.params.batchId)
-      this.batchesService.getById(this.$route.params.batchId).then((response) => {
+      console.log("soy el id del gtByiD",this.$route.params.batchId);
+      console.log("soy el id del campaign  gtByiD",this.$route.params.campaignId);
+
+      this.batchesService.getById(this.$route.params.campaignId,this.$route.params.batchId).then((response) => {
         console.log(response.data);
         let _batch = response.data;
         this.batch = Batch.toDisplayableBatch(_batch);

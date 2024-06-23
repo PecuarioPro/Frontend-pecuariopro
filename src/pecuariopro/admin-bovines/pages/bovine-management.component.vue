@@ -119,8 +119,8 @@ export default {
 
     createBovine(){
     // this.bovine.origin=this.origin;
-      this.bovine.id=0;
-      this.bovine.bovineIdentifier="123";
+    //   this.bovine.id=0;
+    //   this.bovine.bovineIdentifier="123";
      console.log(this.bovine);
      console.log("Voy a crear");
      let breed = this.breedService.findByName(this.bovine.breed);
@@ -199,7 +199,7 @@ export default {
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 10rem">
         </pv-column>
         <!-- Columna Raza -->
-        <pv-column :sortable="true" field="raza" header="Race" style="min-width: 8rem" class="race-column"/>
+        <pv-column :sortable="true" field="breed" header="Breed" style="min-width: 8rem" class="breed-column"/>
 
         <pv-column :sortable="true" field="weight" header="Weight" style="min-width: 8rem" />
 
