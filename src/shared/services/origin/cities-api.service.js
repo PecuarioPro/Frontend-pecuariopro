@@ -22,6 +22,6 @@ export class CitiesApiService{
     }
 
     findByName(name){
-        return http.get(`/cities?name=${name}`);
+        return http.get(`/cities/name/${name}`);
     }
 }

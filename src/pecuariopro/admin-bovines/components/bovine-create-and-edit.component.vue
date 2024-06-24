@@ -1,6 +1,10 @@
 <script>
 import createAndEdit from "../../../shared/components/create-and-edit.component.vue";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {BreedsApiService} from "../services/breeds-api.service.js";
+import {DepartmentsApiService} from "../../../shared/services/origin/departments-api.service.js";
+import {CitiesApiService} from "../../../shared/services/origin/cities-api.service.js";
+import {DistrictsApiService} from "../../../shared/services/origin/districts-api.service.js";
 
 export default {
   name: "bovine-create-and-edit.component",
@@ -19,9 +23,54 @@ export default {
       files: [],
       totalSize: 0,
       totalSizePercent: 0,
+      breeds:null,
+      selectedBreeds:null,
+      departments:null,
+      selectedDepartments:null,
+      cities:null,
+      selectedCities:null,
+      districts:null,
+      selectedDistricts:null,
+      breedsService:null,
+      departmentService:null,
+      cityService:null,
+      districtService:null,
+
+      auxCities:null,
+      auxDepartments:null,
+      auxDistricts:null,
+
+      allCities: null,
+      allDistricts: null,
     }
   },
   created(){
+    this.breedsService = new BreedsApiService();
+    this.departmentService = new DepartmentsApiService();
+    this.cityService = new CitiesApiService();
+    this.districtService = new DistrictsApiService();
+    this.breedsService.getAll().then((response)=>{
+      this.breeds = response.data.map(breed => breed.name);
+    });
+    this.departmentService.getAll().then((response)=>{
+      this.departments = response.data;
+      console.log(this.departments);
+      this.auxDepartments = this.departments.map(department => department.name);
+      console.log(this.departments);
+
+    });
+    this.cityService.getAll().then((response) => {
+      this.allCities = response.data;
+      this.auxCities = this.allCities.map(city => city.name);
+    });
+    this.districtService.getAll().then((response) => {
+      this.allDistricts = response.data;
+      this.auxDistricts = this.allDistricts.map(district => district.name);
+    });
+
+    this.selectedDepartments = this.item2.department;
+
+    console.log("breeds",this.breeds);
     console.log("bovine create and edit",this.item);
   },
   watch: {
@@ -29,6 +78,12 @@ export default {
       if (!newValue) {
         this.resetForm();
       }
+    },
+    'item2.department'(newValue) {
+      this.filterCities();
+    },
+    'item2.city'(newValue) {
+      this.filterDistricts();
     }
   },
   mounted() {
@@ -64,7 +119,7 @@ export default {
       console.log(this.submitted,"soy sub");
       console.log("AHO",this.item);
       this.updateItem();
-      if (this.item.name && this.item.weight && this.item.raza && this.files.length<6) {
+      if (this.item.name && this.item.weight && this.item.breed && this.files.length<6) {
         try {
           await this.uploadFilesToFirebase();
           this.$emit('saved2', this.item);
@@ -79,6 +134,9 @@ export default {
       if (!this.item.origin) {
         this.item.origin = {};
       }
+      console.log(this.item.breed);
+      let fullDate = new Date(this.item.date);
+      this.item.date=fullDate.toISOString().split('T')[0];
       this.item.origin = this.item2;
       this.item.batchId = this.$route.params.batchId;
       console.log(this.item);
@@ -100,7 +158,7 @@ export default {
             console.log(`Uploaded ${file.name}`);
             return getDownloadURL(snapshot.ref).then(url => {
               console.log(`File available at ${url}`);
-              return url; // Retornar la URL para usarla más tarde
+              return url;
             });
           }).catch(error => {
             console.error(`Error uploading ${file.name}:`, error);
@@ -108,7 +166,6 @@ export default {
           });
         });
 
-        // Esperar a que todas las promesas se resuelvan y obtener las URLs
         const urls = await Promise.all(uploadPromises);
 
         if (this.item.imgUrls) {
@@ -122,6 +179,39 @@ export default {
       } catch (error) {
         console.error('Error uploading files:', error);
         this.$toast.add({ severity: 'error', summary: 'Error', detail: 'File Upload Failed', life: 3000 });
+      }
+    },
+
+    filterCities() {
+      console.log(this.departments);
+      console.log(this.item.date);
+      if (this.item2.department) {
+        this.selectedDepartments=this.item2.department;
+        console.log(this.departments);
+        this.selectedDepartments = this.departments.find(department => department.name === this.selectedDepartments );
+        this.cities = this.allCities.filter(city => city.departmentId === this.selectedDepartments.id);
+        this.auxCities = this.cities.map(city => city.name);
+        console.log("toy aca en el if");
+        this.selectedCities = null;
+        this.districts = null;
+        this.selectedDistricts = null;
+      } else {
+        this.cities = null;
+        this.selectedCities = null;
+        this.districts = null;
+        this.selectedDistricts = null;
+      }
+    },
+    filterDistricts() {
+      if (this.item2.city) {
+        this.selectedCities=this.item2.city;
+        this.selectedCities = this.cities.find(city => city.name === this.selectedCities);
+        this.districts = this.allDistricts.filter(district => district.cityId === this.selectedCities.id);
+        this.auxDistricts = this.districts.map(district => district.name);
+        this.selectedDistricts = null;
+      } else {
+        this.districts = null;
+        this.selectedDistricts = null;
       }
     }
 
@@ -137,64 +227,138 @@ export default {
       <div class="p-fluid container-dialog">
 
         <div class="container-form">
-          <div class="field mt-5 container-field">
+          <div class="field mt-3 container-field">
             <label for="name">Name</label>
             <pv-float-label>
               <pv-input-text id="name" v-model="this.item.name" :class="{'p-invalid': submitted && !this.item.name}"/>
               <small v-if="submitted && !this.item.name" class="p-invalid">Name is required.</small>
             </pv-float-label>
           </div>
-          <div class="field mt-5 container-field">
-            <label for="race">Race</label>
-            <pv-float-label>
-              <pv-input-text id="race" v-model="this.item.breed" :class="{'p-invalid': submitted && !this.item.race}"/>
-              <small v-if="submitted && !this.item.breed" class="p-invalid">Breed is required.</small>
-            </pv-float-label>
-          </div>
 
-          <div class="field mt-5 container-field">
+
+          <div class="field mt-3 container-field">
             <label for="date">Date</label>
             <pv-float-label>
-              <pv-calendar inputId="date" v-model="this.item.date" showIcon iconDisplay="input" :class="{'p-invalid': submitted && !this.item.date}"/>
+              <pv-calendar inputId="date" v-model="this.item.date" showIcon iconDisplay="input" :class="{'p-invalid': submitted && !this.item.date}" dateFormat="dd/mm/yy"/>
               <small v-if="submitted && !this.item.date" class="p-invalid">Date is required.</small>
             </pv-float-label>
           </div>
 
-          <div class="field mt-5 container-field">
+
+          <div class="field mt-3 container-field">
+            <label for="race">Breed</label>
+            <!--            <pv-float-label>-->
+            <!--              <pv-input-text id="race" v-model="this.item.breed" :class="{'p-invalid': submitted && !this.item.race}"/>-->
+            <!--              <small v-if="submitted && !this.item.breed" class="p-invalid">Breed is required.</small>-->
+            <!--            </pv-float-label>-->
+            <pv-dropdown v-model="this.item.breed" :options="this.breeds" filter placeholder="Select a Breed" >
+              <template #value="slotProps">
+                <div v-if="slotProps.value" class="flex align-items-center">
+                  <div>{{ slotProps.value}}</div>
+                </div>
+                <span v-else>
+            {{ slotProps.placeholder }}
+                </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option }}</div>
+                </div>
+              </template>
+            </pv-dropdown>
+          </div>
+
+          <div class="field mt-3 container-field">
             <label for="weight">Weight</label>
             <pv-float-label>
               <pv-input-number id="weight" v-model="this.item.weight" :class="{'p-invalid': submitted && !this.item.weight}"/>
               <small v-if="submitted && !this.item.weight" class="p-invalid">Weight is required.</small>
             </pv-float-label>
           </div>
-          <div class="field mt-5 container-field">
-            <label for="department">Department</label>
-            <pv-float-label>
-              <pv-input-text id="department" v-model="this.item2.department" class="p-inputtext p-component" />
-            </pv-float-label>
-          </div>
-          <div class="field mt-5 container-field">
-            <label for="city">City</label>
-            <pv-float-label>
-              <pv-input-text id="city" v-model="this.item2.city" class="p-inputtext p-component" />
-            </pv-float-label>
-          </div>
-          <div class="field mt-5 container-field">
-            <label for="district">District</label>
-            <pv-float-label>
-              <pv-input-text id="district" v-model="this.item2.district" class="p-inputtext p-component" />
-            </pv-float-label>
+
+<!--          <div class="field mt-5 container-field">-->
+<!--            <label for="department">Department</label>-->
+<!--            <pv-float-label>-->
+<!--              <pv-input-text id="department" v-model="this.item2.department" class="p-inputtext p-component" />-->
+<!--            </pv-float-label>-->
+<!--          </div>-->
+
+          <div class="field mt-3 container-field">
+            <label for="race">Department</label>
+            <!--            <pv-float-label>-->
+            <!--              <pv-input-text id="race" v-model="this.item.breed" :class="{'p-invalid': submitted && !this.item.race}"/>-->
+            <!--              <small v-if="submitted && !this.item.breed" class="p-invalid">Breed is required.</small>-->
+            <!--            </pv-float-label>-->
+            <pv-dropdown v-model="this.item2.department" :options="this.auxDepartments" filter placeholder="Select a Department" >
+              <template #value="slotProps">
+                <div v-if="slotProps.value" class="flex align-items-center">
+                  <div>{{ slotProps.value }}</div>
+                </div>
+                <span v-else>
+            {{ slotProps.placeholder }}
+                </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option }}</div>
+                </div>
+              </template>
+            </pv-dropdown>
           </div>
 
-          <div class="field mt-5 container-field">
+          <div class="field mt-3 container-field">
+<!--            <label for="city">City</label>-->
+<!--            <pv-float-label>-->
+<!--              <pv-input-text id="city" v-model="this.item2.city" class="p-inputtext p-component" />-->
+<!--            </pv-float-label>-->
+            <label for="race">City</label>
+            <pv-dropdown v-model="this.item2.city" :options="this.auxCities" filter placeholder="Select a City" :disabled="!this.cities">
+              <template #value="slotProps">
+                <div v-if="slotProps.value" class="flex align-items-center">
+                  <div>{{ slotProps.value }}</div>
+                </div>
+                <span v-else>
+            {{ slotProps.placeholder }}
+                </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option }}</div>
+                </div>
+              </template>
+            </pv-dropdown>
+          </div>
+          <div class="field mt-3 container-field">
+            <!--            <label for="district">District</label>-->
+            <!--            <pv-float-label>-->
+            <!--              <pv-input-text id="district" v-model="this.item2.district" class="p-inputtext p-component" />-->
+            <!--            </pv-float-label>-->
+            <label for="race">District</label>
+            <pv-dropdown v-model="this.item2.district" :options="this.auxDistricts" filter placeholder="Select a District" :disabled="!this.districts">
+              <template #value="slotProps">
+                <div v-if="slotProps.value" class="flex align-items-center">
+                  <div>{{ slotProps.value }}</div>
+                </div>
+                <span v-else>
+            {{ slotProps.placeholder }}
+                </span>
+              </template>
+              <template #option="slotProps">
+                <div class="flex align-items-center">
+                  <div>{{ slotProps.option }}</div>
+                </div>
+              </template>
+            </pv-dropdown>
+
+          </div>
+
+          <div class="field mt-3 container-field">
             <label for="observations">Additional Information</label>
             <pv-float-label>
               <pv-textarea v-model="this.item.observations" autoResize rows="10" cols="30" />
             </pv-float-label>
           </div>
-        </div>
-
-
+            </div>
         <div class="container-gallery">
           <div class="card">
             <pv-toast />
@@ -226,8 +390,11 @@ export default {
               </div>
             </template>
           </div>
+
         </div>
-      </div>
+       </div>
+
+
     </template>
   </create-and-edit>
 </template>

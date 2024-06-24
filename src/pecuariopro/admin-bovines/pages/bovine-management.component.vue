@@ -22,12 +22,16 @@ export default {
       title:{ singular: 'Bovine', plural: 'Bovines' },
       bovines:[],
       selectedBovines:[],
-      races:[],
+      breeds:[],
       departments:[],
       cities:[],
       districts:[],
       bovine:{},
       origin:{},
+      department:{},
+      city:{},
+      district:{},
+      breed:{},
 
       bovineService:null,
       breedService:null,
@@ -56,7 +60,20 @@ export default {
       this.bovines = bovines.filter(bovine => bovine.batchId==this.batchId);//borre el toDisplayableBovine
       console.log("mis bovines filtrados", this.bovines);
     });
-    console.log(`soy el flag y estoy nose:  ${this.isVisibleCard}`)
+
+    this.breedService.getAll().then((response)=>{
+      this.breeds=response.data;
+    })
+
+    this.departmentService.getAll().then((response)=>{
+      this.departments=response.data;
+    });
+    this.cityService.getAll().then((response)=>{
+      this.cities=response.data;
+    })
+    this.districtService.getAll().then((response)=>{
+      this.districts =response.data;
+    })
 
   },
   methods:{
@@ -75,6 +92,9 @@ export default {
       this.isEdit = false;
       this.isVisibleCard = true;
       this.origin = {};
+      // this.department={};
+      // this.city={};
+      // this.district={};
       console.log(`soy el flag de crear y estoy prendiendo ${this.isVisibleCard}`)
     },
     onEditItemEventHandler(item) {
@@ -83,6 +103,7 @@ export default {
       this.isEdit = true;
       this.isVisibleCard = true;
       this.origin=this.bovine.origin;
+
       console.log(`soy el flag de editar y estoy prendiendo ${this.isVisibleCard}`)
       // this.createAndEditDialogIsVisible = true aqui ira la card para editar;
     },
@@ -118,17 +139,30 @@ export default {
     },
 
     createBovine(){
-    // this.bovine.origin=this.origin;
+     this.bovine.origin=this.origin;
     //   this.bovine.id=0;
     //   this.bovine.bovineIdentifier="123";
      console.log(this.bovine);
      console.log("Voy a crear");
-     let breed = this.breedService.findByName(this.bovine.breed);
-      let department = this.departmentService.findByName(this.bovine.origin.department);
-      let city = this.cityService.findByName(this.bovine.origin.city);
-      let district = this.districtService.findByName(this.bovine.origin.district);
-      this.bovine = Bovine.fromDisplayableBovine(this.bovine,breed.id,department.id,city.id,district.id);
-      this.bovineService.create(this.bovine)
+
+     this.breed = this.breeds.find(breed => breed.name === this.bovine.breed);
+     this.department=this.departments.find(department=>department.name === this.bovine.origin.department);
+     this.city=this.cities.find(city => city.name===this.bovine.origin.city);
+     this.district=this.districts.find(district => district.name === this.bovine.origin.district);
+
+     this.bovine.id=0;
+     this.bovine.bovineIdentifier=0;
+      this.bovine.batchId = parseInt(this.bovine.batchId);
+    console.log(this.city);
+      console.log(this.breed);
+      console.log(this.department);
+      console.log(this.district);
+
+
+
+      this.bovine = Bovine.fromDisplayableBovine(this.bovine,this.breed.id,this.department.id,this.city.id,this.district.id);
+      console.log(this.bovine);
+     this.bovineService.create(this.bovine)
           .then((response) => {
             console.log(response);
             this.bovine = response.data;

@@ -21,6 +21,7 @@ export class DepartmentsApiService {
     }
 
     findByName(name) {
-        return http.get(`/departments?name=${name}`);
+        console.log("en el department service",name);
+        return http.get(`/departments/name/${name}`);
     }
 }

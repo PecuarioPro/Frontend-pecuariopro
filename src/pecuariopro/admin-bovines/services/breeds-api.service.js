@@ -23,7 +23,8 @@ export class BreedsApiService {
     }
 
     findByName(name){
-        return http.get(`/breeds?name=${name}`);
+        return http.get(`/breeds/name/${name}`);
+
     }
 
 }

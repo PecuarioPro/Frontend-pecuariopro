@@ -25,7 +25,7 @@ export class DistrictsApiService{
     }
 
     findByName(name){
-        return http.get(`/districts?name=${name}`);
+        return http.get(`/districts/name/${name}`);
     }
 
 
