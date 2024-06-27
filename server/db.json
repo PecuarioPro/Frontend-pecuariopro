@@ -775,98 +775,224 @@
       "photoUrl": "https://raw.githubusercontent.com/AlexlmL/ImagesforOpenSource/main/7.webp"
     }
   ],
-  "food": [
+  "inventory": [
     {
       "id": 2,
-      "name": "Wheat",
-      "quantity": 5,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Ftrigo.png?alt=media&token=363f5000-0699-47c8-b44e-4df91212a1a8"
+      "productName": "Wheat",
+      "quantity": 5
     },
     {
       "id": 3,
-      "name": "Heno",
-      "quantity": 20,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fheno.png?alt=media&token=f67dab17-49ed-4dca-92c5-d777baaed3de"
-    }
-  ],
-  "tools": [
-    {
-      "id": 1,
-      "name": "Hammer",
-      "quantity": 3,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fhammer.png?alt=media&token=32973929-6b63-4310-bd25-89a040f65cb8"
-    },
-    {
-      "id": 2,
-      "name": "Pliers",
-      "quantity": 10,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fpliers.png?alt=media&token=40dcc168-4cbf-494c-889e-480bb7d03ae6"
-    },
-    {
-      "id": 3,
-      "name": "Bucket",
-      "quantity": 7,
-      "image": "https://firebasestorage.googleapis.com/v0/b/pecuariopro-98bb9.appspot.com/o/PecuarioPro-inventory-resources%2Fgansito.png?alt=media&token=c3227517-c284-47ad-a86b-85554f592a13"
-    },
-    {
-      "name": "caca",
-      "quantity": 34,
-      "image": "",
-      "id": 4
+      "productName": "Henos",
+      "quantity": 20
     }
   ],
   "races": [
-    { "id": 1, "name": "Angus" },
-    { "id": 2, "name": "Hereford" },
-    { "id": 3, "name": "Limousin" },
-    { "id": 4, "name": "Charolais" },
-    { "id": 5, "name": "Simmental" },
-    { "id": 6, "name": "Holstein" },
-    { "id": 7, "name": "Jersey" },
-    { "id": 8, "name": "Brahman" },
-    { "id": 9, "name": "Brangus" },
-    { "id": 10, "name": "Santa Gertrudis" },
-    { "id": 11, "name": "Gelbvieh" },
-    { "id": 12, "name": "Angus Rojo" },
-    { "id": 13, "name": "Hereford Polled" },
-    { "id": 14, "name": "Senepol" },
-    { "id": 15, "name": "Bison" }
+    {
+      "id": 1,
+      "name": "Angus"
+    },
+    {
+      "id": 2,
+      "name": "Hereford"
+    },
+    {
+      "id": 3,
+      "name": "Limousin"
+    },
+    {
+      "id": 4,
+      "name": "Charolais"
+    },
+    {
+      "id": 5,
+      "name": "Simmental"
+    },
+    {
+      "id": 6,
+      "name": "Holstein"
+    },
+    {
+      "id": 7,
+      "name": "Jersey"
+    },
+    {
+      "id": 8,
+      "name": "Brahman"
+    },
+    {
+      "id": 9,
+      "name": "Brangus"
+    },
+    {
+      "id": 10,
+      "name": "Santa Gertrudis"
+    },
+    {
+      "id": 11,
+      "name": "Gelbvieh"
+    },
+    {
+      "id": 12,
+      "name": "Angus Rojo"
+    },
+    {
+      "id": 13,
+      "name": "Hereford Polled"
+    },
+    {
+      "id": 14,
+      "name": "Senepol"
+    },
+    {
+      "id": 15,
+      "name": "Bison"
+    }
   ],
   "departments": [
-    { "id": 1, "name": "Amazonas" },
-    { "id": 2, "name": "Áncash" },
-    { "id": 3, "name": "Apurímac" },
-    { "id": 4, "name": "Arequipa" },
-    { "id": 5, "name": "Ayacucho" },
-    { "id": 6, "name": "Cajamarca" },
-    { "id": 7, "name": "Callao" },
-    { "id": 8, "name": "Cusco" },
-    { "id": 9, "name": "Huancavelica" },
-    { "id": 10, "name": "Huánuco" }
+    {
+      "id": 1,
+      "name": "Amazonas"
+    },
+    {
+      "id": 2,
+      "name": "Áncash"
+    },
+    {
+      "id": 3,
+      "name": "Apurímac"
+    },
+    {
+      "id": 4,
+      "name": "Arequipa"
+    },
+    {
+      "id": 5,
+      "name": "Ayacucho"
+    },
+    {
+      "id": 6,
+      "name": "Cajamarca"
+    },
+    {
+      "id": 7,
+      "name": "Callao"
+    },
+    {
+      "id": 8,
+      "name": "Cusco"
+    },
+    {
+      "id": 9,
+      "name": "Huancavelica"
+    },
+    {
+      "id": 10,
+      "name": "Huánuco"
+    }
   ],
   "cities": [
-    { "id": 1, "name": "Chachapoyas", "departmentId": 1 },
-    { "id": 2, "name": "Huaraz", "departmentId": 2 },
-    { "id": 3, "name": "Abancay", "departmentId": 3 },
-    { "id": 4, "name": "Arequipa", "departmentId": 4 },
-    { "id": 5, "name": "Huamanga", "departmentId": 5 },
-    { "id": 6, "name": "Cajamarca", "departmentId": 6 },
-    { "id": 7, "name": "Callao", "departmentId": 7 },
-    { "id": 8, "name": "Cusco", "departmentId": 8 },
-    { "id": 9, "name": "Huancayo", "departmentId": 9 },
-    { "id": 10, "name": "Tingo María", "departmentId": 10 }
+    {
+      "id": 1,
+      "name": "Chachapoyas",
+      "departmentId": 1
+    },
+    {
+      "id": 2,
+      "name": "Huaraz",
+      "departmentId": 2
+    },
+    {
+      "id": 3,
+      "name": "Abancay",
+      "departmentId": 3
+    },
+    {
+      "id": 4,
+      "name": "Arequipa",
+      "departmentId": 4
+    },
+    {
+      "id": 5,
+      "name": "Huamanga",
+      "departmentId": 5
+    },
+    {
+      "id": 6,
+      "name": "Cajamarca",
+      "departmentId": 6
+    },
+    {
+      "id": 7,
+      "name": "Callao",
+      "departmentId": 7
+    },
+    {
+      "id": 8,
+      "name": "Cusco",
+      "departmentId": 8
+    },
+    {
+      "id": 9,
+      "name": "Huancayo",
+      "departmentId": 9
+    },
+    {
+      "id": 10,
+      "name": "Tingo María",
+      "departmentId": 10
+    }
   ],
   "districts": [
-    { "id": 1, "name": "Chachapoyas", "cityId": 1 },
-    { "id": 2, "name": "Caraz", "cityId": 2 },
-    { "id": 3, "name": "Tambobamba", "cityId": 3 },
-    { "id": 4, "name": "Cayma", "cityId": 4 },
-    { "id": 5, "name": "Ayacucho", "cityId": 5 },
-    { "id": 6, "name": "Cajamarca", "cityId": 6 },
-    { "id": 7, "name": "Ventanilla", "cityId": 7 },
-    { "id": 8, "name": "San Sebastián", "cityId": 8 },
-    { "id": 9, "name": "Huancayo", "cityId": 9 },
-    { "id": 10, "name": "Rupa-Rupa", "cityId": 10 }
+    {
+      "id": 1,
+      "name": "Chachapoyas",
+      "cityId": 1
+    },
+    {
+      "id": 2,
+      "name": "Caraz",
+      "cityId": 2
+    },
+    {
+      "id": 3,
+      "name": "Tambobamba",
+      "cityId": 3
+    },
+    {
+      "id": 4,
+      "name": "Cayma",
+      "cityId": 4
+    },
+    {
+      "id": 5,
+      "name": "Ayacucho",
+      "cityId": 5
+    },
+    {
+      "id": 6,
+      "name": "Cajamarca",
+      "cityId": 6
+    },
+    {
+      "id": 7,
+      "name": "Ventanilla",
+      "cityId": 7
+    },
+    {
+      "id": 8,
+      "name": "San Sebastián",
+      "cityId": 8
+    },
+    {
+      "id": 9,
+      "name": "Huancayo",
+      "cityId": 9
+    },
+    {
+      "id": 10,
+      "name": "Rupa-Rupa",
+      "cityId": 10
+    }
   ]
 }
-
