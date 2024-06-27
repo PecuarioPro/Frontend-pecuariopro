@@ -16,6 +16,10 @@ import ConfirmationService from "primevue/confirmationservice";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
+// Pinia
+import {createPinia} from "pinia";
+
+const pinia = createPinia();
 
 
 // PrimeVue Components
@@ -72,6 +76,7 @@ createApp(App)
     .use(ToastService)
     .use(DialogService)
     .use(ConfirmationService)
+    .use(pinia)
     .component('Chart', Chart)
     .component('ConfirmDialog', ConfirmDialog)
     .component('pv-progress-bar',ProgressBar)

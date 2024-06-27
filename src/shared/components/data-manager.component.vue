@@ -37,10 +37,10 @@ export default {
         message:          `Are you sure you want to delete the selected ${this.title.plural}?`,
         header:           'Confirmation',
         icon:             'pi pi-exclamation-triangle',
-        rejectClassName:  'p-button-secondary p-button-outlined',
+        rejectClass:  'p-button-secondary p-button-outlined',
         rejectLabel:      'Cancel',
         acceptLabel:      'Delete',
-        acceptClassName:  'p-button-danger',
+        acceptClass: 'p-button-danger',
         accept:           () => this.$emit('delete-selected-items', this.selectedItems),
         reject:           () => {}
       });
@@ -54,10 +54,10 @@ export default {
         message:          `Are you sure you want to delete this ${this.title.singular}?`,
         header:           'Confirmation',
         icon:             'pi pi-exclamation-triangle',
-        rejectClassName:  'p-button-secondary p-button-outlined',
+        rejectClass: 'p-button-secondary p-button-outlined',
         rejectLabel:      'Cancel',
         acceptLabel:      'Delete',
-        acceptClassName:  'p-button-danger',
+        acceptClass: 'p-button-danger',
         accept:           () => this.$emit('delete-item', item),
         reject:           () => {}
       });

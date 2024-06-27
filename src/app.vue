@@ -1,8 +1,10 @@
 <script>
 import { useRoute} from "vue-router";
+import AuthenticationSection from "./iam/components/authentication-section.component.vue";
 
 export default {
   name: 'App',
+  components: {AuthenticationSection},
   setup() {
     const route = useRoute();
     return { route };
@@ -37,9 +39,7 @@ export default {
           <h1 class="toolbar-title">PecuarioPro</h1>
         </template>
         <template #end>
-          <div class="flex-column">
-            <!-- Items can be added here if needed -->
-          </div>
+          <authentication-section/>
         </template>
       </pv-toolbar>
     </header>
@@ -223,6 +223,7 @@ export default {
                             <span class="font-medium">Settings</span>
                           </a>
                           </router-link>
+
                         </li>
                       </ul>
                     </li>
