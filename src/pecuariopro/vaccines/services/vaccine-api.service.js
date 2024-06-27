@@ -22,9 +22,6 @@ export class VaccinesApiService {
         return http.delete(`/vaccines/${id}`);
     }
 
-    findByTitle(title) {
-        return http.get(`/vaccines?title=${title}`);
-    }
     getVaccinesGroupedByYear() {
         return this.getAll().then(response => {
             // Suponiendo que 'response.data' es un array de objetos vacunas como el ejemplo proporcionado

@@ -16,7 +16,9 @@ import bovineTotal from "../pecuariopro/admin-bovines/pages/bovine-total.vue";
 import StatisticsComponent from "../pecuariopro/Stadistics/Statistics.component.vue";
 import veterinarianViewComponent from "../pecuariopro/veterinarians/pages/veterinarian-view.component.vue";
 import veterinarianManagementComponent from "../pecuariopro/veterinarians/pages/veterinarian-management.component.vue";
-
+import SignUpComponent from "../iam/pages/sign-up.component.vue";
+import SignInComponent from "../iam/pages/sign-in.component.vue";
+import {authenticationGuard} from "../iam/services/authentication.guard.js";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -60,7 +62,18 @@ const router = createRouter({
 
         // Path to handle unmatched URLs, using notFoundComponent
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
+
+        // Path to sign-in and sign-up
+        { path: '/sign-in', name: 'sign-in',    component: SignInComponent,meta: { title: 'Sign In' } },
+        { path: '/sign-up', name: 'sign-up',    component: SignUpComponent,meta: { title: 'Sign Up' } },
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    let baseTitle = 'ACME Learning Center';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    // Call the authentication guard
+    authenticationGuard(to, from, next);
 });
 
 export default router;
