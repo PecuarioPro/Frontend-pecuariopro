@@ -1,4 +1,4 @@
-import http from "../../../../../Ciclo 2024-1/Aplicaciones Web/learning-center-master/src/shared/services/http-common.js";
+import http from "../../shared/services/http-common.js";
 
 export class AuthenticationService {
     signIn(signInRequest) {
