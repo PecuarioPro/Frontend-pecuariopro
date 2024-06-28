@@ -27,6 +27,10 @@ export class BovinesApiService{
         return http.get(`/bovines?name=${name}`);
     }
 
+    aggregateImage(id,imgUrl){
+        return http.post(`/bovines/${id}/add-images`,imgUrl);
+    }
+
     getBovinesGroupedByBatchId() {
         return this.getAll().then(response => {
             const bovines = response.data;

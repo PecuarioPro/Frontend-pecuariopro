@@ -158,6 +158,7 @@ export default {
       console.log(this.department);
       console.log(this.district);
 
+      let imgUrls = this.bovine.imgUrls;
 
 
       this.bovine = Bovine.fromDisplayableBovine(this.bovine,this.breed.id,this.department.id,this.city.id,this.district.id);

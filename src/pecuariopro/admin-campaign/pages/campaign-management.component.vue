@@ -224,14 +224,14 @@ export default {
       <div>
         <div class="button-group-desktop" v-if="!deleteFlag">
           <pv-button class="mr-2 title-button btn-action" icon="pi pi-plus" label="New" severity="secondary" @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text  @click="onFilterSelected"></pv-button>
-          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text  @click="deleteAction"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-filter" label="Filter" severity="secondary" text  @click="onFilterSelected" v-if="this.campaigns"></pv-button>
+          <pv-button class="mr-2 title-button btn-action" icon="pi pi-trash" severity="secondary" text  @click="deleteAction" v-if="this.campaigns"></pv-button>
         </div>
 
         <div class="button-group-mobile" v-if="!deleteFlag">
           <pv-button class="mr-2 icon-button btn-action" icon="pi pi-plus" severity="secondary"  @click="onNewItemEventHandler"></pv-button>
-          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-filter" severity="secondary" @click="onFilterSelected"></pv-button>
-          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-trash" severity="secondary" @click="deleteAction"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-filter" severity="secondary" @click="onFilterSelected" v-if="this.campaigns"></pv-button>
+          <pv-button class="mr-2 icon-button btn-action" icon="pi pi-trash" severity="secondary" @click="deleteAction" v-if="this.campaigns"></pv-button>
         </div>
 
         <div v-if="deleteFlag">
@@ -252,15 +252,23 @@ export default {
     </div>
 
 
-    <div class="container-cards" >
+    <div class="container-cards" v-if="this.campaigns" >
       <div v-for="campaign in campaigns" :key="campaign.id" class="card">
         <div class="flex align-items-center" v-if="deleteFlag">
           <pv-checkbox v-model="selectedCampaigns" :inputId="campaign.id" name="campaign" :value="campaign.id" ></pv-checkbox>
         </div>
         <campaign-view :campaign="campaign" @viewMore="handleViewMore" @Edit="onEditItemEventHandler" @Delete="onDeleteItemEventHandler"/>
       </div>
-
     </div>
+
+    <div class="container-no-campaigns" v-if="!this.campaigns">
+      <div class="no-campaigns">
+        <h2>Add new Campaign</h2>
+        <p>You don't have any campaign. Add a campaign and start managing</p>
+      </div>
+    </div>
+
+
     <campaign-create-and-edit
         :item="campaign"
         :visible="isVisibleCard"
@@ -347,6 +355,26 @@ export default {
   font-size:25px;
 }
 
+.container-no-campaigns{
+  width:100%;
+  height:100vh;
+}
+.no-campaigns{
+  max-width:1000px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  border: 3px #32C793 dashed;
+  margin: 40px auto;
+  min-height:200px;
+  padding:5px;
+  justify-content: center;
+  text-align: center;
+}
+.img-campaign-empty{
+  height:250px;
+  width:250px;
+}
 @media (min-width: 750px) {
 
   .container-title{
