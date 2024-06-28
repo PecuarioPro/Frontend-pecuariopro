@@ -55,11 +55,18 @@ export default {
     this.batchesService = new BatchApiService();
     this.campaignId=this.$route.params.campaignId;
     this.origin=new Origin;
-    this.bovineService = new BovinesApiService();
-    this.breedService = new BreedsApiService();
     this.departmentService = new DepartmentsApiService();
     this.cityService = new CitiesApiService();
     this.districtService = new DistrictsApiService();
+    this.departmentService.getAll().then((response)=>{
+      this.departments=response.data;
+    });
+    this.cityService.getAll().then((response)=>{
+      this.cities=response.data;
+    })
+    this.districtService.getAll().then((response)=>{
+      this.districts =response.data;
+    })
     this.getBatches();
     console.log(this.campaignId);
   },
@@ -162,19 +169,20 @@ export default {
     //CRUD METHODS
     createBatch(){
       this.batch.origin=this.origin;
-      // this.batch = Batch.fromDisplayableBatch(this.batch);
-      //aggregate default values if is necessary
       this.batch.status= 'Empty';
       this.batch.campaignId= this.campaignId;
-      let toCreate ={};
       this.department=this.departments.find(department=>department.name === this.batch.origin.department);
       this.city=this.cities.find(city => city.name===this.batch.origin.city);
       this.district=this.districts.find(district => district.name === this.batch.origin.district);
-
-      this.batch = Batch.fromDisplayableBatch(0,this.batch.name,this.batch.area,this.district.id,
-      this.city.id,this.department.id,this.batch.campaignId);
+      console.log(this.batch,"antes de crear");
+      this.batch.campaignId = parseInt(this.batch.campaignId);
+      console.log(this.city);
+      console.log(this.department);
+      console.log(this.district);
+      this.batch = Batch.fromDisplayableBatch(this.batch,this.department.id,this.city.id,this.district.id);
+      console.log(this.batch);
       this.batchesService.create(this.batch).then((response) => {
-        this.batch = Batch.toDisplayableBatch(response.data);
+        this.batch = response.data;
         this.batches.push(this.batch);
         this.notifySuccessfulAction("Batch Created");
 

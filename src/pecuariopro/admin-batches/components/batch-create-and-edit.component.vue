@@ -79,6 +79,9 @@ export default {
   },
 
   methods:{
+    resetForm() {
+      this.submitted = false;
+    },
     canceledEventHandler() {
       this.$emit('canceled');
       this.submitted = false;

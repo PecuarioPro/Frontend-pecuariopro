@@ -1,5 +1,5 @@
 export class Batch {
-    constructor(id, name, area, status, campaignId,districtId,cityId,departmentId) {
+    constructor(id, name, area, campaignId,districtId,cityId,departmentId) {
         this.id = id;
         this.name = name;
         this.area = area;
@@ -9,15 +9,15 @@ export class Batch {
         this.campaignId = campaignId;
     }
 
-    static fromDisplayableBatch(displayableBatch) {
+    static fromDisplayableBatch(displayableBatch,departmentId,cityId,districtId) {
         return new Batch(
             displayableBatch.id,
             displayableBatch.name,
             displayableBatch.area,
-            displayableBatch.districtId,
-            displayableBatch.cityId,
-            displayableBatch.departmentId,
-            displayableBatch.campaignId
+            displayableBatch.campaignId,
+            districtId,
+            cityId,
+            departmentId
         );
     }
 
