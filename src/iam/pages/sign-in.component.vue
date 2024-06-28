@@ -50,8 +50,12 @@ export default {
     onSignIn() {
       let authenticationStore = useAuthenticationStore();
       let signInRequest = new SignInRequest(this.username, this.password);
-      authenticationStore.signIn(signInRequest, this.$router);
-
+      authenticationStore.signIn(signInRequest, this.$router)
+          .then((response) => {
+            if (response && response.token) {
+              localStorage.setItem('authToken', response.token);
+            }
+          });
     }
   }
 }

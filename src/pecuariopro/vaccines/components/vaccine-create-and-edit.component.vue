@@ -14,16 +14,6 @@ export default {
     }
   },
   methods: {
-    getSeverity(status) {
-      switch (status) {
-        case 'Applied':
-          return 'success';
-        case 'Not applied':
-          return 'info';
-        default:
-          return null;
-      }
-    },
     canceledEventHandler() {
       this.$emit('canceled');
     },
