@@ -9,12 +9,16 @@ import notFoundComponent from "../public/pages/not-found.component.vue";
 import staffManagementComponent from "../pecuariopro/staff/pages/staff-management.component.vue";
 import statisticsVaccineComponent from "../pecuariopro/vaccines/pages/statistics-vaccine.component.vue";
 import staffViewComponent from "../pecuariopro/staff/pages/staff-view.component.vue";
-import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages/veterinarians-management.component.vue";
+import VeterinariansManagementComponent from "../pecuariopro/veterinarians/pages/veterinarian-management.component.vue";
 import inventoryComponent from "../pecuariopro/inventory/components/inventory.component.vue";
 import homeComponent from "../public/pages/home.component.vue";
 import bovineTotal from "../pecuariopro/admin-bovines/pages/bovine-total.vue";
 import StatisticsComponent from "../pecuariopro/Stadistics/Statistics.component.vue";
-
+import veterinarianViewComponent from "../pecuariopro/veterinarians/pages/veterinarian-view.component.vue";
+import veterinarianManagementComponent from "../pecuariopro/veterinarians/pages/veterinarian-management.component.vue";
+import SignUpComponent from "../iam/pages/sign-up.component.vue";
+import SignInComponent from "../iam/pages/sign-in.component.vue";
+import {authenticationGuard} from "../iam/services/authentication.guard.js";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,7 +31,6 @@ const router = createRouter({
         { path: "/campaign", component: campaignManagementComponent, meta: { title: "Campaign" }},
         { path: "/inventory", component: inventoryComponent, meta: { title: "Inventory" }},
         { path: "/home", component: homeComponent, meta: { title: "Home"} },
-        { path: "/veterinarians", component: VeterinariansManagementComponent,meta: { title: "Veterinarian"} },
         {
             path: "/campaigns/:campaignId",
             component: campaignDetailsComponent,
@@ -52,9 +55,25 @@ const router = createRouter({
         // Path to manage staff
         { path: "/staff-manage", component: staffManagementComponent, meta: { title: "Staff Manage" } },
 
+        { path: "/veterinarian-view", component: veterinarianViewComponent, meta: { title: "Veterinarian View" } },
+
+        // Path to manage staff
+        { path: "/veterinarian-manage", component: veterinarianManagementComponent, meta: { title: "Veterinarian Manage" } },
+
         // Path to handle unmatched URLs, using notFoundComponent
         { path: "/:catchAll(.*)", component: notFoundComponent, meta: { title: "Not Found" } },
+
+        // Path to sign-in and sign-up
+        { path: '/sign-in', name: 'sign-in',    component: SignInComponent,meta: { title: 'Sign In' } },
+        { path: '/sign-up', name: 'sign-up',    component: SignUpComponent,meta: { title: 'Sign Up' } },
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    let baseTitle = 'PecuarioPro';
+    document.title = `${baseTitle} | ${to.meta['title']}`;
+    // Call the authentication guard
+    authenticationGuard(to, from, next);
 });
 
 export default router;

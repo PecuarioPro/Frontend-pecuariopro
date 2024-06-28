@@ -1,8 +1,10 @@
 <script>
 import { useRoute} from "vue-router";
+import AuthenticationSection from "./iam/components/authentication-section.component.vue";
 
 export default {
   name: 'App',
+  components: {AuthenticationSection},
   setup() {
     const route = useRoute();
     return { route };
@@ -17,7 +19,9 @@ export default {
         {label: 'Campaign', to: '/campaign'},
         {label: 'Staff', to: '/staff-view'},
         {label: 'Inventory', to: '/inventory'}
-      ]
+      ],
+      hiddenRoutes: ['/sign-in', '/sign-up']
+
     }
   },
   methods: {
@@ -30,20 +34,20 @@ export default {
 
 <template>
   <div>
-    <header v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
       <pv-toolbar class="toolbar" fixed>
         <template #start>
-          <pv-button class="menu-button" icon="pi pi-bars" @click="toggleDrawer()" />
+          <pv-button
+              class="menu-button"
+              icon="pi pi-bars"
+              @click="toggleDrawer()"
+              v-if="!hiddenRoutes.includes(route.path)"
+          />
           <h1 class="toolbar-title">PecuarioPro</h1>
         </template>
         <template #end>
-          <div class="flex-column">
-            <!-- Items can be added here if needed -->
-          </div>
+          <authentication-section/>
         </template>
       </pv-toolbar>
-    </header>
-
 
     <div class="app-content" v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
 
@@ -193,13 +197,6 @@ export default {
                           </ul>
                         </li>
                         <li>
-                          <a>
-                            <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-auto">
-
-                            </ul>
-                          </a>
-                        </li>
-                        <li>
                           <router-link to="/inventory" @click=toggleDrawer() style="text-decoration: none">
                           <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                             <i class="pi pi-warehouse mr-2"></i>
@@ -209,12 +206,39 @@ export default {
                           </router-link>
                         </li>
                         <li>
-                          <router-link to="/veterinarians" @click=toggleDrawer() style="text-decoration: none">
+                          <a
+                              v-ripple
+                              v-styleclass="{
+                                                selector: '@next',
+                                                enterClass: 'hidden',
+                                                enterActiveClass: 'slidedown',
+                                                leaveToClass: 'hidden',
+                                                leaveActiveClass: 'slideup'
+                                            }"
+                              class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple"
+                          >
+                            <i class="pi pi-users mr-2"></i>
+                            <span class="font-medium">Veterinarians</span>
+                            <i class="pi pi-chevron-down ml-auto"></i>
+                          </a>
+                        <ul class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
+                        <li>
+                          <router-link to="/veterinarian-view" @click=toggleDrawer() style="text-decoration: none">
                             <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple text-decoration:none" >
                               <i class="pi pi-heart mr-2 " ></i>
-                              <span class="font-medium">Veterinarian</span>
+                              <span class="font-medium">View Veterinarians</span>
                             </a>
                           </router-link>
+                          <li>
+                            <router-link to="/veterinarian-manage" @click=toggleDrawer() style="text-decoration: none">
+                              <a v-ripple class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                <i class="pi pi-users mr-2"></i>
+                                <span class="font-medium">Veterinarian Management</span>
+                              </a>
+                            </router-link>
+                          </li>
+                          </li>
+                        </ul>
                         </li>
                         <li>
                           <router-link to="/settings" @click=toggleDrawer() style="text-decoration: none">
@@ -223,6 +247,7 @@ export default {
                             <span class="font-medium">Settings</span>
                           </a>
                           </router-link>
+
                         </li>
                       </ul>
                     </li>

@@ -3,6 +3,7 @@ import DataManager from "../../../shared/components/data-manager.component.vue";
 import VaccineCreateAndEdit from "../components/vaccine-create-and-edit.component.vue";
 import { Vaccine } from "../model/vaccine.entity.js";
 import { VaccinesApiService } from "../services/vaccine-api.service.js";
+import moment from "moment";
 
 export default {
   name: "vaccine-management",
@@ -25,6 +26,9 @@ export default {
   methods: {
     toggleRow(data) {
       this.$set(data, 'expanded', !data.expanded);
+    },
+    formatDate(date) {
+      return moment(date).format('DD/MM/YYYY');
     },
     notifySuccessfulAction(message) {
       this.$toast.add({ severity: "success", summary: "Success", detail: message, life: 3000 });
@@ -76,7 +80,6 @@ export default {
             this.vaccine = Vaccine.toDisplayableVaccine(response.data);
             this.vaccines.push(this.vaccine);
             this.notifySuccessfulAction("Vaccine Created");
-            createAndEditDialogIsVisible
           })
           .catch((error) => {
             console.error('Error creating vaccine:', error);
@@ -84,11 +87,9 @@ export default {
     },
     updateVaccine() {
       this.vaccine = Vaccine.fromDisplayableVaccine(this.vaccine);
-      this.vaccineService
-          .update(this.vaccine.id, this.vaccine)
+      this.vaccineService.update(this.vaccine.id, this.vaccine)
           .then((response) => {
-            this.vaccines[this.findIndexById(response.data.id)] =
-                Vaccine.toDisplayableVaccine(response.data);
+            this.vaccines[this.findIndexById(response.data.id)] = Vaccine.toDisplayableVaccine(response.data);
             this.notifySuccessfulAction("Vaccine Updated");
           })
           .catch((error) => {
@@ -166,10 +167,14 @@ export default {
         v-on:delete-item="onDeleteItemEventHandler($event)"
         v-on:delete-selected-items="onDeleteSelectedItemsEventHandler($event)">
       <template #custom-columns>
-        <pv-column :sortable="true" field="id"   header="id"    style="min-width: 10rem"/>
-        <pv-column :sortable="true" field="name" header="Name"  style="min-width: 20rem"/>
-        <pv-column :sortable="true" field="date" header="Date"  style="min-width: 15rem"/>
-        <pv-column :sortable="true" field="code" header="Code"  style="min-width: 15rem"/>
+        <pv-column :sortable="true" field="id" header="id" style="min-width: 10rem"/>
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 20rem"/>
+        <pv-column :sortable="true" field="date" header="Date" style="min-width: 15rem">
+          <template #body="slotProps">
+            {{ formatDate(slotProps.data.date.value) }}
+          </template>
+        </pv-column>
+        <pv-column :sortable="true" field="code" header="Code" style="min-width: 15rem"/>
         <pv-column header="Actions" style="min-width: 10rem">
           <template #body="slotProps">
             <button class="action-button reason-button" @click="showReason(slotProps.data.reason)">
@@ -178,6 +183,7 @@ export default {
           </template>
         </pv-column>
       </template>
+
     </data-manager>
 
     <vaccine-create-and-edit

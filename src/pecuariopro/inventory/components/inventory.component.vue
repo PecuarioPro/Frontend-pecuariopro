@@ -1,3 +1,5 @@
+import http from "../../../shared/services/http-common.js";
+
 <template>
   <div class="container">
     <h1 class="animated-title" style="margin-bottom: 80px;">Management Inventory</h1>
@@ -123,11 +125,6 @@
       <label for="quantity">Quantity</label>
       <pv-input-number v-model="newItem.quantity" id="quantity" placeholder="Enter item quantity" />
     </div>
-    <div class="form-group" v-if="selectedInventory === 'Food'">
-      <label for="image">Image URL</label>
-      <pv-input-text v-model="newItem.image" id="image" placeholder="Enter image URL" />
-    </div>
-
     <template #footer>
       <pv-button label="Cancel" @click="closeAddDialog"></pv-button>
       <pv-button label="Save" @click="saveNewItem"></pv-button>
@@ -142,10 +139,6 @@
     <div class="form-group">
       <label for="editQuantity">Quantity</label>
       <pv-input-number v-model="editItemData.quantity" id="editQuantity" placeholder="Enter item quantity" />
-    </div>
-    <div class="form-group" v-if="selectedInventory === 'Food'">
-      <label for="editImage">Image URL</label>
-      <pv-input-text v-model="editItemData.image" id="editImage" placeholder="Enter image URL" />
     </div>
 
     <template #footer>
@@ -208,13 +201,13 @@ export default {
       console.log(`Loading inventory data for ${title}`);
       try {
         if (title === 'Food') {
-          const response = await axios.get('http://localhost:3000/food');
+          const response = await axios.get('http://localhost:3000/inventory');
           items.value = response.data;
           console.log('Loaded food items:', items.value);
         } else if (title === 'Vaccine') {
           await router.push('/vaccine');
         } else if (title === 'Tools') {
-          const response = await axios.get('http://localhost:3000/tools');
+          const response = await axios.get('http://localhost:3000/inventory');
           items.value = response.data;
           console.log('Loaded tools items:', items.value);
         }
@@ -230,7 +223,7 @@ export default {
 
     const saveNewItem = async () => {
       const endpoint = selectedInventory.value.toLowerCase();
-      await axios.post(`http://localhost:3000/${endpoint}`, newItem.value);
+      await axios.post(`http://localhost:3000/inventory${endpoint}`, newItem.value);
       await loadInventoryData(selectedInventory.value);
       closeAddDialog();
     };
@@ -246,7 +239,7 @@ export default {
 
     const saveEditedItem = async () => {
       try {
-        const endpoint = `http://localhost:3000/food/${editItemData.value.id}`; // Ensure correct endpoint with ID
+        const endpoint = `http://localhost:3000/inventory/${editItemData.value.id}`; // Ensure correct endpoint with ID
         const response = await axios.put(endpoint, editItemData.value);
         if (response.status === 200) {
           // ... success handling
@@ -268,7 +261,7 @@ export default {
     const deleteItem = async (item) => {
       try {
         const endpoint = selectedInventory.value.toLowerCase();
-        const response = await axios.delete(`http://localhost:3000/${endpoint}/${item.id}`);
+        const response = await axios.delete(`http://localhost:3000/inventory/${endpoint}/${item.id}`);
         if (response.status === 200) {
           await loadInventoryData(selectedInventory.value);
         } else {

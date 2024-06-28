@@ -1,10 +1,21 @@
 <script>
 import createAndEdit from "../../../shared/components/create-and-edit.component.vue";
+import moment from 'moment';
+
 export default {
   name: "vaccine-item-create-and-edit",
-  components: { createAndEdit },
+  components: {createAndEdit},
   props: {
-    item: null,
+    item: {
+      type: Object,
+      default: () => ({
+        name: '',
+        code: '',
+        reason: '',
+        date: '',
+        status: ''
+      })
+    },
     visible: Boolean,
     statuses: Array
   },
@@ -14,42 +25,27 @@ export default {
     }
   },
   methods: {
-    getSeverity(status) {
-      switch (status) {
-        case 'Applied':
-          return 'success';
-        case 'Not applied':
-          return 'info';
-        default:
-          return null;
-      }
-    },
     canceledEventHandler() {
       this.$emit('canceled');
     },
     savedEventHandler() {
-      console.log(this.item);
       this.submitted = true;
-      // Verificar si los campos requeridos están llenos
+      // Verify if the required fields are filled
       if (this.item.name && this.item.code && this.item.status) {
-        this.$emit('saved', this.item);
+        let authToken = localStorage.getItem('authToken');
+        this.$emit('saved', {item: this.item, token: authToken});
       }
     }
   }
 }
 </script>
 
-
 <template>
-  <create-and-edit :entity="item" :visible="visible" entityName="Vaccine" @canceled="canceledEventHandler" @saved="savedEventHandler">
+  <create-and-edit :entity="item" :visible="visible" entityName="Vaccine" @canceled="canceledEventHandler"
+                   @saved="savedEventHandler">
     <template #content>
       <div class="p-fluid">
-        <div class="p-field mt-5">
-          <pv-float-label>
-            <label for="ID">ID</label>
-            <pv-input-text id="ID" v-model="item.id"/>
-          </pv-float-label>
-        </div>
+        <!-- Remove ID field for creation -->
         <div class="field mt-5">
           <pv-float-label>
             <label for="name">Name</label>
@@ -60,13 +56,13 @@ export default {
         <div class="p-field mt-5">
           <pv-float-label>
             <label for="reason">Reason</label>
-            <input id="reas" v-model="item.reason" class="p-inputtext p-component" type="text"/>
+            <input id="reason" v-model="item.reason" class="p-inputtext p-component" type="text"/>
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
           <pv-float-label>
             <label for="date">Date</label>
-            <input id="date" v-model="item.date" class="p-inputtext p-component" type="date"/>
+            <input id="date" v-model="item.date" class="p-inputtext p-component" type="text" placeholder="DD/MM/YYYY"/>
           </pv-float-label>
         </div>
         <div class="p-field mt-5">
@@ -80,4 +76,3 @@ export default {
     </template>
   </create-and-edit>
 </template>
-
