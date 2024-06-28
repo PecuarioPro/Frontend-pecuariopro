@@ -19,7 +19,9 @@ export default {
         {label: 'Campaign', to: '/campaign'},
         {label: 'Staff', to: '/staff-view'},
         {label: 'Inventory', to: '/inventory'}
-      ]
+      ],
+      hiddenRoutes: ['/sign-in', '/sign-up']
+
     }
   },
   methods: {
@@ -32,18 +34,20 @@ export default {
 
 <template>
   <div>
-    <header v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
       <pv-toolbar class="toolbar" fixed>
         <template #start>
-          <pv-button class="menu-button" icon="pi pi-bars" @click="toggleDrawer()" />
+          <pv-button
+              class="menu-button"
+              icon="pi pi-bars"
+              @click="toggleDrawer()"
+              v-if="!hiddenRoutes.includes(route.path)"
+          />
           <h1 class="toolbar-title">PecuarioPro</h1>
         </template>
         <template #end>
           <authentication-section/>
         </template>
       </pv-toolbar>
-    </header>
-
 
     <div class="app-content" v-if="route.path !== '/' && route.path !== '/register' && route.path !== '/login'">
 
