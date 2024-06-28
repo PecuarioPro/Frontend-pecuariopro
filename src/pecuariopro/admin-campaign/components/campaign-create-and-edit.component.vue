@@ -24,7 +24,16 @@ export default {
       this.submitted = true;
       //&& this.item.objective && this.validateDates()
        if (this.item.name&& this.item.objective && this.validateDates()) {
-        console.log("si entre");
+
+         this.item.dateStart = this.formatDate(this.item.dateStart);
+         this.item.dateEnd = this.formatDate(this.item.dateEnd);
+         // let fullDate = new Date(this.item.date);
+         // this.item.dateStart=fullDate.toISOString().split('T')[0];
+
+         // let fullDateEnd = new Date(this.item.date);
+         // this.item.dateEnd=fullDateEnd.toISOString().split('T')[0];
+        console.log("si entre",this.item);
+        this.item.userId =1; //aca ponle el user
           this.$emit('saved2', this.item);
        }
     },
@@ -35,8 +44,17 @@ export default {
       }
       this.dateError = '';
       return true;
-    }
+    },
+    formatDate(date) {
+      if (!date) return null; // Manejar caso de fecha vacía o nula
 
+      // Convertir la fecha al formato YYYY-MM-DD
+      const dt = new Date(date);
+      const year = dt.getFullYear();
+      const month = String(dt.getMonth() + 1).padStart(2, "0");
+      const day = String(dt.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
   }
 }
 </script>

@@ -32,19 +32,19 @@ export default {
     this.campaignService = new CampaignApiService();
     this.campaignService.getAll().then((response) => {
       console.log(response.data);
-      let campaigns = response.data;
-      this.campaigns = campaigns.map((campaign) => {
-        let startDate = new Date(campaign.dateStart);
-        let endDate = new Date(campaign.dateEnd);
-        return Campaign.fromDisplayableCampaign({
-          id: campaign.id,
-          name: campaign.name,
-          dateStart: startDate,
-          dateEnd: endDate,
-          objective: campaign.objective,
-          condition: campaign.condition
-        });
-      });
+      this.campaigns = response.data;
+      // this.campaigns = campaigns.map((campaign) => {
+      //   let startDate = new Date(campaign.dateStart);
+      //   let endDate = new Date(campaign.dateEnd);
+      //   return Campaign.fromDisplayableCampaign({
+      //     id: campaign.id,
+      //     name: campaign.name,
+      //     dateStart: startDate,
+      //     dateEnd: endDate,
+      //     objective: campaign.objective,
+      //     condition: campaign.condition
+      //   });
+      // });
       console.log("este es el array",this.campaigns);
       this.allCampaigns = [...this.campaigns];
     });
@@ -93,7 +93,7 @@ export default {
   onSavedEventHandler(item) {
     this.submitted = true;
     if (this.campaign.name.trim()) {
-      if (item.id) {
+      if (this.isEdit) {
         console.log("soy el update");
         this.updateCampaign();
       } else {

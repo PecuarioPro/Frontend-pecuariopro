@@ -1,12 +1,12 @@
 export class Campaign {
-    constructor(id,name,dateStart,dateEnd,objective,condition) {
+    constructor(id,name,dateStart,dateEnd,objective,condition,userId) {
         this.id = id;
         this.name = name;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.objective = objective;
         this.condition = condition;
-        this.duration = this.calculateDuration();
+        this.userId = userId;
     }
 
     static fromDisplayableCampaign(displayableCampaign) {
@@ -16,8 +16,8 @@ export class Campaign {
             displayableCampaign.dateStart,
             displayableCampaign.dateEnd,
             displayableCampaign.objective,
-            displayableCampaign.condition
-
+            displayableCampaign.condition,
+            displayableCampaign.userId
 
         );
     }
@@ -29,15 +29,16 @@ export class Campaign {
             dateStart: campaign.dateStart,
             dateEnd: campaign.dateEnd,
             objective: campaign.objective,
-            condition: campaign.condition
+            condition: campaign.condition,
+            userId: campaign.userId
 
         };
     }
 
-     calculateDuration(){
-        const diffTime = this.dateEnd.getTime() - this.dateStart.getTime();
-         return diffTime / (1000 * 60 * 60 * 24);
-    }
+    //  calculateDuration(){
+    //     const diffTime = this.dateEnd.getTime() - this.dateStart.getTime();
+    //      return diffTime / (1000 * 60 * 60 * 24);
+    // }
 
     // aggregateBatch(batch){
     //     this.batches.push(batch);

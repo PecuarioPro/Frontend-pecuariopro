@@ -6,6 +6,12 @@ import BatchCreateAndEdit from "../components/batch-create-and-edit.component.vu
 import CampaignCreateAndEdit from "../../admin-campaign/components/campaign-create-and-edit.component.vue";
 import CampaignView from "../../admin-campaign/components/campaign-view.vue";
 import BatchFilterPage from "./batch-filter-page.component.vue";
+import {Origin} from "../../admin-bovines/model/origin.entity.js";
+import {BovinesApiService} from "../../admin-bovines/services/bovines-api.service.js";
+import {BreedsApiService} from "../../admin-bovines/services/breeds-api.service.js";
+import {DepartmentsApiService} from "../../../shared/services/origin/departments-api.service.js";
+import {CitiesApiService} from "../../../shared/services/origin/cities-api.service.js";
+import {DistrictsApiService} from "../../../shared/services/origin/districts-api.service.js";
 
 export default {
   name: "batch-management",
@@ -13,6 +19,7 @@ export default {
   data() {
     return {
       batch: {},
+      origin:{},
       batchesService: null,
       batches: [],
       allBatches:[],//array for filter
@@ -23,15 +30,51 @@ export default {
       deleteFlag:false,
       visibleFilter:false,
       wasFilter:false,
-      campaignId:null
-
+      campaignId:null,
+      departments:null,
+      selectedDepartments:null,
+      cities:null,
+      selectedCities:null,
+      districts:null,
+      selectedDistricts:null,
+      breedsService:null,
+      departmentService:null,
+      cityService:null,
+      districtService:null,
+      auxCities:null,
+      auxDepartments:null,
+      auxDistricts:null,
+      department:{},
+      city:{},
+      district:{},
+      allCities: null,
+      allDistricts: null
     };
   },
   created() {
     this.batchesService = new BatchApiService();
     this.campaignId=this.$route.params.campaignId;
+    this.origin=new Origin;
+    this.bovineService = new BovinesApiService();
+    this.breedService = new BreedsApiService();
+    this.departmentService = new DepartmentsApiService();
+    this.cityService = new CitiesApiService();
+    this.districtService = new DistrictsApiService();
     this.getBatches();
     console.log(this.campaignId);
+  },
+  watch: {
+    visible: function(newValue, oldValue) {
+      if (!newValue) {
+        this.resetForm();
+      }
+    },
+    'item2.department'(newValue) {
+      this.filterCities();
+    },
+    'item2.city'(newValue) {
+      this.filterDistricts();
+    }
   },
   methods: {
     notifySuccessfulAction(message) {
@@ -52,14 +95,12 @@ export default {
     getBatches() {
       this.batchesService.getAll(this.campaignId).then((response) => {
         console.log(response.data);
-        let batches = response.data;
-        this.batches = batches
-            .map(batch => Batch.toDisplayableBatch(batch));
-        console.log("batches filtrados",this.batches);
+        this.batches = response.data;
+        //     .map(batch => Batch.toDisplayableBatch(batch));
+        // console.log("batches filtrados",this.batches);
         this.allBatches = [...this.batches];
       });
     },
-
     onNewItemEventHandler() {
       this.batch = {};
       this.submitted = false;
@@ -120,10 +161,18 @@ export default {
 
     //CRUD METHODS
     createBatch(){
-      this.batch = Batch.fromDisplayableBatch(this.batch);
+      this.batch.origin=this.origin;
+      // this.batch = Batch.fromDisplayableBatch(this.batch);
       //aggregate default values if is necessary
       this.batch.status= 'Empty';
       this.batch.campaignId= this.campaignId;
+      let toCreate ={};
+      this.department=this.departments.find(department=>department.name === this.batch.origin.department);
+      this.city=this.cities.find(city => city.name===this.batch.origin.city);
+      this.district=this.districts.find(district => district.name === this.batch.origin.district);
+
+      this.batch = Batch.fromDisplayableBatch(0,this.batch.name,this.batch.area,this.district.id,
+      this.city.id,this.department.id,this.batch.campaignId);
       this.batchesService.create(this.batch).then((response) => {
         this.batch = Batch.toDisplayableBatch(response.data);
         this.batches.push(this.batch);
@@ -245,9 +294,12 @@ export default {
         <batch-view :batch="batch" @viewBovines="handleViewBovines" @Edit="onEditItemEventHandler" @Delete="onDeleteItemEventHandler"/>
       </div>
     </div>
+
+
   </section>
 <batch-create-and-edit
     :item="batch"
+    :item2="origin"
     :visible="isVisibleCard"
     :edit="isEdit"
     @canceled="onCanceledEventHandler"
