@@ -4,6 +4,8 @@ import {CampaignApiService} from "../services/campaign-api.service.js";
 import {Campaign} from "../model/campaign.entity.js";
 import CampaignCreateAndEdit from "../components/campaign-create-and-edit.component.vue";
 import FilterPage from "./filter-page.component.vue";
+import {AuthenticationService} from "../../../iam/services/authentication.service.js";
+import {useAuthenticationStore} from "../../../iam/services/authentication.store.js";
 
 
 export default {
@@ -24,15 +26,18 @@ export default {
       submitted: false,
       deleteFlag:false,
       visibleFilter:false,
-      wasFilter:false
+      wasFilter:false,
+      authenticateService:null,
+      authStore: useAuthenticationStore()
     }
 
   },
   created(){
     this.campaignService = new CampaignApiService();
+    this.authenticateService = new AuthenticationService();
     this.campaignService.getAll().then((response) => {
       console.log(response.data);
-      this.campaigns = response.data;
+      this.campaigns = response.data.filter((campaign)=>campaign.userId===this.authStore.currentUserId );
       // this.campaigns = campaigns.map((campaign) => {
       //   let startDate = new Date(campaign.dateStart);
       //   let endDate = new Date(campaign.dateEnd);
@@ -140,6 +145,7 @@ export default {
     createCampaign(){
       this.campaign = Campaign.fromDisplayableCampaign(this.campaign);
       this.campaign.condition='Active';
+      this.campaign.userId = this.authStore.currentUserId; // Assign currentUserId from auth store
       this.campaignService.create(this.campaign).then((response) => {
         this.campaign = Campaign.toDisplayableCampaign(response.data);
         this.campaigns.push(this.campaign);
