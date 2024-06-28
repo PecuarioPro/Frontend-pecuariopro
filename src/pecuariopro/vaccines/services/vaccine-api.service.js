@@ -10,12 +10,20 @@ export class VaccinesApiService {
         return http.get(`/vaccines/${id}`);
     }
 
-    create(vaccineResource) {
-        return http.post('/vaccines', vaccineResource);
+    create(vaccineResource, authToken) {
+        return http.post('/vaccines', vaccineResource, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
     }
 
-    update(id, vaccineResource) {
-        return http.put(`/vaccines/${id}`, vaccineResource);
+    update(id, vaccineResource, authToken) {
+        return http.put(`/vaccines/${id}`, vaccineResource, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
     }
 
     delete(id) {
