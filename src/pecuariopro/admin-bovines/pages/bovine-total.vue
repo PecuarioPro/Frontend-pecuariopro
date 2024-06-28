@@ -3,7 +3,7 @@
   <div class="bovine-component">
     <h1 class="title">Bovines</h1>
     <div class="search-container">
-      <h2>Busca a tu bovino:</h2>
+      <h2>Look for your bovine:</h2>
       <input v-model="searchTerm" type="text" placeholder="Ingresa el nombre del bovino..." class="search-input" />
     </div>
     <div v-for="group in filteredBovines" :key="group.batchId" class="batch-group">
